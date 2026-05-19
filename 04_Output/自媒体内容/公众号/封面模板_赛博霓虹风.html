@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号封面模板 - 赛博霓虹风</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0D1B2A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .cover-container {
+            width: 900px;
+            height: 500px;
+            background: linear-gradient(135deg, #0D1B2A 0%, #1A1A2E 50%, #16213E 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 霓虹线条装饰 */
+        .neon-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #FF00FF, #00FFFF, transparent);
+            height: 2px;
+            animation: neonGlow 3s ease-in-out infinite;
+        }
+
+        .neon-line-1 {
+            top: 20%;
+            left: -100%;
+            width: 100%;
+            animation-delay: 0s;
+        }
+
+        .neon-line-2 {
+            bottom: 30%;
+            right: -100%;
+            width: 100%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes neonGlow {
+            0%, 100% {
+                left: -100%;
+                opacity: 0;
+            }
+            50% {
+                left: 100%;
+                opacity: 1;
+            }
+        }
+
+        /* 几何装饰 */
+        .geometric {
+            position: absolute;
+            border: 2px solid #00FFFF;
+            opacity: 0.3;
+        }
+
+        .geo1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            right: 10%;
+            transform: rotate(45deg);
+            animation: rotate 20s linear infinite;
+        }
+
+        .geo2 {
+            width: 60px;
+            height: 60px;
+            bottom: 15%;
+            left: 8%;
+            border-radius: 50%;
+            border-color: #FF00FF;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        /* 内容区域 */
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .series-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF00FF 0%, #00FFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .main-title {
+            font-size: 42px;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.6),
+                0 0 30px rgba(255, 0, 255, 0.4);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 
+                    0 0 10px rgba(255, 0, 255, 0.8),
+                    0 0 20px rgba(0, 255, 255, 0.6);
+            }
+            to {
+                text-shadow: 
+                    0 0 20px rgba(255, 0, 255, 1),
+                    0 0 30px rgba(0, 255, 255, 0.8),
+                    0 0 40px rgba(255, 0, 255, 0.6);
+            }
+        }
+
+        .sub-title {
+            font-size: 18px;
+            color: #E0E0E0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            max-width: 80%;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B35, #FFD700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 0 15px rgba(255, 107, 53, 0.6);
+        }
+
+        .author-name {
+            font-size: 16px;
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .article-number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 64px;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px #00FFFF;
+            opacity: 0.3;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        /* 粒子效果用CSS模拟 */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00FFFF;
+            border-radius: 50%;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 80%; left: 40%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 40%; left: 60%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.5); opacity: 1; }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .cover-container {
+                width: 100%;
+                height: 300px;
+                padding: 20px;
+            }
+            .main-title {
+                font-size: 28px;
+            }
+            .sub-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-container">
+        <!-- 霓虹线条 -->
+        <div class="neon-line neon-line-1"></div>
+        <div class="neon-line neon-line-2"></div>
+
+        <!-- 几何装饰 -->
+        <div class="geometric geo1"></div>
+        <div class="geometric geo2"></div>
+
+        <!-- 粒子效果 -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+        <!-- 文章编号 -->
+        <div class="article-number">01</div>
+
+        <!-- 内容 -->
+        <div class="content">
+            <div class="series-tag">《AI工具在个人品牌的提效》系列</div>
+            <h1 class="main-title">AI时代，你的知识库<br>为什么搭不起来？</h1>
+            <p class="sub-title">3步搭建真正"活"的大脑 · 让AI真正读懂你</p>
+            <div class="author-info">
+                <div class="avatar">🐾</div>
+                <div class="author-name">蓉蓉子的星球Planet</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 鼠标移动霓虹效果
+        document.querySelector('.cover-container').addEventListener('mousemove', (e) => {
+            const x = e.offsetX;
+            const y = e.offsetY;
+            const container = document.querySelector('.cover-container');
+            
+            container.style.background = `
+                radial-gradient(circle at ${x}px ${y}px, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0D1B2A 0%, #1A1A2E 50%, #16213E 100%)
+            `;
+        });
+    </script>
+</body>
+</html>

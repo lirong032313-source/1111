@@ -1,0 +1,16 @@
+{
+  "name": "html2png",
+  "version": "1.0.0",
+  "description": "将HTML配图转换为高清PNG（公众号配图专用）",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js",
+    "watch": "node index.js --watch"
+  },
+  "keywords": ["html", "png", "puppeteer", "wechat"],
+  "author": "蓉蓉子",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咨询诊断报告 - {姓名}</title>
+    <style>
+        :root {
+            --primary: #6B5B95;
+            --secondary: #9B8DC2;
+            --accent: #F7A侠;
+            --bg: #FDFBFF;
+            --text: #2D2D2D;
+            --light: #EDE8F5;
+            --warm: #FFF8E7;
+            --success: #7CB342;
+            --warning: #FF8F00;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(107, 91, 149, 0.12);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 48px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .header .date {
+            margin-top: 16px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        .section {
+            padding: 36px 40px;
+            border-bottom: 1px solid #F0EEF5;
+        }
+        .section:last-child { border-bottom: none; }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .info-card {
+            background: var(--warm);
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+        .info-card.full { grid-column: 1 / -1; }
+        .info-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .info-value {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .pain-point {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .pain-marker {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .pain-text { font-size: 15px; }
+        .diagnosis-box {
+            background: linear-gradient(135deg, #EDE8F5 0%, #F5F0FA 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .diagnosis-box h3 {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .diagnosis-code {
+            background: #2D2D2D;
+            color: #A8E6CF;
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-family: "SF Mono", "Fira Code", monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .action-period {
+            margin-bottom: 8px;
+        }
+        .action-period-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .action-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: var(--light);
+            color: var(--primary);
+        }
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #FAFAFA;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .action-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #DDD;
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .action-content { font-size: 14px; }
+        .quote-box {
+            background: linear-gradient(135deg, var(--warm) 0%, #FFF5E5 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 16px 0;
+        }
+        .quote-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .quote-text {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--text);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .product-card {
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #EEE;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .product-card.recommended {
+            border-color: var(--success);
+            background: #F0FAF0;
+        }
+        .product-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .product-info { flex: 1; }
+        .product-name { font-size: 14px; font-weight: 500; }
+        .product-price { font-size: 12px; color: #888; }
+        .product-status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        .status-yes {
+            background: var(--success);
+            color: white;
+        }
+        .status-no {
+            background: #EEE;
+            color: #999;
+        }
+        .status-done {
+            background: var(--warning);
+            color: white;
+        }
+        .footer {
+            text-align: center;
+            padding: 32px 40px;
+            background: #FAFAFA;
+            font-size: 13px;
+            color: #888;
+        }
+        .footer-brand {
+            font-weight: 600;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 咨询诊断报告</h1>
+            <p class="subtitle">用户画像 · 问题诊断 · 行动计划</p>
+            <p class="date">咨询日期：{日期} &nbsp;|&nbsp; 学员：{姓名}</p>
+        </div>
+
+        <!-- 用户画像 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">👤</div>
+                用户画像
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">职业/行业</div>
+                    <div class="info-value">{职业}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">主业</div>
+                    <div class="info-value">{主业}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">副业阶段</div>
+                    <div class="info-value">{副业阶段}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">AI 使用</div>
+                    <div class="info-value">{AI使用水平}</div>
+                </div>
+                <div class="info-card full">
+                    <div class="info-label">加入来源</div>
+                    <div class="info-value">{来源}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心痛点 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">🎯</div>
+                核心痛点
+            </div>
+            <div class="pain-point">
+                <div class="pain-marker">1</div>
+                <div class="pain-text">{痛点1}</div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-marker">2</div>
+                <div class="pain-text">{痛点2}</div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-marker">3</div>
+                <div class="pain-text">{痛点3}</div>
+            </div>
+        </div>
+
+        <!-- 冰山分析 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">🧊</div>
+                冰山分析
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">冰山上（显性困惑）</div>
+                    <div class="info-value">{冰山上}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">冰山下（深层卡点）</div>
+                    <div class="info-value">{冰山下}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 问题诊断 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">🔍</div>
+                问题诊断
+            </div>
+            <div class="diagnosis-box">
+                <h3>💡 核心问题（本源）</h3>
+                <div class="diagnosis-code">{核心问题}</div>
+            </div>
+            <div class="diagnosis-box">
+                <h3>✨ 用户真实想要的</h3>
+                <div class="diagnosis-code">{真实想要}</div>
+            </div>
+            <div class="diagnosis-box">
+                <h3>🛤️ 解决方向</h3>
+                <div class="diagnosis-code">{解决方向}</div>
+            </div>
+        </div>
+
+        <!-- 用户原话 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">💬</div>
+                用户原话
+            </div>
+            <div class="quote-box">
+                <div class="quote-label">来自学员的真实声音</div>
+                <div class="quote-text">"{用户原话}"</div>
+            </div>
+        </div>
+
+        <!-- 行动计划 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">📌</div>
+                行动计划
+            </div>
+            <div class="action-list">
+                <div class="action-period">
+                    <div class="action-period-title">
+                        即时行动 <span class="action-tag">1周内</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-check"></div>
+                        <div class="action-content">{即时行动1}</div>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-check"></div>
+                        <div class="action-content">{即时行动2}</div>
+                    </div>
+                </div>
+                <div class="action-period">
+                    <div class="action-period-title">
+                        短期计划 <span class="action-tag">1个月</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-check"></div>
+                        <div class="action-content">{短期计划1}</div>
+                    </div>
+                </div>
+                <div class="action-period">
+                    <div class="action-period-title">
+                        中期目标 <span class="action-tag">3个月</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-check"></div>
+                        <div class="action-content">{中期目标1}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 产品推荐 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">🎁</div>
+                产品推荐
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">IP 六间房知识库模板</div>
+                        <div class="product-price">¥199</div>
+                    </div>
+                    <span class="product-status">{状态1}</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">知识库/产品线定制咨询</div>
+                        <div class="product-price">¥999</div>
+                    </div>
+                    <span class="product-status">{状态2}</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">21天实操营</div>
+                        <div class="product-price">¥1899</div>
+                    </div>
+                    <span class="product-status">{状态3}</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">3个月私教陪跑</div>
+                        <div class="product-price">¥16800</div>
+                    </div>
+                    <span class="product-status">{状态4}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下次沟通 -->
+        <div class="section">
+            <div class="section-title">
+                <div class="section-icon">📅</div>
+                下次沟通
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">时间</div>
+                    <div class="info-value">{下次时间}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">议题</div>
+                    <div class="info-value">{下次议题}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>由 <span class="footer-brand">蓉蓉子</span> 咨询诊断生成</p>
+            <p style="margin-top: 4px;">{生成日期}</p>
+        </div>
+    </div>
+</body>
+</html>

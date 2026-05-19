@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>蓉蓉子 AI 私教团控制台</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="AI 私教团工作台">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">一人公司 AI 私教团</p>
+            <h1>蓉蓉子的分身工作台</h1>
+            <p class="subtitle">微信接入 ClawBot 后，这里就是网页端控制台：选分身、写任务、看输出、沉淀资产。</p>
+          </div>
+          <div class="status-card">
+            <span id="status">连接中</span>
+            <small id="chunkCount">读取知识库中</small>
+          </div>
+        </header>
+
+        <section class="agent-strip" aria-label="选择分身">
+          <button class="agent-card active" type="button" data-agent="小蜜" data-role="内容助手" data-prompt="帮我基于这段灵感写一篇小红书，风格温暖、有能量，不要太营销。">
+            <span class="agent-name">小蜜</span>
+            <strong>内容助手</strong>
+            <small>公众号 / 小红书 / 选题</small>
+          </button>
+          <button class="agent-card" type="button" data-agent="小李" data-role="咨询分身" data-prompt="帮我生成一份咨询报告框架：用户画像、核心痛点、冰山分析、行动计划、产品路径。">
+            <span class="agent-name">小李</span>
+            <strong>咨询分身</strong>
+            <small>飞书报告 / HTML 图片</small>
+          </button>
+          <button class="agent-card" type="button" data-agent="石榴" data-role="工作助理" data-prompt="帮我设计一个微信提醒任务：明天早上 9 点提醒我跟进私教学员交付进度。">
+            <span class="agent-name">石榴</span>
+            <strong>工作助理</strong>
+            <small>提醒 / 待办 / 入库</small>
+          </button>
+          <button class="agent-card" type="button" data-agent="小懂" data-role="交付助手" data-prompt="帮我整理一张私教学员交付跟进卡，包含当前阶段、卡点、行动项、风险提醒。">
+            <span class="agent-name">小懂</span>
+            <strong>交付助手</strong>
+            <small>学员跟进 / 复盘</small>
+          </button>
+          <button class="agent-card" type="button" data-agent="小策" data-role="产品教练" data-prompt="帮我优化 21 天实操营的交付节奏，重点看学员行动率和可复制性。">
+            <span class="agent-name">小策</span>
+            <strong>产品教练</strong>
+            <small>产品实验 / SOP</small>
+          </button>
+        </section>
+
+        <section class="chat-layout">
+          <div class="chat-panel">
+            <div class="active-agent">
+              <div>
+                <p>当前分身</p>
+                <h2 id="activeAgent">小蜜 · 内容助手</h2>
+              </div>
+              <button type="button" id="useExample">填入示例任务</button>
+            </div>
+
+            <div class="messages" id="messages" aria-live="polite"></div>
+
+            <form class="composer" id="composer">
+              <textarea id="messageInput" rows="1" placeholder="输入任务，例如：把这段语音整理成小红书；或：小李，帮我生成咨询报告"></textarea>
+              <button type="submit" aria-label="发送">发送</button>
+            </form>
+          </div>
+
+          <aside class="ops-panel" aria-label="服务与输出说明">
+            <section class="ops-block">
+              <h2>线上服务入口</h2>
+              <div class="service-list">
+                <article>
+                  <span>¥999</span>
+                  <h3>知识库 / 产品线梳理咨询</h3>
+                  <p>适合想法很多、素材很散，需要先梳理出一条清晰产品线的人。</p>
+                </article>
+                <article>
+                  <span>¥1899</span>
+                  <h3>21 天 IP 六间房 AI 实操营</h3>
+                  <p>适合想系统跑通知识库搭建、AI 调用和内容输出闭环的人。</p>
+                </article>
+                <article>
+                  <span>¥16800</span>
+                  <h3>3 个月私教陪跑</h3>
+                  <p>适合想定制知识库、专属智能体和数字产品体系的人，需人工审核。</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="ops-block compact">
+              <h2>手机端闭环</h2>
+              <ul class="flow-list">
+                <li><b>微信</b><span>ClawBot 接收消息，识别小蜜 / 小李 / 石榴 / 小懂 / 小策。</span></li>
+                <li><b>飞书</b><span>小李输出咨询报告时，优先生成飞书文档结构。</span></li>
+                <li><b>图片</b><span>HTML 报告可转图片，方便微信发给学员或自己复盘。</span></li>
+                <li><b>ob 大脑</b><span>有价值的输出回流到六间房和案例库。</span></li>
+              </ul>
+            </section>
+
+            <section class="contact">
+              <p>人工确认与私域承接微信</p>
+              <div class="wechat" id="wechatId">加载中</div>
+              <button type="button" id="copyWechat">复制微信号</button>
+            </section>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

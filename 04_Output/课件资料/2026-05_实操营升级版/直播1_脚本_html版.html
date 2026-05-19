@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>直播1｜认知升级 + 三层架构 + CLAUDE.md</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1a2e 50%, #0d1117 100%);
+            color: #e6edf3; line-height: 1.7; padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { 
+            color: #00ffff; font-size: 1.8em; margin: 30px 0 20px;
+            text-shadow: 0 0 20px rgba(0,255,255,0.5); border-bottom: 2px solid #00ffff; padding-bottom: 10px;
+        }
+        h2 { 
+            color: #ff1493; font-size: 1.4em; margin: 25px 0 15px;
+            text-shadow: 0 0 10px rgba(255,20,147,0.5);
+        }
+        h3 { color: #9d4edd; font-size: 1.2em; margin: 20px 0 10px; }
+        blockquote {
+            background: linear-gradient(90deg, rgba(157,78,221,0.15), rgba(0,255,255,0.08));
+            border-left: 4px solid #9d4edd; padding: 15px 20px; margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        hr { border: none; border-top: 1px solid #30363d; margin: 30px 0; }
+        code {
+            background: #161b22; padding: 3px 8px; border-radius: 4px;
+            color: #00ffff;
+        }
+        pre {
+            background: #161b22; padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0;
+            border: 1px solid #30363d; white-space: pre;
+        }
+        strong { color: #00ffff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+<h1>📺 直播 1｜认知升级 + 三层架构 + 跑通你的 MVP 知识库</h1>
+
+<blockquote><strong>课程</strong>：5月「LLM Wiki × 六间房」AI 实操营  </blockquote>
+<blockquote><strong>直播时长</strong>：90-120 分钟  </blockquote>
+<blockquote><strong>核心目标</strong>：让学员从"知道有六间房"→"理解 Karpathy LLM Wiki 三层架构"→"现场建好目录+CLAUDE.md+第一次 Ingest"  </blockquote>
+<blockquote><strong>教学逻辑</strong>：先认知（理解逻辑）→ 再实操（动手做）  </blockquote>
+<blockquote><strong>交付承诺</strong>：直播结束时，每位学员都有一个能跑的最小 MVP 知识库</blockquote>
+
+<hr>
+
+<h2>🎯 直播 1 完整结构（一图看清）</h2>
+
+<code>`</code>
+┌──────────────────────────────────────────────────────┐
+│  直播 1：90-120 分钟 · 4 个 Part                      │
+├──────────────────────────────────────────────────────┤
+│  Part 0  开场暖场 + 学员自我介绍              5 min   │
+│  Part 1  认知升级：为什么"装资料"≠ 知识库   25 min   │
+│          ─ 痛点共鸣 → Karpathy 是谁 →                 │
+│            LLM Wiki 三层架构 → 与六间房联动           │
+│  Part 2  现场搭建：三层目录 + CLAUDE.md     40 min   │
+│          ─ 屏幕共享建目录（含 index.md/log.md）→     │
+│            写 CLAUDE.md → "谁写谁读"边界 →           │
+│            🎯 手写 vs AI 提炼分工（路径 C 关键）        │
+│  Part 3  现场实操：跑通第一个 MVP             25 min  │
+│          ─ ✋手写 01 地基卡 →                         │
+│            🤖 丢素材让 AI 整理 → 跑Query              │
+│  Part 4  Q&A + 作业布置 + 搭子认领            10 min  │
+└──────────────────────────────────────────────────────┘
+<code>`</code>
+
+<hr>
+
+<h2>Part 0｜开场暖场（5 分钟）</h2>
+
+<h3>🎤 主播话术</h3>
+
+<blockquote>"欢迎大家来到 5月 AI 实操营第一次直播。我是蓉蓉子，从企业解决方案专家做到 AI 个人产品定制教练</blockquote>
+>
+<blockquote>这次实操营，我希望 21 天后你拥有的不是『又一个收藏夹』，而是<strong>一只会自己长大的 AI 助手</strong>——你给它喂料，它帮你思考、帮你生产、帮你分发。</blockquote>
+>
+<blockquote>我们今天 90 分钟会做三件事：</blockquote>
+<blockquote>1. 把"为什么以前你的知识库搭不起来"这件事讲透</blockquote>
+<blockquote>2. 现场带你建好目录、写好 CLAUDE.md</blockquote>
+<blockquote>3. 跑通第一次"原始素材→AI整理→你Query"的最小闭环</blockquote>
+>
+<blockquote><strong>直播结束时，你的 MVP 知识库就活了。</strong>"</blockquote>
+
+<h3>🎬 镜头/PPT 提示</h3>
+- PPT P1：封面 + 「21 天后，你有一只会自己长大的 AI 助手」slogan
+- 主播自我介绍 30 秒（不超过）
+- 让学员在直播间发"我是 + 城市 + 职业"破冰
+
+<hr>
+
+<h2>Part 1｜认知升级（25 分钟）</h2>
+
+<blockquote><strong>教学策略</strong>：这部分是整个 21 天的「锚点」。讲透了，学员后面所有动作都有底层支撑；讲不透，他们就还在"装资料"的旧范式里。</blockquote>
+
+<h3>🪜 1.1 痛点共鸣（3 分钟）</h3>
+
+<strong>话术（先共鸣再讲新认知）</strong>：
+
+<blockquote>"我先问大家几个问题，符合的扣 1：</blockquote>
+<blockquote>- 你是不是 Notion / 飞书 / Obsidian 都试过，但没一个用得起来？</blockquote>
+<blockquote>- 你是不是收藏了几百篇好文章，但写东西时还是从零开始？</blockquote>
+<blockquote>- 你是不是用 ChatGPT/Claude 时，它给你的回答总像在敷衍——『太对了，但跟你没关系』？</blockquote>
+>
+<blockquote>如果你都中招，恭喜你——你不是不努力，你是<strong>用错了范式</strong>。你做的是『资料堆积』，但这个时代真正有用的是<strong>让 AI 读懂你的大脑</strong>。"</blockquote>
+
+<strong>PPT P2-P3</strong>：3 个截图 → 学员的笔记软件混乱 / 收藏夹堆积 / AI 答非所问
+
+<hr>
+
+<h3>🧠 1.2 Karpathy 是谁 + 他说了什么（5 分钟）</h3>
+
+<strong>话术</strong>：
+
+<blockquote>"今年 OpenAI 前研究负责人 Andrej Karpathy 提出了一个新范式叫 <strong>LLM Wiki</strong>——很多人没读懂，但这是接下来 2-3 年个人知识管理的底层逻辑。</blockquote>
+>
+<blockquote>一句话总结：<strong>传统 RAG 是『每次让 AI 临时去图书馆翻书』，LLM Wiki 是『你雇了一个私人图书管理员，他每天帮你整理书架，下次你问什么他直接答』。</strong>"</blockquote>
+
+<strong>PPT P4：Karpathy LLM Wiki 三层架构图</strong>
+<code>`</code>
+┌─────────────────────────────────────┐
+│  Schema 层（规则/契约）             │ ← 你和AI共同维护
+│  - CLAUDE.md（写作风格、边界）      │
+├─────────────────────────────────────┤
+│  Wiki 层（已编译的知识，AI拥有）    │ ← AI写，你读+纠错
+│  - 六间房（01-06）的信息卡          │
+├─────────────────────────────────────┤
+│  Raw Sources 层（原始资料，不可变） │ ← 你写，AI只读
+│  - 微信碎片/文章/逐字稿/灵感        │
+└─────────────────────────────────────┘
+<code>`</code>
+
+<strong>PPT P5：RAG vs LLM Wiki 对比表</strong>
+
+| 维度 | 传统 RAG | LLM Wiki |
+|---|---|---|
+| 知识处理时机 | 查询时处理（每次重复） | 摄入时处理（一次性编译） |
+| 交叉引用 | 临时发现 | 预先构建并持续维护 |
+| 矛盾检测 | 容易被忽略 | 摄入时主动标记 |
+| 知识积累 | 无—每次从头开始 | 复利增长 |
+| 类比 | 每次去图书馆翻书 | 你有一个私人图书管理员 |
+
+<strong>话术（重点讲透）</strong>：
+
+<blockquote>"看这张表——你以前用 AI 是 <strong>左边那一列</strong>：每次提问它都从零开始去理解你。所以它永远说不出『像你』的话。</blockquote>
+>
+<blockquote>LLM Wiki 是<strong>右边那一列</strong>：你的素材进来一次，AI 就帮你整理、分类、做交叉引用、写进信息卡。<strong>下一次你问问题时，AI 调的是已经整理好的『你』——不是临时的搜索结果。</strong>"</blockquote>
+
+<hr>
+
+<h3>🏠 1.3 LLM Wiki × 六间房 联动（10 分钟）</h3>
+
+<blockquote><strong>这是直播 1 最关键的认知点</strong>。讲清楚六间房是"装什么"，LLM Wiki 是"怎么活"。</blockquote>
+
+<strong>话术</strong>：
+
+<blockquote>"去年我搭了个『六间房』框架——01我是谁 / 02我会什么 / 03我说过什么 / 04我卖什么 / 05我面对谁 / 06我怎么想——这个框架解决的是『<strong>装什么</strong>』。</blockquote>
+>
+<blockquote>但很多人卡在了：装是装了，AI 还是不懂我。为什么？因为缺了<strong>怎么运转</strong>——也就是 LLM Wiki 的部分。</blockquote>
+>
+<blockquote>这次升级，我把两者合起来叫『<strong>六间房 LLM Wiki</strong>』：六间房告诉 AI 装什么，LLM Wiki 告诉 AI 怎么活。"</blockquote>
+
+<strong>PPT P6：六间房 × LLM Wiki 对照图（核心）</strong>
+
+<code>`</code>
+┌─────────────────────────────────────────────┐
+│         Schema 层（CLAUDE.md）               │
+│   ┌──────────┬──────────┬──────────┐      │
+│   │ 写作风格  │ 母题清单 │ 边界规则 │      │
+│   └──────────┴──────────┴──────────┘      │
+│              ↓ 约束写入规则                  │
+├─────────────────────────────────────────────┤
+│         Wiki 层（六间房 = AI 维护）          │
+│   01_我是谁  → entities/identity.md         │
+│   02_我会什么 → concepts/methods/           │
+│   03_我说过什么 → sources/library/          │
+│   04_我卖什么 → entities/products.md        │
+│   05_我面对谁 → entities/users.md           │
+│   06_我怎么想 → concepts/frameworks/        │
+│              ↑ AI 写、你读                  │
+├─────────────────────────────────────────────┤
+│         Raw Sources 层（你的素材）          │
+│   raw/articles/ raw/chats/ raw/notes/       │
+│              ↑ 你写、AI 只读                │
+└─────────────────────────────────────────────┘
+<code>`</code>
+
+<strong>讲解节奏（一定要慢）</strong>：
+- 先讲最下面 Raw 层（你的素材丢进来）→ 强调"原始档案不动"
+- 中间 Wiki 层（AI 帮你做的整理）→ 强调"AI 写、你读"
+- 最上面 Schema 层（CLAUDE.md）→ 强调"这是你和 AI 的契约"
+- 最后画三个箭头：
+  - Raw → Wiki：<strong>Ingest（摄入）</strong>
+  - Wiki ← 你提问：<strong>Query（查询）</strong>
+  - 全局体检：<strong>Lint（体检）</strong>
+
+<strong>🎤 金句重复 3 次</strong>：
+<blockquote>"<strong>六间房解决"装什么"，LLM Wiki 解决"怎么活"。CLAUDE.md 是你和 AI 之间的契约。</strong>"</blockquote>
+
+<hr>
+
+<h3>🆚 1.4 三个误区（7 分钟）</h3>
+
+<blockquote>把学员可能掉进的坑提前点明，后面就不用反复回答。</blockquote>
+
+<strong>误区 1：「先把所有资料整理好，再用 AI」</strong>
+<blockquote>错。资料永远整理不完。正确做法：搭好框架 → 边丢边整理 → AI 帮你做。</blockquote>
+
+<strong>误区 2：「我得先学完 Obsidian 所有功能」</strong>
+<blockquote>错。Obsidian 只是文件夹查看器，你只需要会用文件夹和 Markdown。剩下交给 Claude/AI。</blockquote>
+
+<strong>误区 3：「我的 AI 输出不像我，是因为提示词没写好」</strong>
+<blockquote>错。99% 的"AI 不像我"，根因是<strong>没有 Schema 层（CLAUDE.md）+ 没有 Wiki 层（六间房）</strong>。提示词只能解决 5% 的问题。</blockquote>
+
+<strong>PPT P7：误区对照图</strong>（红叉 vs 绿勾）
+
+<hr>
+
+<h2>Part 2｜现场搭建三层架构（35 分钟）</h2>
+
+<blockquote><strong>教学策略</strong>：屏幕共享 + 学员同步操作 + 进度对齐（每 5 分钟问一次"做到这里的扣 1"）</blockquote>
+
+<h3>🛠 2.1 建目录结构（10 分钟）</h3>
+
+<strong>步骤拆解（带学员一步一步）</strong>：
+
+<code>`</code>bash
+<h1>Step 1：在桌面建一个文件夹，叫 ob-大脑</h1>
+ob-大脑/
+
+<h1>Step 2：在 ob-大脑 里建三层</h1>
+ob-大脑/
+├── raw/                    ← 你的素材，AI只读
+│   ├── chats/              ← 微信对话/语音转文字
+│   ├── articles/           ← 收藏的好文章
+│   ├── notes/              ← 灵感碎片
+│   └── assets/             ← 图片/截图
+├── wiki/                   ← AI帮你写
+│   ├── 01-identity-os/     ← 我是谁
+│   ├── 02-expertise/       ← 我会什么
+│   ├── 03-content-lib/     ← 我说过什么
+│   ├── 04-products/        ← 我卖什么（可选）
+│   ├── 05-audience/        ← 我面对谁
+│   ├── 06-decision-engine/ ← 我怎么想
+│   ├── index.md            ← 全局索引
+│   └── log.md              ← 操作日志
+└── CLAUDE.md               ← Schema 契约
+<code>`</code>
+
+<strong>话术</strong>：
+<blockquote>"现在大家跟我同步操作。在桌面右键 → 新建文件夹 → 命名 ob-大脑。建好的扣 1。"</blockquote>
+
+<strong>🎬 等同步</strong>：等到 80% 学员都建好再继续。这一步不能赶。
+
+<hr>
+
+<h3>📝 2.2 Obsidian + Web Clipper（双工具，8 分钟）</h3>
+
+<strong>话术</strong>：
+<blockquote>"我们这次推荐用 <strong>Obsidian 桌面版 + 网页 Web Clipper 插件</strong>：</blockquote>
+<blockquote>1. 桌面版：管理你的 ob-大脑文件</blockquote>
+<blockquote>2. Web Clipper：浏览网页时一键剪藏到 ob-大脑</blockquote>
+<blockquote>3. 后面养龙虾时，AI 写的内容会自动出现在你的 Obsidian 里</blockquote>
+>
+<blockquote>这一节我演示两个工具的安装——"</blockquote>
+
+#### 演示 A：Obsidian 桌面版打开 ob-大脑（3 min）
+1. 打开 Obsidian
+2. 选择"打开本地仓库"→ 选 ob-大脑
+3. 左侧出现完整目录树
+4. 现场演示创建第一个 .md 文件
+
+#### 演示 B：Obsidian Web Clipper 浏览器插件（5 min）⭐ 5月新增
+
+<strong>为什么必须装</strong>：
+<blockquote>"Day 4-5 你要喂大量素材给 AI——好文章 / 行业资料 / 竞品爆款。  </blockquote>
+<blockquote>没有 Web Clipper：复制粘贴一篇 5 分钟，喂 30 篇要 2.5 小时。  </blockquote>
+<blockquote>有了 Web Clipper：一键剪藏，喂 30 篇 < 10 分钟。<strong>这是 21 天里最高 ROI 的工具</strong>。"</blockquote>
+
+<strong>安装步骤</strong>（屏幕共享带做）：
+
+| 浏览器 | 安装路径 |
+|---|---|
+| Chrome / Edge | Chrome 应用商店 → 搜「Obsidian Web Clipper」→ 添加到浏览器 |
+| Safari | App Store → 搜「Obsidian Web Clipper」 |
+| Firefox | Firefox Add-ons → 搜「Obsidian Web Clipper」 |
+
+<strong>配置步骤</strong>：
+1. 浏览器右上角点 🟫 Obsidian 图标
+2. 进入「Settings」→「Templates」
+3. 设置：
+   <code>`</code>
+   Vault：选你的 ob-大脑
+   Folder：raw/articles/
+   File name：{{date}}_{{title}}
+   勾选 Convert to Markdown ✅
+   <code>`</code>
+4. 保存
+
+<strong>现场演示</strong>：
+- 打开任一公众号 / 小红书 / 知乎文章
+- 点 🟫 Web Clipper 图标
+- 一键剪藏 → 切回 Obsidian → 看 raw/articles/ 多了一个文件 ✅
+
+<strong>🎬 高光时刻</strong>：让全员同时剪一篇文章 → 截图刷屏
+
+<strong>🎤 金句</strong>：
+<blockquote>"<strong>这个插件你今天装好，未来 21 天每天都在帮你省时间。</strong>"</blockquote>
+
+<strong>📌 Day 1 作业新增</strong>：
+- ✅ Web Clipper 已装好
+- ✅ 至少剪藏过 1 篇文章到 raw/articles/
+
+<hr>
+
+<h3>🤝 2.3 写第一版 CLAUDE.md（15 分钟）</h3>
+
+<strong>话术</strong>：
+<blockquote>"CLAUDE.md 是这套系统的『大脑芯片』。它告诉 AI：</blockquote>
+<blockquote>- 我是谁</blockquote>
+<blockquote>- 我说话的风格</blockquote>
+<blockquote>- 哪些话不能说</blockquote>
+<blockquote>- 怎么把素材分类到六间房</blockquote>
+> 
+<blockquote>现在我把模板分享给大家，跟我一起填——填的过程就是你想清楚自己定位的过程。"</blockquote>
+
+<strong>📌 CLAUDE.md Day 1 最小模板</strong>（直接发学员）：
+
+<code>`</code>markdown
+<h1>我的 LLM Wiki 规则书</h1>
+
+<blockquote>最后更新：YYYY-MM-DD</blockquote>
+<blockquote>AI 阅读优先级：每次对话开始时必读</blockquote>
+
+<h2>一、我是谁（一句话定位）</h2>
+- 名字：
+- 一句话：[职业身份] + [服务对象] + [独特价值]
+  例：我是 [教练]，帮 [30+职场人] [打造小而美产品]
+- MBTI/性格关键词：
+
+<h2>二、六间房含义（AI 用这个分类素材）</h2>
+| 房间 | 装什么 | 不装什么 |
+|---|---|---|
+| 01_我是谁 | 身份/故事/价值观 | 工作方法 |
+| 02_我会什么 | 方法论/案例/能力 | 个人感悟 |
+| 03_我说过什么 | 文章/金句/原话 | 别人说的 |
+| 04_我卖什么 | 产品/价格/服务 | 想做未做的 |
+| 05_我面对谁 | 用户画像/痛点/原话 | 我自己的话 |
+| 06_我怎么想 | 框架/原则/边界 | 具体执行 |
+
+<h2>三、写作风格（AI 模仿这个语气）</h2>
+- 整体感觉：（如：温暖专业 / 幽默轻松）
+- 标志性表达：（2-3 个例子）
+- 禁忌词：（绝对不出现）
+
+<h2>四、母题清单（AI 写内容时按这个分）</h2>
+- M1：（你的故事方向）
+- M2：（你的产品方向）
+- M3：（你的方法论方向）
+
+<h2>五、Ingest 规则（AI 整理素材的方法）</h2>
+1. 收到素材 → 判断属于哪个房间
+2. 提取 2-5 条要点 → 写信息卡到 wiki/对应房间/
+3. 详细原文存到 raw/ 对应类型/
+4. 同步更新 wiki/index.md（追加一行）
+5. 在 wiki/log.md 记录操作
+
+<h2>六、Query 规则（AI 回答问题的方法）</h2>
+1. 先读 wiki/index.md 找相关房间
+2. 优先引用"信息卡"
+3. 回答时标注来源 [来源：房间/文件名]
+4. 不确定的明说"我不确定"，不编造
+
+<h2>七、边界规则（AI 必须守的红线）</h2>
+- 涉及对外发布的内容，必须我确认
+- 不泄露学员/咨询客户的隐私
+- 不编造我没说过的话或数据
+- 风格不像我时主动停下问我
+<code>`</code>
+
+<strong>演示流程</strong>：
+1. 现场打开新建的 CLAUDE.md
+2. 蓉蓉子用自己的版本做示范（<strong>用 ob大脑里现成的 CLAUDE.md 节选演示</strong>）
+3. 学员同步填自己的（前 4 节是必填）
+4. 5-7 节先用模板原文，等熟悉了再调
+
+<strong>🎬 镜头切换</strong>：分屏 → 左边模板 / 右边蓉蓉子的版本 / 学员问问题时切到聊天区
+
+<hr>
+
+<h3>🚧 2.4 划清"谁写谁读"边界（5 分钟）</h3>
+
+<strong>PPT P8：边界图（强调）</strong>
+
+| 文件夹 | 你写吗？ | AI 写吗？ |
+|---|---|---|
+| <code>raw/</code> | ✅ 你只能在这里加东西 | ❌ AI 不许动 |
+| <code>wiki/</code> | ❌ 不要直接改 | ✅ AI 维护，你只读 |
+| <code>CLAUDE.md</code> | ✅ 你和 AI 一起改 | ✅ |
+| <code>wiki/log.md</code> | ❌ | ✅ AI 追加操作日志 |
+
+<strong>话术（金句）</strong>：
+<blockquote>"<strong>这个边界守住了，你的知识库才不会越用越乱。</strong>raw 是你的档案室，wiki 是 AI 整理出来的图书馆，CLAUDE.md 是你们之间的契约。"</blockquote>
+
+<hr>
+
+<h3>🗂 2.5 「index.md / log.md」是 Wiki 的脊梁（5 分钟）⭐ 5月新增</h3>
+
+<blockquote><strong>教学策略</strong>：很多学员建好目录就动手填，结果 AI 调用时"找不到"。这一节讲清楚 wiki/ 里两个隐藏主角。</blockquote>
+
+<strong>PPT P9：Wiki 的"门牌号"和"账本"</strong>
+
+| 文件 | 作用 | 谁维护 |
+|---|---|---|
+| <code>wiki/index.md</code> | <strong>门牌号系统</strong>——AI 每次 Query 必读，从这里定位"该去哪个房间" | AI 自动（每次新增信息卡同步追加索引行）|
+| <code>wiki/log.md</code> | <strong>操作账本</strong>——记录每次 Ingest/Query/Lint 操作，append-only，永不修改 | AI 自动追加 |
+
+<strong>话术</strong>：
+
+<blockquote>"你建好的 6 个房间，对 AI 来说<strong>还是一堆陌生文件夹</strong>。</blockquote>
+>
+<blockquote>它怎么知道'用户痛点在 5 号房而不是 6 号房'？</blockquote>
+<blockquote>怎么知道'我昨天问的那个问题答案在哪张卡里'？</blockquote>
+>
+<blockquote>答案是 <strong>index.md</strong>——它是这个 wiki 的'门牌号系统'。</blockquote>
+>
+<blockquote>没有 index.md，AI 每次都得'瞎找'；有了 index.md，AI 才能'精准调用'。</blockquote>
+>
+<blockquote>而 <strong>log.md</strong> 是另一个隐藏主角——它记录每一次操作，是 wiki 健康的脊梁。万一 AI 改错了什么，你看 log.md 就能回溯。</blockquote>
+>
+<blockquote><strong>这两个文件你不用手动维护——都交给 AI 写。但你要知道它们在那里、知道它们的作用。</strong>"</blockquote>
+
+<strong>🎬 现场演示</strong>：
+- 打开蓉蓉子自己的 <code>02_Wiki/index.md</code>，让学员看一份成熟样板（这就是直播 1 教学最好的"参照物"）
+- 打开 <code>02_Wiki/log.md</code>，看 append-only 的格式
+
+<strong>📌 给学员的"模板作业"</strong>：
+- 在自己的 wiki/ 下建空 <code>index.md</code> 和 <code>log.md</code>，标题先建好
+- 第一次 Ingest 跑通后，让 AI 自动往里追加内容
+
+<hr>
+
+<h3>🎯 2.6 ⭐ 手写 vs AI 提炼分工（路径 C · 这是 5月升级的核心教学点）</h3>
+
+<blockquote><strong>教学策略</strong>：这一节是整个 21 天的"工作分工法则"。讲透了，学员就不会问"我到底要不要每张卡都自己写"。</blockquote>
+
+<strong>PPT P10：哪些必须手写、哪些交给 AI？</strong>
+
+<code>`</code>
+┌──────────────────────────────────────────────────────────┐
+│   ✋ 必须学员手写（约 3 张地基卡，AI 替代不了）             │
+├──────────────────────────────────────────────────────────┤
+│  ❶ 01_我是谁/一句话定位.md                                │
+│     → 必须自己想清楚"我是谁"——这本身是过程                │
+│  ❷ 06_我怎么想/核心价值观.md                              │
+│     → 必须从你内心来——AI 编不出真价值观                  │
+│  ❸ CLAUDE.md 第三节"写作风格"                             │
+│     → 你和 AI 的契约，必须你写                            │
+└──────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────┐
+│   🤖 默认 AI 提炼（约 80% 的卡片）                          │
+├──────────────────────────────────────────────────────────┤
+│  📥 你只需要：把素材丢进 raw/                             │
+│  🤖 AI 自动：提炼 → 写信息卡 → 更新 index.md              │
+│                                                          │
+│  典型场景：                                                │
+│  • 02_我会什么 ← 你的方法论文章 / 课件                     │
+│  • 03_我说过什么 ← 你的公众号历史文章 / 朋友圈             │
+│  • 04_我卖什么 ← 产品说明书 PDF                            │
+│  • 05_我面对谁 ← 咨询记录 / 学员反馈                       │
+│  • 案例库 ← 已发爆款反向沉淀                               │
+└──────────────────────────────────────────────────────────┘
+<code>`</code>
+
+<strong>话术（核心金句）</strong>：
+
+<blockquote>"<strong>地基卡你必须手写</strong>——因为这是 AI 替代不了的'你成为你'的过程。</blockquote>
+> 
+<blockquote><strong>装修部分让 AI 干</strong>——因为这是 AI 比你快 100 倍的事。</blockquote>
+>
+<blockquote>这就是这次实操营最重要的工作分工：</blockquote>
+<blockquote><strong>你做'被调用率最高'的事，AI 做重复性的事</strong>。"</blockquote>
+
+<strong>为什么这样分工</strong>：
+
+| 维度 | 手写部分（3 张地基卡） | AI 提炼部分（80%）|
+|---|---|---|
+| <strong>本质</strong> | "想清楚自己" | "整理已有素材" |
+| <strong>AI 能不能替</strong> | ❌ 不能（AI 无法替你做"我是谁"的判断） | ✅ 能（AI 比你快很多） |
+| <strong>耗时</strong> | 慢但值得（一个人一辈子的功课） | 快（5 分钟一张卡） |
+| <strong>频次</strong> | 1 次写完 + 季度迭代 | 每周/每天持续追加 |
+
+<strong>🚨 反例（绝对不要这样做）</strong>：
+
+<blockquote>❌ <strong>学员让 AI 替自己写"一句话定位"</strong>——AI 写的"我是 [职业] 帮 [人] [事]"会非常空洞，因为它没有你的真实判断。</blockquote>
+>
+<blockquote>❌ <strong>学员手写所有 80 张信息卡</strong>——会累死，21 天填不完，反而违背 LLM Wiki 的核心范式。</blockquote>
+
+<hr>
+
+<h3>📅 2.7 21 天分工日历（让学员心里有数）</h3>
+
+| Day | 你做什么 | 路径 |
+|---|---|---|
+| Day 1 直播 | 手写 1 张「01_一句话定位」+ 跑通 1 次 AI Ingest | ✋🤖 混合 |
+| Day 2-3 | 把过去半年文章/咨询记录/课件 PDF 丢进 raw/，让 AI 提炼 02/05 房间 | 🤖 AI 主 |
+| Day 4-5 | 晚上安静思考，手写 06 房间 1-2 张「核心价值观」/「边界规则」 | ✋ 你主 |
+| Day 6-7 | AI 提炼 03 房间金句库 / 风格采样 + Lint 体检 | 🤖 AI 主 |
+
+<strong>🎤 重复 2 次的金句</strong>：
+
+<blockquote>"<strong>21 天里，AI 帮你写 80% 的卡，你写'非你不可'的 20%。这才是 AI 的正确打开方式。</strong>"</blockquote>
+
+<hr>
+
+<h2>Part 3｜跑通第一个 MVP（25 分钟）</h2>
+
+<blockquote><strong>🎬 节奏提醒</strong>：Part 3 三个动作正好对应你刚学的"手写 vs AI 提炼分工"——</blockquote>
+<blockquote>- 3.1 是手写示范（地基卡）</blockquote>
+<blockquote>- 3.2 是 AI 提炼示范（看魔法发生）</blockquote>
+<blockquote>- 3.3 是 Query（验证 AI 真的能调用你的 wiki）</blockquote>
+>
+<blockquote><strong>教学策略</strong>：现场跑通"手写地基→丢素材给 AI→Query"的最小闭环。这一步是直播 1 的高光时刻——学员能亲眼看到自己的知识库"动起来"。</blockquote>
+
+<blockquote><strong>教学策略</strong>：现场跑通"原始素材→AI整理→你Query"的最小闭环。这一步是直播 1 的高光时刻——学员能亲眼看到自己的知识库"动起来"。</blockquote>
+
+<h3>✋ 3.1 填 01_我是谁的第一张信息卡（8 分钟）— <strong>手写地基卡 #1</strong></h3>
+
+<strong>话术</strong>：
+<blockquote>"现在我们做最关键的一步——给 AI <strong>先认识你</strong>。我们填 01 房间的第一张信息卡。</blockquote>
+>
+<blockquote>这是刚才讲的『3 张必须手写的地基卡』里的第一张——<strong>AI 替不了你</strong>。</blockquote>
+<blockquote>因为'我是谁'这件事必须从你内心来，AI 编不出来。"</blockquote>
+
+<strong>📌 信息卡模板</strong>：
+
+<code>`</code>markdown
+<h1>01-身份基座_我是谁.md</h1>
+
+<h2>一句话定位</h2>
+[在这里写一句话]
+
+<h2>三个关键身份</h2>
+1. 主业：
+2. 副业：
+3. 兴趣/隐藏身份：
+
+<h2>我的三个高频原话</h2>
+1. "________"
+2. "________"
+3. "________"
+
+<h2>我最讨厌别人对我的误解</h2>
+- "他们以为我是 X，其实我是 Y"
+
+<h2>我的核心价值观（3 条）</h2>
+1.
+2.
+3.
+<code>`</code>
+
+<strong>演示流程</strong>：
+- 蓉蓉子用自己的填一遍（<strong>调用 ob大脑里 1号房-我是谁现成内容做演示</strong>）
+- 学员同步填（写不出来没关系，先放占位符）
+
+<hr>
+
+<h3>🤖 3.2 第一次 Ingest——丢一段原始资料让 AI 整理（10 分钟）— <strong>AI 提炼示范</strong></h3>
+
+<strong>话术</strong>：
+<blockquote>"现在见证奇迹的时刻——我们丢一段原始资料给 AI，让它帮你写信息卡。</blockquote>
+>
+<blockquote><strong>这就是刚才讲的『AI 提炼』的部分</strong>——以后 21 天里，80% 的信息卡都是这样自动生成的。</blockquote>
+<blockquote>你只管喂料，AI 替你整理。"</blockquote>
+
+<strong>演示步骤</strong>：
+1. 在 <code>raw/notes/</code> 里建 <code>2026-05-XX_我的故事.md</code>
+2. 粘贴一段你的故事原文（200-500 字即可）
+3. 打开 Claude（或 Cowork），输入：
+   <code>`</code>
+   请按 CLAUDE.md 的规则，把 raw/notes/2026-05-XX_我的故事.md 
+   提炼为信息卡，写入 wiki/01-identity-os/，
+   并更新 wiki/index.md。
+   <code>`</code>
+4. <strong>现场看 AI 输出 → 学员屏幕同步操作</strong>
+5. 检查 wiki 文件夹有没有自动生成新文件
+
+<strong>🎬 高光时刻</strong>：当学员的 wiki 文件夹第一次出现 AI 生成的 .md 时，那种"原来真的会自己长"的体验——这就是付费的价值锚。
+
+<strong>演示中可能踩的坑（提前讲）</strong>：
+- AI 没按格式写 → 看 CLAUDE.md 是不是写得不够清楚
+- AI 写出来的内容不像你 → 缺少 03 房间的风格采样（下次直播补）
+- AI 把内容写到了错误的房间 → 调 CLAUDE.md 第二节"六间房含义"
+
+<hr>
+
+<h3>🔍 3.3 第一次 Query——向你的 Wiki 提问（7 分钟）</h3>
+
+<strong>话术</strong>：
+<blockquote>"现在反过来——你的 Wiki 已经有内容了，咱们让 AI 用你的 Wiki 回答问题。"</blockquote>
+
+<strong>📝 Query 示范题</strong>（学员选一个跑）：
+1. "用我的 Wiki 给我写一段 100 字的自我介绍"
+2. "我的核心价值观是什么？引用来源"
+3. "如果有一个 30 岁的设计师来咨询，我应该怎么介绍自己？"
+
+<strong>演示步骤</strong>：
+1. 在 Claude 输入上面任一问题
+2. 看 AI 是否：
+   - ✅ 调用了 wiki/01-identity-os/ 的内容
+   - ✅ 标注了来源
+   - ✅ 风格符合 CLAUDE.md 的语气定义
+3. 不像？→ 现场调 CLAUDE.md 第三节"写作风格"，再问一次
+
+<strong>🎤 金句</strong>：
+<blockquote>"这就是 LLM Wiki 的复利——你今天填的一张信息卡，AI 明天能用、后天能用、一年后还能用。<strong>你不是在堆资料，你是在养一个会越来越懂你的助手。</strong>"</blockquote>
+
+<hr>
+
+<h2>Part 4｜Q&A + 作业 + 搭子（10 分钟）</h2>
+
+<h3>📋 Day 1-7 第一阶段作业（一张图说清）</h3>
+
+<code>`</code>
+┌─────────────────────────────────────────────┐
+│  Phase 1 任务清单（Day 1-7）                 │
+│  ✋=必须手写  🤖=丢素材给 AI 提炼            │
+├─────────────────────────────────────────────┤
+│  □ Day 1（直播当天）                         │
+│    ✋ 三层目录建好                           │
+│    ✋ CLAUDE.md 初版（前 4 节必填）          │
+│    ✋ 手写 01_我是谁/一句话定位.md（地基卡）│
+│    🤖 跑通 1 次 Ingest（丢一段素材给 AI）   │
+│    🤖 跑通 1 次 Query                       │
+│                                             │
+│  □ Day 2-3：丰富 02 我会什么                 │
+│    🤖 把方法论文章/课件丢进 raw/articles/    │
+│    🤖 让 AI 提炼 ≥2 张方法论卡到 02/信息卡/ │
+│                                             │
+│  □ Day 4-5：丰富 03 + 05                     │
+│    🤖 把公众号历史文章丢 raw/articles/      │
+│    🤖 让 AI 提炼金句库 + 风格采样到 03/     │
+│    🤖 把咨询/聊天记录丢 raw/chats/          │
+│    🤖 让 AI 提炼用户痛点卡到 05/信息卡/     │
+│                                             │
+│  □ Day 6：手写 06 核心价值观（地基卡）       │
+│    ✋ 安静思考，手写 1-2 张「核心价值观」   │
+│    ✋ 手写 1 张「边界规则卡」                │
+│    🤖 跑 Query：让 AI 写一段自我介绍 → 评像不像│
+│                                             │
+│  □ Day 7：里程碑验收                         │
+│    ✅ 5 间房（01,02,03,05,06）各 ≥1 张卡   │
+│    🤖 Lint 一次（让 AI 找矛盾/孤立页）      │
+│    ✋ CLAUDE.md 迭代到 v2                    │
+└─────────────────────────────────────────────┘
+<code>`</code>
+
+<strong>💬 作业提交方式</strong>：在搭子小群打卡 + 主群里发完成截图
+
+<hr>
+
+<h3>🤝 搭子认领（5 分钟）</h3>
+
+<strong>话术</strong>：
+<blockquote>"搭子是这次实操营的『暗器』——技术陡增的时候，搭子能救你的命。</blockquote>
+>
+<blockquote>开营问卷里我已经收集了大家的技术背景，下播前 30 分钟我会发『搭子配对名单』到群里。<strong>强弱混搭</strong>，每组 2-3 人。"</blockquote>
+
+<strong>搭子游戏规则</strong>（投影到 PPT 最后一页）：
+- ⏰ 每周至少互打卡 2 次
+- 🆘 遇到问题先问搭子，搭子答不出来再问主群
+- 🏆 <strong>最佳搭子奖</strong> = 私教抵扣2000×2 + 小群深度辅导 + 学费全额退还
+- 🌟 <strong>互助之星</strong> = 私教抵扣1000 + 学费退还 + 30min 999咨询诊断
+
+<hr>
+
+<h3>❓ Q&A（5 分钟）</h3>
+
+<strong>预备 Top 5 高频问题</strong>（提前在 PPT 备好答案）：
+
+1. <strong>Q：我的 Obsidian 客户端打不开 ob-大脑？</strong>
+   A：换网页版。Obsidian 网页版支持本地文件夹，更轻量。
+
+2. <strong>Q：CLAUDE.md 写不出来怎么办？</strong>
+   A：先用模板原文，跑两天后再调。Schema 是迭代出来的，不是一次写好的。
+
+3. <strong>Q：raw/ 文件夹里能不能放 PDF？</strong>
+   A：可以，但 AI 直接读 PDF 体验差。建议：先把 PDF 转成 Markdown 再放进去。
+
+4. <strong>Q：04_我卖什么必须填吗？</strong>
+   A：不必。如果你还没有产品，先空着。等你的产品出来，再回头填。
+
+5. <strong>Q：我的 Wiki 写错了能改吗？</strong>
+   A：<strong>默认让 AI 改，不要直接改 wiki/</strong>——这是路径 C 的核心边界。
+      正确做法：
+      - 跟 AI 说"我看到 wiki/01.md 第 X 段不对，请改成 [新内容]"
+      - AI 会改 + 自动写 log.md
+      - 例外：手写的"地基卡"（01一句话定位 / 06核心价值观 / CLAUDE.md）你可以直接改，但改完 @AI 同步一下
+
+<hr>
+
+<h2>📊 直播 1 验收标准（你结束直播前心里过一遍）</h2>
+
+| 检查点 | 标准 |
+|---|---|
+| 学员搭好目录 | ≥80% 学员发出建好的目录截图 |
+| 学员写好 CLAUDE.md | ≥70% 学员前 4 节填完 |
+| 学员跑通 Ingest | ≥60% 学员发出 wiki 自动生成的截图 |
+| 学员跑通 Query | ≥50% 学员发出 AI 调用 Wiki 回答的截图 |
+| 学员认知清晰 | 有人能复述"Schema/Wiki/Raw 三层是干嘛的" |
+
+<strong>未达标处理</strong>：
+- 直播结束当晚发"补救文档"
+- 第二天搭子 1v1 帮搭好
+
+<hr>
+
+<h2>🎒 直播 1 学员发放物料</h2>
+
+| # | 物料 | 形式 | 何时发 |
+|---|---|---|---|
+| 1 | <strong>21天学员成长手册</strong>（含 Claude Code 安装） | .md / 飞书 | 直播开始前 3 天 |
+| 2 | 目录结构模板（一键 zip） | zip 包 | 直播开始前 5 min |
+| 3 | CLAUDE.md Day 1 模板 | .md 文件 | 直播 Part 2.3 时 |
+| 4 | 信息卡模板（六间房通用） | .md 文件 | 直播 Part 3.1 时 |
+| 5 | "✋手写 vs 🤖AI 提炼"分工对照卡 | 一张图 | 直播 Part 2.6 时 |
+| 6 | Day 1-7 任务清单（含分工标识） | 一张图 | 直播 Part 4 时 |
+| 7 | 搭子配对名单 | 飞书表 | 下播前 30 min |
+| 8 | 直播回放（次日 12:00 前） | 视频链接 | 直播第二天 |
+
+<hr>
+
+<h2>🎬 蓉蓉子直播前一天 Checklist</h2>
+
+- [ ] 自己的 ob-大脑 Demo 已经跑通（Ingest+Query 各 1 次）
+- [ ] <strong>Claude Code 在直播机器上能正常启动</strong>（cd 到 ob-大脑 → <code>claude</code>）
+- [ ] CLAUDE.md 范例已写好（脱敏版本）
+- [ ] PPT 已审过一遍（重点是 Part 1 三层架构图 + Part 2.6 分工图）
+- [ ] zip 物料包已上传飞书
+- [ ] <strong>21天成长手册</strong>已发学员（开营前 3 天发）
+- [ ] 直播间封面+预告已发
+- [ ] 直播脚本节奏过一遍（Part 1 慢、Part 2 跟、Part 3 嗨、Part 4 收）
+- [ ] 备用：录屏（防直播翻车）
+- [ ] 准备 1 段真实当下的素材（Part 3.2 演示 Ingest 用，不要 demo 假数据）
+
+<hr>
+
+*🐾 本脚本基于：升级版课程方案 V2.1 + 33 人 3月实操营复盘 + ob大脑 五间房现成内容 · 2026-05*
+
+    </div>
+</body>
+</html>

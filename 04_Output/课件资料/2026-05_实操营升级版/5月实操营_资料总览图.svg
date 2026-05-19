@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1750" width="1200" height="1750">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF6EE"/>
+      <stop offset="100%" stop-color="#FFE3C2"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="100%" stop-color="#F4A261"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="1750" fill="url(#bgGrad)"/>
+
+  <!-- TITLE -->
+  <g transform="translate(600, 70)">
+    <text x="0" y="0" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="38" font-weight="700" fill="#2C3E50" text-anchor="middle">🦞 5月实操营 · 资料总览图</text>
+    <text x="0" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#7F4C2A" text-anchor="middle">5 个阶段 × 2 类对象（学员 / 蓉蓉子） · 21 天全部交付物</text>
+  </g>
+
+  <!-- LEGEND -->
+  <g transform="translate(600, 130)">
+    <rect x="-380" y="0" width="180" height="32" rx="6" fill="#E8F1FA" stroke="#4A7BC8" stroke-width="1.5"/>
+    <text x="-290" y="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#4A7BC8" text-anchor="middle">🎓 学员资料</text>
+    <rect x="-180" y="0" width="180" height="32" rx="6" fill="#FFE8E8" stroke="#E63946" stroke-width="1.5"/>
+    <text x="-90" y="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#E63946" text-anchor="middle">👩‍🏫 蓉蓉子资料</text>
+    <rect x="20" y="0" width="180" height="32" rx="6" fill="#FFF4D9" stroke="#D4A574" stroke-width="1.5"/>
+    <text x="110" y="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#A67B3F" text-anchor="middle">🔄 全程伴随</text>
+    <rect x="220" y="0" width="160" height="32" rx="6" fill="#E8F5E9" stroke="#4A9B7A" stroke-width="1.5"/>
+    <text x="300" y="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#4A9B7A" text-anchor="middle">✅ 已就绪</text>
+  </g>
+
+  <!-- ============ PHASE 1: 开营前 ============ -->
+  <g transform="translate(60, 195)">
+    <rect width="1080" height="305" rx="14" fill="#FFFFFF" stroke="#F4A261" stroke-width="2"/>
+    <!-- Phase header -->
+    <rect width="1080" height="50" rx="14" fill="#F4A261"/>
+    <rect y="36" width="1080" height="14" fill="#F4A261"/>
+    <text x="30" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">📋 阶段 1 · 开营前 7 天</text>
+    <text x="1050" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#FFFFFF" text-anchor="end">5月3日 — 5月9日</text>
+
+    <!-- 学员栏 -->
+    <text x="30" y="80" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#4A7BC8">🎓 给学员（招募 + 准备）</text>
+
+    <!-- Card row 1: 招募物料 -->
+    <g transform="translate(30, 90)">
+      <rect width="160" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="80" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 实操营海报</text>
+      <text x="80" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">SVG + PNG</text>
+    </g>
+    <g transform="translate(200, 90)">
+      <rect width="160" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="80" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📝 朋友圈文案</text>
+      <text x="80" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">3 版（主推/故事/倒计时）</text>
+    </g>
+    <g transform="translate(370, 90)">
+      <rect width="160" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="80" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">💬 私聊邀请话术</text>
+      <text x="80" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">主推 + 短版 + 催填</text>
+    </g>
+    <g transform="translate(540, 90)">
+      <rect width="160" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="80" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 开营前问卷</text>
+      <text x="80" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">12 题 · 飞书可导入</text>
+    </g>
+
+    <!-- Card row 2: 学员准备资料 -->
+    <text x="30" y="160" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#7F4C2A">报名后必读 ⤵</text>
+    <g transform="translate(30, 170)">
+      <rect width="200" height="42" rx="6" fill="#E8F1FA" stroke="#4A7BC8" stroke-width="1.5"/>
+      <text x="100" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📚 21天学员成长手册</text>
+      <text x="100" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#4A7BC8" text-anchor="middle">⭐ 核心，先发这个</text>
+    </g>
+    <g transform="translate(240, 170)">
+      <rect width="200" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="100" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📝 CLAUDE.md 学员模板</text>
+      <text x="100" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">Day 1 直接用</text>
+    </g>
+    <g transform="translate(450, 170)">
+      <rect width="200" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="100" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 信息卡模板 v2</text>
+      <text x="100" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">3 手写 + 8 AI 提炼</text>
+    </g>
+    <g transform="translate(660, 170)">
+      <rect width="200" height="42" rx="6" fill="#FFE8E8"/>
+      <text x="100" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🚀 旧版信息卡导入路径</text>
+      <text x="100" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#E63946" text-anchor="middle">仅 3-4 月旧学员</text>
+    </g>
+    <g transform="translate(870, 170)">
+      <rect width="200" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="100" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🔧 公众号下载工具</text>
+      <text x="100" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">可选 · Day 4 用</text>
+    </g>
+
+    <!-- 蓉蓉子栏 -->
+    <line x1="30" y1="230" x2="1050" y2="230" stroke="#F4A261" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="30" y="252" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#E63946">👩‍🏫 给蓉蓉子（自己用）</text>
+    <g transform="translate(30, 262)">
+      <rect width="220" height="38" rx="6" fill="#FFE8E8"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🔧 流程派通自查清单</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#E63946" text-anchor="middle">T-7 倒计时</text>
+    </g>
+    <g transform="translate(260, 262)">
+      <rect width="220" height="38" rx="6" fill="#FFE8E8"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📊 ob大脑结构诊断 v2</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#E63946" text-anchor="middle">P0/P1 行动清单</text>
+    </g>
+    <g transform="translate(490, 262)">
+      <rect width="220" height="38" rx="6" fill="#FFE8E8"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 5月升级版课程方案</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#E63946" text-anchor="middle">V2.1 完整方案</text>
+    </g>
+  </g>
+
+  <!-- ============ PHASE 2: 直播1 ============ -->
+  <g transform="translate(60, 525)">
+    <rect width="1080" height="220" rx="14" fill="#FFFFFF" stroke="#4A7BC8" stroke-width="2"/>
+    <rect width="1080" height="50" rx="14" fill="#4A7BC8"/>
+    <rect y="36" width="1080" height="14" fill="#4A7BC8"/>
+    <text x="30" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">📺 阶段 2 · 直播 1 · 搭知识库底座</text>
+    <text x="1050" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#FFFFFF" text-anchor="end">Day 1 · 5月10日 20:00</text>
+
+    <text x="30" y="80" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#4A7BC8">🎓 给学员（直播前/中/后）</text>
+    <g transform="translate(30, 90)">
+      <rect width="240" height="42" rx="6" fill="#E8F1FA" stroke="#4A7BC8" stroke-width="1.5"/>
+      <text x="120" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📚 直播1 飞书图文版</text>
+      <text x="120" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#4A7BC8" text-anchor="middle">⭐ 直播前 3 天发预习</text>
+    </g>
+    <g transform="translate(280, 90)">
+      <rect width="180" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="90" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📦 目录 zip 包</text>
+      <text x="90" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">直播开始前 5min</text>
+    </g>
+    <g transform="translate(470, 90)">
+      <rect width="180" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="90" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🎯 ✋vs🤖 分工卡</text>
+      <text x="90" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">Part 2.6 时发</text>
+    </g>
+    <g transform="translate(660, 90)">
+      <rect width="180" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="90" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 Day1-7 任务清单</text>
+      <text x="90" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">Part 4 时发</text>
+    </g>
+    <g transform="translate(850, 90)">
+      <rect width="200" height="42" rx="6" fill="#E8F1FA"/>
+      <text x="100" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🤝 搭子配对名单</text>
+      <text x="100" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">下播前 30min</text>
+    </g>
+
+    <line x1="30" y1="150" x2="1050" y2="150" stroke="#4A7BC8" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="30" y="172" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#E63946">👩‍🏫 给蓉蓉子</text>
+    <g transform="translate(30, 182)">
+      <rect width="280" height="28" rx="6" fill="#FFE8E8"/>
+      <text x="140" y="19" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📺 直播1 完整脚本（90-120min, 7节 Part）</text>
+    </g>
+    <g transform="translate(320, 182)">
+      <rect width="220" height="28" rx="6" fill="#FFE8E8"/>
+      <text x="110" y="19" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🎬 备用录屏（防翻车）</text>
+    </g>
+  </g>
+
+  <!-- ============ PHASE 3: 直播2 ============ -->
+  <g transform="translate(60, 770)">
+    <rect width="1080" height="220" rx="14" fill="#FFFFFF" stroke="#4A9B7A" stroke-width="2"/>
+    <rect width="1080" height="50" rx="14" fill="#4A9B7A"/>
+    <rect y="36" width="1080" height="14" fill="#4A9B7A"/>
+    <text x="30" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">🦞 阶段 3 · 直播 2 · 领养你的小龙虾</text>
+    <text x="1050" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#FFFFFF" text-anchor="end">Day 8 · 5月17日 20:00</text>
+
+    <text x="30" y="80" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#4A9B7A">🎓 给学员（养虾必备）</text>
+    <g transform="translate(30, 90)">
+      <rect width="220" height="42" rx="6" fill="#E8F5E9" stroke="#4A9B7A" stroke-width="1.5"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📖 ClawBot 安装手册</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#4A9B7A" text-anchor="middle">⭐ 直播前 1 天发</text>
+    </g>
+    <g transform="translate(260, 90)">
+      <rect width="220" height="42" rx="6" fill="#E8F5E9"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">⚙️ Automation 模板包</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">4 个 YAML（日报/汇总/入库/选题）</text>
+    </g>
+    <g transform="translate(490, 90)">
+      <rect width="220" height="42" rx="6" fill="#E8F5E9"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🔧 龙虾排错手册</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">10 个常见问题 PDF</text>
+    </g>
+    <g transform="translate(720, 90)">
+      <rect width="220" height="42" rx="6" fill="#E8F5E9"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">✍️ 风格采样指南</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">Schema 进阶用</text>
+    </g>
+
+    <line x1="30" y1="150" x2="1050" y2="150" stroke="#4A9B7A" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="30" y="172" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#E63946">👩‍🏫 给蓉蓉子</text>
+    <g transform="translate(30, 182)">
+      <rect width="280" height="28" rx="6" fill="#FFE8E8"/>
+      <text x="140" y="19" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📺 直播2 完整脚本（120min, 5节 Part）</text>
+    </g>
+    <g transform="translate(320, 182)">
+      <rect width="240" height="28" rx="6" fill="#FFE8E8"/>
+      <text x="120" y="19" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🎬 龙虾领养录屏（防翻车）</text>
+    </g>
+  </g>
+
+  <!-- ============ PHASE 4: 直播3 ============ -->
+  <g transform="translate(60, 1015)">
+    <rect width="1080" height="220" rx="14" fill="#FFFFFF" stroke="#8B5CB8" stroke-width="2"/>
+    <rect width="1080" height="50" rx="14" fill="#8B5CB8"/>
+    <rect y="36" width="1080" height="14" fill="#8B5CB8"/>
+    <text x="30" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">🚀 阶段 4 · 直播 3 · 数字员工 + 内容工厂</text>
+    <text x="1050" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#FFFFFF" text-anchor="end">Day 15 · 5月24日 20:00</text>
+
+    <text x="30" y="80" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#8B5CB8">🎓 给学员（生产线必备）</text>
+    <g transform="translate(30, 90)">
+      <rect width="220" height="42" rx="6" fill="#F3EBF8" stroke="#8B5CB8" stroke-width="1.5"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🛤 8 步法工作流模板</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#8B5CB8" text-anchor="middle">⭐ 碎片→双平台</text>
+    </g>
+    <g transform="translate(260, 90)">
+      <rect width="220" height="42" rx="6" fill="#F3EBF8"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 四维润色检查表</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">语气/专业/用户/价值观</text>
+    </g>
+    <g transform="translate(490, 90)">
+      <rect width="220" height="42" rx="6" fill="#F3EBF8"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🤖 5 类数字员工模板</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">扩展场景示意</text>
+    </g>
+    <g transform="translate(720, 90)">
+      <rect width="220" height="42" rx="6" fill="#F3EBF8"/>
+      <text x="110" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🎁 Skill 创建指南</text>
+      <text x="110" y="35" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7F4C2A" text-anchor="middle">4 种方法 PDF</text>
+    </g>
+
+    <line x1="30" y1="150" x2="1050" y2="150" stroke="#8B5CB8" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="30" y="172" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#E63946">👩‍🏫 给蓉蓉子</text>
+    <g transform="translate(30, 182)">
+      <rect width="280" height="28" rx="6" fill="#FFE8E8"/>
+      <text x="140" y="19" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">📺 直播3 完整脚本（90-120min, 4节 Part）</text>
+    </g>
+    <g transform="translate(320, 182)">
+      <rect width="260" height="28" rx="6" fill="#FFE8E8"/>
+      <text x="130" y="19" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle" font-weight="600">🎬 8步法演示录屏（防翻车）</text>
+    </g>
+  </g>
+
+  <!-- ============ PHASE 5: 结营 ============ -->
+  <g transform="translate(60, 1260)">
+    <rect width="1080" height="180" rx="14" fill="#FFFFFF" stroke="#D4A574" stroke-width="2"/>
+    <rect width="1080" height="50" rx="14" fill="#D4A574"/>
+    <rect y="36" width="1080" height="14" fill="#D4A574"/>
+    <text x="30" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">🎓 阶段 5 · 结营仪式</text>
+    <text x="1050" y="33" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#FFFFFF" text-anchor="end">Day 21 · 5月30日 20:00</text>
+
+    <text x="30" y="80" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="15" font-weight="600" fill="#A67B3F">🎁 给学员（7 份结营礼物）</text>
+    <g transform="translate(30, 90)">
+      <rect width="160" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="80" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📦 完整 Skills 包</text>
+      <text x="80" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">8 个开箱即用</text>
+    </g>
+    <g transform="translate(200, 90)">
+      <rect width="160" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="80" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📝 5 套 CLAUDE.md</text>
+      <text x="80" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">不同行业范本</text>
+    </g>
+    <g transform="translate(370, 90)">
+      <rect width="160" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="80" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">🔧 排错手册完整版</text>
+      <text x="80" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">PDF 10 问题</text>
+    </g>
+    <g transform="translate(540, 90)">
+      <rect width="160" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="80" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📋 SOP 卡片包</text>
+      <text x="80" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">四层内容创作</text>
+    </g>
+    <g transform="translate(710, 90)">
+      <rect width="160" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="80" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">🎁 Skill 创建指南</text>
+      <text x="80" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">4 种方法详解</text>
+    </g>
+    <g transform="translate(880, 90)">
+      <rect width="170" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="85" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">🌟 alumni 社群</text>
+      <text x="85" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">终身入驻</text>
+    </g>
+
+    <g transform="translate(30, 138)">
+      <rect width="240" height="32" rx="6" fill="#FFE8E8"/>
+      <text x="120" y="20" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#E63946" text-anchor="middle" font-weight="600">🎟 下期早鸟券（-¥500）+ 终验标准</text>
+    </g>
+  </g>
+
+  <!-- ============ 全程伴随 ============ -->
+  <g transform="translate(60, 1465)">
+    <rect width="1080" height="170" rx="14" fill="#FFFFFF" stroke="#D4A574" stroke-width="2" stroke-dasharray="6,4"/>
+    <rect width="1080" height="40" rx="14" fill="#FFF4D9" stroke="#D4A574" stroke-width="2" stroke-dasharray="6,4"/>
+    <rect y="26" width="1080" height="14" fill="#FFF4D9"/>
+    <text x="30" y="27" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="700" fill="#A67B3F">🔄 全程伴随的 SOP / 知识资产</text>
+
+    <text x="30" y="68" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#7F4C2A">蓉蓉子自己也用 + 学员可参考</text>
+    <g transform="translate(30, 78)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📖 公众号入库最佳实践</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">SOP · Day 4 学员可用</text>
+    </g>
+    <g transform="translate(260, 78)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">🤖 内容助手最佳实践</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">SOP · 直播3 后必读</text>
+    </g>
+    <g transform="translate(490, 78)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📚 ob大脑全局索引</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">02_Wiki/index.md 样板</text>
+    </g>
+    <g transform="translate(720, 78)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📚 案例库 5 篇代表作</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">M1×2 + M2×1 + M3×2</text>
+    </g>
+    <g transform="translate(30, 122)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📝 公众号系列首篇</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">3 步教你搭知识库</text>
+    </g>
+    <g transform="translate(260, 122)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">🦞 wechat_download 工具</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">154 篇已实战验证</text>
+    </g>
+    <g transform="translate(490, 122)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">📐 6 个 skill + prompts</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">含 article-gen / topic-gen</text>
+    </g>
+    <g transform="translate(720, 122)">
+      <rect width="220" height="38" rx="6" fill="#FFF4D9"/>
+      <text x="110" y="17" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#2C3E50" text-anchor="middle" font-weight="600">🤖 4 个 agent 档案</text>
+      <text x="110" y="31" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#A67B3F" text-anchor="middle">内容/咨询/工作/团队助理</text>
+    </g>
+  </g>
+
+  <!-- FOOTER -->
+  <g transform="translate(600, 1680)">
+    <text x="0" y="0" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="500" fill="#E63946" text-anchor="middle">"21 天后你拥有的不是收藏夹，而是一只 · 会自己长大的 · AI 助手 🦞"</text>
+    <text x="0" y="22" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#7F4C2A" text-anchor="middle">蓉蓉子 × 石榴🐾 · 2026-05 · 资料目录：04_Output/课件资料/2026-05_实操营升级版/</text>
+  </g>
+</svg>

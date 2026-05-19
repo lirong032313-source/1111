@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="蓉蓉子">
+  <meta name="description" content="5月实操营 · 21天学员成长手册 · LLM Wiki × 六间房 AI 实操营">
+  <title>🦞 5月实操营 · 21天学员成长手册</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px; line-height: 1.75; color: #2C3E50;
+      background: linear-gradient(180deg, #FFF8F0 0%, #FFEFDC 100%);
+      background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+    .header {
+      background: linear-gradient(135deg, #E63946 0%, #F4A261 100%);
+      color: white; padding: 60px 24px 40px; text-align: center;
+      box-shadow: 0 4px 20px rgba(230,57,70,0.15); position: relative;
+    }
+    .header h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
+    .header .subtitle { font-size: 16px; opacity: 0.95; font-weight: 400; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    .header .meta { margin-top: 18px; font-size: 13px; opacity: 0.85; }
+    .layout { max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+    .toc-wrapper {
+      position: sticky; top: 16px; height: calc(100vh - 32px); overflow-y: auto;
+      background: white; border-radius: 12px; padding: 18px 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #FFE3C2;
+    }
+    .toc-title { font-size: 13px; font-weight: 600; color: #E63946; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #FFE3C2; letter-spacing: 0.5px; }
+    .toc-wrapper .toc ul { list-style: none; padding-left: 0; }
+    .toc-wrapper .toc > ul > li > ul { padding-left: 12px; margin-top: 4px; }
+    .toc-wrapper .toc a {
+      display: block; padding: 5px 8px; font-size: 13px; color: #555;
+      text-decoration: none; border-radius: 4px; transition: all 0.15s; line-height: 1.4;
+    }
+    .toc-wrapper .toc > ul > li > a { font-weight: 600; color: #2C3E50; font-size: 13.5px; }
+    .toc-wrapper .toc a:hover { background: #FFE3C2; color: #E63946; }
+    .content {
+      background: white; border-radius: 12px; padding: 40px 48px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06); border: 1px solid rgba(244,162,97,0.2);
+    }
+    .content h1 { font-size: 28px; color: #2C3E50; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 3px solid #E63946; }
+    .content h2 { font-size: 24px; color: #E63946; margin: 36px 0 16px; padding: 8px 0 8px 14px; border-left: 5px solid #E63946; background: linear-gradient(90deg, #FFE3C2 0%, transparent 100%); }
+    .content h3 { font-size: 20px; color: #2C3E50; margin: 28px 0 12px; padding-left: 10px; border-left: 3px solid #F4A261; }
+    .content h4 { font-size: 17px; color: #2C3E50; margin: 22px 0 10px; font-weight: 600; }
+    .content p { margin: 12px 0; color: #2C3E50; }
+    .content strong { color: #E63946; font-weight: 600; }
+    .content em { font-style: normal; color: #7F4C2A; font-weight: 500; }
+    .content ul, .content ol { margin: 12px 0; padding-left: 28px; }
+    .content li { margin: 6px 0; line-height: 1.75; }
+    .content blockquote {
+      margin: 20px 0; padding: 14px 20px;
+      background: linear-gradient(90deg, #FFF4D9 0%, #FFFAEC 100%);
+      border-left: 4px solid #F4A261; border-radius: 0 8px 8px 0; color: #7F4C2A; font-style: normal;
+    }
+    .content blockquote p { margin: 6px 0; color: #7F4C2A; }
+    .content blockquote strong { color: #E63946; }
+    .content code {
+      background: #FFE3C2; color: #C1121F; padding: 2px 6px;
+      border-radius: 4px; font-family: "SF Mono", Monaco, Consolas, "Liberation Mono", monospace; font-size: 14px;
+    }
+    .content pre {
+      background: #2C3E50; color: #ECF0F1; padding: 18px 22px;
+      border-radius: 8px; overflow-x: auto; margin: 16px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); line-height: 1.55;
+    }
+    .content pre code { background: transparent; color: inherit; padding: 0; font-size: 13.5px; }
+    .content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14.5px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .content thead { background: linear-gradient(135deg, #E63946 0%, #F4A261 100%); color: white; }
+    .content th { padding: 12px 14px; text-align: left; font-weight: 600; font-size: 14px; }
+    .content td { padding: 11px 14px; border-bottom: 1px solid #FFE3C2; vertical-align: top; }
+    .content tbody tr:hover { background: #FFF8F0; }
+    .content tbody tr:last-child td { border-bottom: none; }
+    .content hr { border: none; height: 2px; background: linear-gradient(90deg, transparent 0%, #F4A261 50%, transparent 100%); margin: 36px 0; }
+    .content a { color: #E63946; text-decoration: none; border-bottom: 1px solid #FFE3C2; transition: all 0.15s; }
+    .content a:hover { border-bottom-color: #E63946; }
+    .footer { text-align: center; padding: 32px 24px; color: #7F4C2A; font-size: 13px; }
+    .footer .quote { font-style: italic; color: #E63946; font-size: 15px; margin-bottom: 8px; }
+    .back-to-top {
+      position: fixed; bottom: 28px; right: 28px; width: 48px; height: 48px;
+      background: linear-gradient(135deg, #E63946 0%, #F4A261 100%); color: white;
+      border: none; border-radius: 50%; font-size: 22px; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(230,57,70,0.3); transition: transform 0.2s;
+      z-index: 100; display: flex; align-items: center; justify-content: center;
+    }
+    .back-to-top:hover { transform: translateY(-3px); }
+    @media (max-width: 900px) {
+      .header { padding: 40px 16px 28px; }
+      .header h1 { font-size: 24px; }
+      .header .subtitle { font-size: 14px; }
+      .layout { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
+      .toc-wrapper { position: relative; top: auto; height: auto; max-height: 280px; }
+      .content { padding: 24px 18px; }
+      .content h1 { font-size: 22px; }
+      .content h2 { font-size: 20px; }
+      .content h3 { font-size: 17px; }
+      .content table { font-size: 13px; }
+      .content th, .content td { padding: 8px 10px; }
+      .content pre { font-size: 12.5px; padding: 12px 14px; }
+    }
+    @media print {
+      body { background: white; }
+      .toc-wrapper, .back-to-top { display: none; }
+      .layout { grid-template-columns: 1fr; }
+      .content { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>🦞 5月实操营 · 21天学员成长手册</h1>
+    <div class="subtitle">「LLM Wiki × 六间房」AI 实操营 · 5月升级版<br>21 天后你拥有的不是收藏夹，而是一只 · 会自己长大的 · AI 助手</div>
+    <div class="meta">📅 5月10日 - 5月30日 · 3 次直播 · 关键里程碑作业 · 搭子互助</div>
+  </header>
+
+  <div class="layout">
+    <aside class="toc-wrapper">
+      <div class="toc-title">📑 目录</div>
+      <div class="toc">
+<ul>
+<li><a href="#guide">📖 手册使用指南</a></li>
+<li><a href="#welcome">一、欢迎信｜你为什么在这里</a></li>
+<li><a href="#checklist">二、21 天后你拥有什么（验收清单）</a></li>
+<li><a href="#prep">三、开营前准备（开营前 1天完成）</a><ul>
+<li><a href="#tools">🛠 工具下载清单</a></li>
+<li><a href="#obsidian-install">Obsidian 安装步骤（必装）</a></li>
+<li><a href="#workbuddy-install">WorkBuddy 安装步骤（推荐）</a></li>
+<li><a href="#claude-install">⭐ Claude Code 安装详细步骤（备选）</a></li>
+<li><a href="#folder">📂 建一个文件夹（先空的）</a></li>
+</ul></li>
+<li><a href="#division">四、🎯 整体工作分工法则（全程都用）⭐</a></li>
+<li><a href="#calendar">五、21 天分工日历（贴墙上）</a></li>
+<li><a href="#daily">六、Day 1-21 每日详解</a><ul>
+<li><a href="#phase1">🔵 Phase 1：搭地基（Day 1-7）</a></li>
+<li><a href="#phase2">🟢 Phase 2：养龙虾（Day 8-14）</a></li>
+<li><a href="#phase3">🟣 Phase 3：内容工厂 + 结营（Day 15-21）</a></li>
+</ul></li>
+<li><a href="#milestones">七、3 个里程碑验收标准</a></li>
+<li><a href="#template">八、信息卡模板（实用版）</a></li>
+<li><a href="#partner">九、🤝 搭子机制</a></li>
+<li><a href="#faq">十、📋 常见问题速查</a></li>
+<li><a href="#overview">十一、📅 21天总览图</a></li>
+<li><a href="#mindset">🔟 给你的 3 个开营前心理建设</a></li>
+<li><a href="#assets">📎 配套资产清单（蓉蓉子会发）</a></li>
+<li><a href="#lastword">🎯 最后一句话</a></li>
+</ul>
+</div>
+    </aside>
+
+    <main class="content">
+      <h1>🦞 5月实操营 · 21 天学员成长手册</h1>
+
+<blockquote>
+<p><strong>使用指南</strong>：本手册使用电脑观看效果更佳；本手册会根据实际情况不断更新完善。<br>
+<strong>课程</strong>：「LLM Wiki × 六间房」AI 实操营 · 5月升级版<br>
+<strong>时长</strong>：21 天（5月10日开营 → 5月30日结营）<br>
+<strong>3 次直播 + 关键里程碑作业 + 搭子互助</strong><br>
+<strong>承诺</strong>：21 天后你拥有的不是收藏夹，而是一只会自己长大的 AI 助手 🦞</p>
+</blockquote>
+<hr>
+
+<h2 id="guide">📖 手册使用指南</h2>
+
+<p>恭喜你加入5月实操营！这本手册将陪伴你度过21天的学习旅程。</p>
+
+<p><strong>手册结构：</strong></p>
+<ul>
+<li><strong>开营前</strong>：帮你做好准备工作</li>
+<li><strong>第一周（Day 1-7）</strong>：搭建知识库底座</li>
+<li><strong>第二周（Day 8-14）</strong>：养龙虾，让AI自动运转</li>
+<li><strong>第三周（Day 15-21）</strong>：打造数字员工，产出内容</li>
+<li><strong>结营</strong>：验收成果，领取礼物</li>
+</ul>
+
+<p><strong>使用建议：</strong></p>
+<ul>
+<li>每天早上的第一件事：看今天的任务清单</li>
+<li>遇到问题：先翻手册的「常见问题」章节，再问搭子</li>
+<li>每天打卡：完成任务后在搭子群发截图，互相激励</li>
+</ul>
+<hr>
+
+<h2 id="welcome">一、欢迎信｜你为什么在这里</h2>
+
+<p>如果你是因为以下任一原因来的——你来对了：</p>
+<ul>
+<li>个人品牌打造者：内容产出跟不上，AI 帮不到你</li>
+<li>内容创作者：想把"专业"沉淀成可复用的资产</li>
+<li>知识工作者：收藏夹有几百条，但没有一套真正能用起来的系统</li>
+</ul>
+
+<p>我们 21 天会一起做一件事：<strong>给你搭一个"AI 真懂你"的底座</strong>。</p>
+
+<p>不是教 AI 工具。不是教提示词。<br>
+是教<strong>底座</strong>——AI 怎么真正"读懂"你。</p>
+<hr>
+
+<h2 id="checklist">二、21 天后你拥有什么（验收清单）</h2>
+
+<pre><code>🎁 21 天后你的"长大物"清单：
+
+  ✅ 一个完整的六间房 ob-大脑（5+ 间房各有信息卡）
+  ✅ 一份成熟的 CLAUDE.md（v3 以上）
+  ✅ 一只在微信里 24 小时帮你工作的小龙虾🦞
+  ✅ 一套从碎片→选题→草稿→双平台分发的内容工厂
+  ✅ 至少 1 篇用 AI 协作生成、已发布的内容
+  ✅ 一份可分享给朋友/学员的「我的 AI 工作流」展示</code></pre>
+<hr>
+
+<h2 id="prep">三、开营前准备（开营前 1天完成）</h2>
+
+<h3 id="tools">🛠 工具下载清单</h3>
+<table>
+<thead><tr><th>工具</th><th>必要性</th><th>用途</th><th>安装时长</th></tr></thead>
+<tbody>
+<tr><td><strong>Obsidian</strong></td><td>⭐⭐⭐ 必装</td><td>你的 ob-大脑容器</td><td>5 min</td></tr>
+<tr><td><strong>WorkBuddy</strong></td><td>⭐⭐⭐ 必装</td><td>AI 协作主力工具</td><td>10 min</td></tr>
+<tr><td>公众号下载工具</td><td>⭐ 可选</td><td>一次性入库历史文章</td><td>30 min</td></tr>
+</tbody>
+</table>
+<hr>
+
+<h4 id="obsidian-install">Obsidian 安装步骤（必装）</h4>
+<blockquote><p><strong>下载链接</strong>：https://obsidian.md</p></blockquote>
+<ol>
+<li>点击链接 → 下载 macOS 版（苹果电脑）或 Windows 版</li>
+<li>安装并打开</li>
+</ol>
+<hr>
+
+<h4 id="workbuddy-install">WorkBuddy 安装步骤（推荐）</h4>
+<blockquote><p><strong>下载链接</strong>：https://copilot.tencent.com/work/</p></blockquote>
+<ol>
+<li>点击链接下载安装包</li>
+<li>安装并打开 WorkBuddy</li>
+<li>扫码登录即可使用</li>
+</ol>
+<p>特点：<br>
+- 图形界面，无需命令行<br>
+- 可在微信/飞书中直接调用<br>
+- 适合所有人</p>
+<hr>
+
+<h3 id="claude-install">⭐ Claude Code 安装详细步骤（备选）</h3>
+<ul>
+<li>Mac：按 <code>⌘ + 空格</code>，搜索「终端」或「Terminal」，回车打开</li>
+<li>Windows：搜索「PowerShell」打开</li>
+</ul>
+
+<h4>第 2 步：粘贴一行命令</h4>
+<p>在终端里粘贴下面这行，回车：</p>
+<pre><code class="language-bash">curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+<p>等待安装完成（大约 1-2 分钟）。</p>
+
+<h4>第 3 步：第一次启动</h4>
+<p>终端里输入：</p>
+<pre><code>claude</code></pre>
+<p>第一次会跳出登录授权——浏览器会自动打开，扫码或登录 Anthropic 账号即可。</p>
+
+<h4>第 4 步：验证安装成功</h4>
+<p>回到终端，看到类似这样的提示符 = 成功：</p>
+<pre><code>&gt;</code></pre>
+<p>试着输入：</p>
+<pre><code>你好，自我介绍一下</code></pre>
+<p>Claude 回应了 = ✅ 安装成功。</p>
+
+<h4>⚠️ 常见踩坑</h4>
+<table>
+<thead><tr><th>问题</th><th>解决</th></tr></thead>
+<tbody>
+<tr><td>终端报错 "command not found: claude"</td><td>关闭终端再开一次（PATH 没刷新）</td></tr>
+<tr><td>浏览器登录后回到终端没反应</td><td>按 <code>Ctrl + C</code> 退出再 <code>claude</code> 一次</td></tr>
+<tr><td>国内网络问题</td><td>不需要 VPN，但偶尔慢，多试几次</td></tr>
+<tr><td>Anthropic 账号没有</td><td>用邮箱注册一个，免费额度足够实操营用</td></tr>
+</tbody>
+</table>
+<blockquote><p>📚 <a href="https://docs.claude.com/en/docs/claude-code">官方安装文档</a>（备用参考）</p></blockquote>
+<hr>
+
+<h3 id="folder">📂 建一个文件夹（先空的）</h3>
+<p>在你的 Mac 桌面建一个空文件夹，命名为：</p>
+<pre><code>ob-大脑</code></pre>
+<p>注意：<strong>带连字符</strong>（避免和其他文件混淆）。</p>
+<p>直播 1 会带你把它填好。先建一个空的，开营当天就能直接用。</p>
+<hr>
+
+<h2 id="division">四、🎯 整体工作分工法则（全程都用）⭐</h2>
+<blockquote><p><strong>这是 21 天最重要的一条原则。</strong> 看完这一节，你才明白这次实操营和别的 AI 课的根本区别。</p></blockquote>
+
+<h3>谁做什么？</h3>
+<pre><code>┌──────────────────────────────────────────────┐
+│   ✋ 你必须手写（约 3 张地基卡，AI 替代不了）   │
+├──────────────────────────────────────────────┤
+│  ❶ 01_我是谁/一句话定位.md                    │
+│     → 必须自己想清楚"我是谁"                   │
+│  ❷ 06_我怎么想/核心价值观.md                  │
+│     → 必须从你内心来                          │
+│  ❸ CLAUDE.md 第三节"写作风格"                 │
+│     → 你和 AI 的契约，必须你写                │
+└──────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────┐
+│   🤖 AI 提炼（约 80% 的卡片）                  │
+├──────────────────────────────────────────────┤
+│  你只管：把素材丢进 raw/                      │
+│  AI 自动：提炼 → 写信息卡 → 更新 index.md     │
+│                                              │
+│  典型场景：                                    │
+│  • 02_我会什么 ← 你的方法论文章 / 课件         │
+│  • 03_我说过什么 ← 公众号 / 朋友圈历史         │
+│  • 04_我卖什么 ← 产品说明书 PDF               │
+│  • 05_我面对谁 ← 咨询记录 / 学员反馈           │
+│  • 案例库 ← 已发爆款反向沉淀                  │
+└──────────────────────────────────────────────┘</code></pre>
+
+<h3>核心金句（请背下来）</h3>
+<blockquote><p>"<strong>地基卡你必须手写——因为这是 AI 替代不了的'你成为你'的过程。</strong><br>
+<strong>装修部分让 AI 干——因为这是 AI 比你快 100 倍的事。</strong>"</p></blockquote>
+
+<h3>🚨 反例（绝对不要这样做）</h3>
+<p>❌ <strong>让 AI 替你写「一句话定位」</strong><br>
+→ AI 写的会非常空洞，因为没有你的真实判断</p>
+<p>❌ <strong>手写所有 80 张信息卡</strong><br>
+→ 会累死，21 天填不完，违背 LLM Wiki 的核心范式</p>
+<hr>
+
+<h2 id="calendar">五、21 天分工日历（贴墙上）</h2>
+<table>
+<thead><tr><th>Day</th><th>主题</th><th>你做什么</th><th>路径</th></tr></thead>
+<tbody>
+<tr><td><strong>Day 1</strong></td><td>直播 1 + 搭地基</td><td>手写 01 一句话定位 + 跑通 1 次 AI Ingest</td><td>✋🤖 混合</td></tr>
+<tr><td>Day 2-3</td><td>丰富 02 我会什么</td><td>把方法论文章/课件丢 raw/ 让 AI 提炼</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 4-5</td><td>丰富 03 + 05</td><td>把公众号/咨询记录丢 raw/ 让 AI 提炼</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 6</td><td>手写 06 价值观</td><td>安静思考，手写 1-2 张「核心价值观」</td><td>✋ 你主</td></tr>
+<tr><td>Day 7</td><td><strong>Phase 1 验收</strong></td><td>Lint 体检 + CLAUDE.md 迭代到 v2</td><td>✅</td></tr>
+<tr><td><strong>Day 8</strong></td><td>直播 2 + 养虾</td><td>龙虾领养 + 配置 AI 日报</td><td>✋🤖</td></tr>
+<tr><td>Day 9-10</td><td>微信碎片入库</td><td>给龙虾发不同类型的碎片</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 11</td><td>04(可选) + 边界设定</td><td>让龙虾学会拒绝</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 12</td><td>Schema 迭代</td><td>调 CLAUDE.md，让 AI 越来越像你</td><td>✋ 你主</td></tr>
+<tr><td>Day 13</td><td>选题生成</td><td>让龙虾基于母题出选题</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 14</td><td><strong>Phase 2 验收</strong></td><td>龙虾响应 + 碎片入库 + 选题清单</td><td>✅</td></tr>
+<tr><td><strong>Day 15</strong></td><td>直播 3 + 数字员工</td><td>跑通 8 步法</td><td>✋🤖</td></tr>
+<tr><td>Day 16-17</td><td>内容生产</td><td>完成 1 篇内容初稿+润色</td><td>✋🤖 混合</td></tr>
+<tr><td>Day 18</td><td>多端分发</td><td>发布到至少 1 个平台</td><td>✋ 你主</td></tr>
+<tr><td>Day 19</td><td>自由创作日</td><td>第 2 篇内容</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 20</td><td>Wiki 体检 + 导出</td><td>跑 Lint + 导出知识库包</td><td>🤖 AI 主</td></tr>
+<tr><td>Day 21</td><td><strong>🎓 结营仪式</strong></td><td>Show 你的龙虾 + 成果</td><td>🎉</td></tr>
+</tbody>
+</table>
+<hr>
+
+<h2 id="daily">六、Day 1-21 每日详解（带Checklist）</h2>
+
+<h3 id="phase1">🔵 Phase 1：搭地基（Day 1-7）</h3>
+
+<h4>Day 1（直播当天）⭐ 5月10日 20:00-22:00</h4>
+<p><strong>主题</strong>：认知升级 + 三层架构 + 跑通 MVP</p>
+<p><strong>直播前需做完</strong>：</p>
+<ul>
+<li>☐ Claude Code 已装好</li>
+<li>☐ Obsidian 已装好</li>
+<li>☐ 桌面建好空 <code>ob-大脑</code> 文件夹</li>
+<li>☐ 准备一段真实素材（最近的咨询碎片 / 写过的文章 / 微信对话）</li>
+</ul>
+<p><strong>直播当晚要完成（直播 + 课后 1 小时）</strong>：</p>
+<ul>
+<li>☐ 三层目录建好（raw/ + wiki/ + CLAUDE.md）</li>
+<li>☐ CLAUDE.md 初版（前 4 节必填）</li>
+<li>☐ 手写 01_我是谁/一句话定位.md</li>
+<li>🤖 跑通 1 次 Ingest（你丢素材→ AI 整理）</li>
+<li>🤖 跑通 1 次 Query（你提问→ AI 用 wiki 回答）</li>
+</ul>
+<p><strong>搭子动作</strong>：群里 @ 你的搭子，发「目录建好」截图。</p>
+<hr>
+
+<h4>Day 2-3：丰富 02 我会什么</h4>
+<p><strong>任务</strong>：把你的方法论沉淀给 AI。</p>
+<p><strong>操作</strong>：</p>
+<ol>
+<li>找出你过去写过的「方法论型」文章 / 课件 PDF（3-5 篇即可）</li>
+<li>丢到 <code>raw/articles/</code> 文件夹</li>
+<li>在 Claude Code 里说：<br><code>请扫描 raw/articles/ 下的新文件，按 CLAUDE.md 规则提炼方法论卡，写到 wiki/02_我会什么/信息卡/。</code></li>
+<li>AI 提炼完后，你<strong>审核</strong>生成的信息卡——不像你的地方告诉 AI 改</li>
+</ol>
+<p><strong>验收</strong>：02 房间至少 2 张方法论信息卡。</p>
+<hr>
+
+<h4>Day 4-5：丰富 03 + 05</h4>
+<p><strong>任务</strong>：让 AI 学会你的语气 + 看清你的用户。</p>
+<p><strong>Day 4 操作</strong>（03 房间）：</p>
+<ol>
+<li>把公众号历史文章导出（用 wechat_download 工具，蓉蓉子会发）</li>
+<li>让 AI 提炼：
+  <ul>
+    <li>30 段最有「你味」的段落 → 03/风格采样/</li>
+    <li>20 句标志性金句 → 03/金句库/</li>
+    <li>M1/M2/M3 各 5-10 篇代表作 → 03/代表作清单.md</li>
+  </ul>
+</li>
+</ol>
+<p><strong>Day 5 操作</strong>（05 房间）：</p>
+<ol>
+<li>找你过去的咨询记录 / 学员反馈 / 用户原话</li>
+<li>丢到 <code>raw/chats/</code> 或 <code>raw/notes/</code></li>
+<li>让 AI 提炼：用户原话 + 痛点分类 → 05/信息卡/</li>
+</ol>
+<p><strong>验收</strong>：03 风格采样 ≥30 段；05 痛点卡 ≥1 张。</p>
+<hr>
+
+<h4>Day 6：手写 06 核心价值观</h4>
+<p><strong>任务</strong>：这是地基卡 #2 ——AI 替你写不了。</p>
+<p><strong>晚上找一个安静时间，手写</strong>：</p>
+<pre><code class="language-markdown"># 06_我怎么想/核心价值观.md
+
+## 我做事的 3 条原则
+1. ____
+2. ____
+3. ____
+
+## 我不做什么（边界）
+- ____
+- ____
+
+## 我跟主流不一样的地方
+- 别人都说 ___，但我认为 ___</code></pre>
+<p>写完后让 AI 跑一次 Query 验证：</p>
+<pre><code>基于我所有 wiki，给我写一段 200 字的自我介绍。</code></pre>
+<p>如果 AI 写出来「像你」 = ✅ 你的价值观和风格已经被 AI 吸收。</p>
+<hr>
+
+<h4>Day 7：Phase 1 验收</h4>
+<p><strong>里程碑动作</strong>：</p>
+<ul>
+<li>🤖 让 AI 跑一次 Lint：<br><code>请扫描 wiki/ 全部内容，找出：① 矛盾的地方 ② 孤立的页面 ③ 缺失的概念。写一份 Lint 报告到 03_Dashboard/。</code></li>
+<li>✋ 根据 Lint 报告调 CLAUDE.md 到 v2</li>
+</ul>
+<p><strong>搭子互审</strong>：跟搭子互换 wiki 截图，给对方反馈「哪些卡像你 / 不像你」。</p>
+<p><strong>验收标准</strong>（必须达到）：</p>
+<ul>
+<li>✅ 5 间房（01,02,03,05,06）各至少 1 张卡</li>
+<li>✅ CLAUDE.md 已迭代到 v2</li>
+<li>✅ 跑通至少 3 次 Ingest + 3 次 Query</li>
+</ul>
+<hr>
+
+<h3 id="phase2">🟢 Phase 2：养龙虾（Day 8-14）</h3>
+
+<h4>Day 8（直播当天）⭐ 5月17日 20:00-22:00</h4>
+<p><strong>主题</strong>：领养你的小龙虾🦞 + 自动运转的知识库</p>
+<p><strong>直播当晚完成</strong>：</p>
+<ul>
+<li>🦞 龙虾领养成功（微信里能跟你对话）</li>
+<li>🤖 AI 日报已配置（明早能收到）</li>
+<li>🤖 每日工作汇总已配置（21:00 自动发）</li>
+</ul>
+
+<h4>Day 9-10：微信碎片入库实操</h4>
+<p><strong>任务</strong>：让龙虾习惯你的「喂料」节奏。</p>
+<p><strong>操作</strong>：每天发至少 3 条不同类型给龙虾：</p>
+<ul>
+<li>1 条灵感想法（文字）</li>
+<li>1 条文章链接（转发）</li>
+<li>1 条对话碎片（截图或文字）</li>
+</ul>
+<p><strong>验收</strong>：龙虾把它们正确分到对应房间。</p>
+
+<h4>Day 11-13：Schema 进阶 + 选题实战</h4>
+<ul>
+<li>Day 11：04 房间（可选）+ 边界规则细化</li>
+<li>Day 12：根据使用反馈调 CLAUDE.md（每天发现 AI 不像你的 1-2 处）</li>
+<li>Day 13：让龙虾基于母题清单生成下周 5 个选题</li>
+</ul>
+
+<h4>Day 14：Phase 2 验收</h4>
+<ul>
+<li>✅ 龙虾响应正常</li>
+<li>✅ 微信碎片能正确入库（≥3 种类型）</li>
+<li>✅ AI 日报已收到 ≥3 天</li>
+<li>✅ 至少 1 份选题清单已生成</li>
+</ul>
+<hr>
+
+<h3 id="phase3">🟣 Phase 3：内容工厂 + 结营（Day 15-21）</h3>
+
+<h4>Day 15（直播当天）⭐ 5月24日 20:00-22:00</h4>
+<p><strong>主题</strong>：内容生产数字员工 + Skill 创建加餐</p>
+<p><strong>直播当晚完成</strong>：</p>
+<ul>
+<li>跑通一次 8 步法（碎片 → 选题 → 大纲 → 初稿 → 双平台稿）</li>
+</ul>
+
+<h4>Day 16-19：内容生产</h4>
+<ul>
+<li>Day 16-17：用 8 步法独立完成 1 篇内容（公众号或小红书任选）</li>
+<li>Day 18：发布到至少 1 个平台（搭子互审用四维表）</li>
+<li>Day 19：自由创作日（深化第 1 篇 或 写第 2 篇）</li>
+</ul>
+
+<h4>Day 20：Wiki 体检 + 导出</h4>
+<ul>
+<li>跑最终 Lint</li>
+<li>CLAUDE.md 终版</li>
+</ul>
+
+<h4>Day 21：🎓 结营仪式 ⭐ 5月30日 20:00-21:30</h4>
+<ul>
+<li>每人 3-5 min 展示：龙虾 + Wiki + 已发内容</li>
+<li>颁发证书 + 7 份结营礼物</li>
+<li>蓉蓉子养虾交流社群入驻</li>
+</ul>
+<hr>
+
+<h2 id="milestones">七、3 个里程碑验收标准</h2>
+<table>
+<thead><tr><th>里程碑</th><th>验收日</th><th>必须达到</th></tr></thead>
+<tbody>
+<tr><td><strong>Phase 1·搭地基</strong></td><td>Day 7</td><td>5 间房各 ≥1 张卡 + CLAUDE.md v2 + 跑通 Ingest/Query 闭环</td></tr>
+<tr><td><strong>Phase 2·养龙虾</strong></td><td>Day 14</td><td>龙虾响应 + 碎片入库 + AI 日报 ≥3 天 + 选题清单</td></tr>
+<tr><td><strong>Phase 3·结营</strong></td><td>Day 21</td><td>全链路跑通 + 至少 1 篇已发布 + 龙虾存活 + Wiki 通过 Lint</td></tr>
+</tbody>
+</table>
+<p>未达标处理：搭子互助 + 老师 1v1 救火（不让任何人掉队）。</p>
+<hr>
+
+<h2 id="template">八、信息卡模板（实用版）</h2>
+<p>来自版本B的实用模板：</p>
+<pre><code class="language-markdown"># 01-身份基座_我是谁.md
+
+## 一句话定位
+[在这里写]
+
+## 三个关键身份
+1. 主业：
+2. 副业：
+3. 兴趣/隐藏身份：
+
+## 我的三个高频原话
+1. "________"
+2. "________"
+3. "________"
+
+## 我最讨厌别人对我的误解
+- "他们以为我是X，其实我是Y"
+
+## 我的核心价值观（3条）
+1.
+2.
+3.</code></pre>
+<hr>
+
+<h2 id="partner">九、🤝 搭子机制</h2>
+
+<h3>配对方式</h3>
+<ul>
+<li>强弱混搭，每组 2-3 人</li>
+<li>开营前 1 天根据问卷结果配对</li>
+<li>21 天不换搭子（建立信任）</li>
+</ul>
+
+<h3>互动节奏</h3>
+<table>
+<thead><tr><th>Phase</th><th>频率</th><th>做什么</th></tr></thead>
+<tbody>
+<tr><td>Day 1-7（地基期）</td><td>每 2 天 1 次</td><td>互检 wiki / 信息卡</td></tr>
+<tr><td>Day 8-14（龙虾期）</td><td><strong>每天</strong></td><td>互救报错 / 互调 CLAUDE.md</td></tr>
+<tr><td>Day 15-21（生产期）</td><td>每 2 天 1 次</td><td>用四维表互审作品</td></tr>
+</tbody>
+</table>
+
+<h3>激励</h3>
+<ul>
+<li>🏆 <strong>最佳搭子奖</strong>（结营颁奖）——搭子组合升级私教
+  <ul>
+    <li>🎁 私教服务各自<strong>抵扣2000</strong></li>
+    <li>🎁 两人小群<strong>日常深度辅导</strong></li>
+    <li>🎁 实操营学费<strong>全额退还</strong></li>
+  </ul>
+</li>
+<li>🌟 <strong>互助之星</strong>（社群表彰）——互助之星升级私教服务
+  <ul>
+    <li>🎁 私教服务<strong>抵扣1000</strong></li>
+    <li>🎁 实操营学费<strong>全额退还</strong></li>
+    <li>🎁 赠送 <strong>30min 999元 1v1 咨询诊断</strong></li>
+  </ul>
+</li>
+</ul>
+<hr>
+
+<h2 id="faq">十、📋 常见问题速查</h2>
+
+<h3>工具问题</h3>
+<table>
+<thead><tr><th>问题</th><th>解决方案</th></tr></thead>
+<tbody>
+<tr><td>Obsidian打不开my-wiki？</td><td>用网页版：https://obsidian.md</td></tr>
+<tr><td>微信无法登录新设备？</td><td>确保账号满6个月，或用手机端辅助登录</td></tr>
+<tr><td>ClawBot没响应？</td><td>检查WorkBuddy是否运行，重启服务</td></tr>
+</tbody>
+</table>
+
+<h3>知识库问题</h3>
+<table>
+<thead><tr><th>问题</th><th>解决方案</th></tr></thead>
+<tbody>
+<tr><td>AI不像我？</td><td>在03房间加更多风格采样，5-10段</td></tr>
+<tr><td>AI放错房间？</td><td>调整CLAUDE.md第二节「六间房含义」</td></tr>
+<tr><td>内容被覆盖？</td><td>在CLAUDE.md加「禁止删除，只能追加」</td></tr>
+</tbody>
+</table>
+
+<h3>操作问题</h3>
+<table>
+<thead><tr><th>问题</th><th>解决方案</th></tr></thead>
+<tbody>
+<tr><td>Query找不到资料？</td><td>检查wiki/index.md是否有内容</td></tr>
+<tr><td>Ingest没反应？</td><td>确认raw/文件夹有文件</td></tr>
+<tr><td>想停掉AI日报？</td><td>在WorkBuddy关掉任务就行</td></tr>
+</tbody>
+</table>
+<hr>
+
+<h2 id="overview">十一、📅 21天总览图</h2>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│                    21天学习地图                             │
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│  📅 第一周：搭建底座（Day 1-7）                            │
+│  ├── Day 1：直播1 → 搭建三层目录 + CLAUDE.md + 第一次Ingest│
+│  ├── Day 2-3：填01_我是谁                                 │
+│  ├── Day 4-5：填02 + 03                                   │
+│  ├── Day 6：第一次Query测试                               │
+│  └── Day 7：第一周验收 + Lint                             │
+│                                                            │
+│  📅 第二周：养龙虾（Day 8-14）                             │
+│  ├── Day 8：直播2 → 领养龙虾 + 配置AI日报                 │
+│  ├── Day 9-10：微信碎片实操                               │
+│  ├── Day 11-12：Schema深化                                │
+│  ├── Day 13：选题生成                                      │
+│  └── Day 14：第二周验收                                   │
+│                                                            │
+│  📅 第三周：数字员工（Day 15-21）                          │
+│  ├── Day 15：直播3 → 8步法内容生产                         │
+│  ├── Day 16-17：独立完成1篇内容                          │
+│  ├── Day 18：发布内容                                      │
+│  ├── Day 19：自由创作                                      │
+│  ├── Day 20：Lint + 导出                                   │
+│  └── Day 21：结营Show                                     │
+│                                                            │
+└────────────────────────────────────────────────────────────┘</code></pre>
+<hr>
+
+<h2 id="mindset">🔟 给你的 3 个开营前心理建设</h2>
+
+<h3>1️⃣ 不要追求「一次写完美」</h3>
+<p>v1 永远不完美。<strong>跑通 &gt; 完美</strong>。21 天里你会迭代很多版。</p>
+
+<h3>2️⃣ 不要替 AI 操心</h3>
+<p>AI 写错的地方就指出来让它改，不要自己默默重写。<strong>这是路径 C 的核心——不是你帮 AI，是你监督 AI 帮你</strong>。</p>
+
+<h3>3️⃣ 不要孤军奋战</h3>
+<p>跟搭子说「我卡住了」不丢人。<strong>21 天里，能不能成不取决于你多努力，取决于你被卡住时有没有人接住你</strong>。</p>
+<hr>
+
+<h2 id="assets">📎 配套资产清单（蓉蓉子会发）</h2>
+<table>
+<thead><tr><th>物料</th><th>形式</th><th>何时发</th></tr></thead>
+<tbody>
+<tr><td>本手册（21天成长手册）</td><td>.md / 飞书</td><td>开营前 3 天</td></tr>
+<tr><td>CLAUDE.md Day 1 模板</td><td>.md</td><td>直播 1</td></tr>
+<tr><td>信息卡模板（六间房通用）</td><td>.md</td><td>直播 1</td></tr>
+<tr><td>✋手写 vs 🤖AI 提炼分工卡</td><td>一张图</td><td>直播 1</td></tr>
+<tr><td>公众号下载工具</td><td>Python 脚本</td><td>Day 4</td></tr>
+<tr><td>ClawBot 安装手册</td><td>PDF</td><td>直播 2 前 1 天</td></tr>
+<tr><td>龙虾排错手册</td><td>PDF</td><td>直播 2 后</td></tr>
+<tr><td>8 步法工作流模板</td><td>YAML</td><td>直播 3</td></tr>
+<tr><td>完整 Skills 包（8 个）</td><td>文件夹</td><td>结营礼物</td></tr>
+</tbody>
+</table>
+<hr>
+
+<h2 id="lastword">🎯 最后一句话</h2>
+<blockquote><p>"<strong>21 天后你拥有的不是又一个收藏夹，</strong><br><strong>而是一只 · 会自己长大的 · AI 助手 🦞</strong>"</p></blockquote>
+<p>5月10日，我们开始。✨</p>
+<p>—— 蓉蓉子 × 石榴🐾</p>
+<hr>
+<p><em>本手册随实操营进展每周小迭代 · 2026-05-07</em></p>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="quote">"地基卡你必须手写——AI 替代不了。装修部分让 AI 干——AI 比你快 100 倍。"</div>
+    <div>蓉蓉子 × 石榴🐾 · 2026-05 · 5月实操营升级版</div>
+  </footer>
+
+  <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">↑</button>
+
+</body>
+</html>

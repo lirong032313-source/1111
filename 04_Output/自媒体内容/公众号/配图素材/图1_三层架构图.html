@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1800, height=1000">
+<title>三层架构图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1800px;
+    height: 1000px;
+    background: linear-gradient(135deg, #0D1B2A 0%, #1A1A2E 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    overflow: hidden;
+  }
+  .container {
+    width: 1600px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+  .title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #FFF5E1;
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px rgba(0,255,255,0.3);
+  }
+  .arrow-down {
+    font-size: 64px;
+    color: #00FFFF;
+    text-shadow: 0 0 15px #00FFFF;
+    line-height: 1;
+  }
+  .layer {
+    width: 1400px;
+    border-radius: 20px;
+    padding: 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .layer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 3px;
+    background: linear-gradient(135deg, #FF00FF, #00FFFF);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .layer-label {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .layer-desc {
+    font-size: 28px;
+    line-height: 1.6;
+  }
+  .layer-top {
+    background: rgba(255,0,255,0.08);
+    border: 2px solid rgba(255,0,255,0.4);
+  }
+  .layer-top .layer-label { color: #FF00FF; }
+  .layer-top .layer-desc { color: #E0E0E0; }
+  .layer-top .star { color: #FFD700; font-size: 32px; position: absolute; top: 20px; right: 30px; }
+
+  .layer-mid {
+    background: rgba(0,255,255,0.08);
+    border: 2px solid rgba(0,255,255,0.4);
+  }
+  .layer-mid .layer-label { color: #00FFFF; }
+  .layer-mid .layer-desc { color: #E0E0E0; }
+
+  .layer-bot {
+    background: rgba(255,107,53,0.08);
+    border: 2px solid rgba(255,107,53,0.4);
+  }
+  .layer-bot .layer-label { color: #FF6B35; }
+  .layer-bot .layer-desc { color: #E0E0E0; }
+
+  .sub-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 6px 18px;
+    font-size: 26px;
+    color: #FFD700;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title">🏗️ LLM Wiki 三层架构</div>
+
+  <div class="layer layer-top">
+    <span class="star">★ 你在这层</span>
+    <div class="layer-label">Schema 层 · 规则 / 契约</div>
+    <div class="layer-desc">你和 AI 共同维护 · 越用越懂你</div>
+    <div class="sub-label">📄 CLAUDE.md</div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <div class="layer layer-mid">
+    <div class="layer-label">Wiki 层 · 已编译的知识（AI 拥有）</div>
+    <div class="layer-desc">AI 把你的原始素材，消化成「信息卡」<br>你负责读 + 纠错，AI 负责写</div>
+    <div class="sub-label">🏠 六间房信息卡</div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <div class="layer layer-bot">
+    <div class="layer-label">Raw Sources 层 · 原始素材（不可变）</div>
+    <div class="layer-desc">你产生的所有内容，只存不改<br>微信碎片 / 文章 / 逐字稿 / 朋友圈</div>
+    <div class="sub-label">📥 00_Inbox → 01_Raw</div>
+  </div>
+</div>
+</body>
+</html>

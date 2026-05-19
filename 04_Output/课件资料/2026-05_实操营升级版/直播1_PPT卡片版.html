@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>直播1｜认知升级 + 三层架构</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #0a0e17; color: #e6edf3; 
+            padding: 20px;
+        }
+        .slide {
+            background: linear-gradient(145deg, #1a1a2e 0%, #161b22 100%);
+            border-radius: 20px; padding: 40px;
+            margin: 20px auto; max-width: 800px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .slide h1 {
+            color: #00ffff; font-size: 2em; margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0,255,255,0.5);
+        }
+        .slide h2 {
+            color: #ff1493; font-size: 1.5em; margin: 25px 0 15px;
+        }
+        .slide h3 {
+            color: #9d4edd; font-size: 1.2em; margin: 20px 0 10px;
+        }
+        .tag {
+            display: inline-block; background: #9d4edd;
+            padding: 5px 15px; border-radius: 20px;
+            font-size: 0.8em; margin-bottom: 15px;
+        }
+        .card {
+            background: rgba(22,27,34,0.8); border-radius: 12px;
+            padding: 20px; margin: 15px 0;
+            border-left: 4px solid #00ffff;
+        }
+        .card.pink { border-left-color: #ff1493; }
+        .card.purple { border-left-color: #9d4edd; }
+        .card.green { border-left-color: #39ff14; }
+        
+        .grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 15px; margin: 15px 0;
+        }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        
+        .box {
+            background: #161b22; border-radius: 10px; padding: 15px;
+            text-align: center;
+        }
+        .box .num {
+            color: #00ffff; font-size: 2em; font-weight: bold;
+        }
+        .box .label { color: #8b949e; font-size: 0.9em; }
+        
+        pre {
+            background: #0d1117; padding: 15px; border-radius: 8px;
+            overflow-x: auto; font-size: 0.85em;
+            border: 1px solid #30363d;
+        }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td {
+            border: 1px solid #30363d; padding: 12px; text-align: left;
+        }
+        th { background: #9d4edd; color: white; }
+        tr:nth-child(even) { background: rgba(22,27,34,0.5); }
+        
+        .title-accent {
+            font-size: 0.9em; color: #8b949e; margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .grid, .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="slide">
+    <span class="tag">直播 1</span>
+    <h1>认知升级 + 三层架构 + CLAUDE.md</h1>
+    <p class="title-accent">六间房×LLM Wiki 21天实操营</p>
+    <div class="card">
+        <h3>🎯 核心目标</h3>
+        <p>从"知道有六间房"→"理解 LLM Wiki 三层架构"→"现场建好目录+CLAUDE.md+第一次 Ingest"</p>
+    </div>
+    <div class="grid">
+        <div class="box">
+            <div class="num">90-120</div>
+            <div class="label">分钟</div>
+        </div>
+        <div class="box">
+            <div class="num">4</div>
+            <div class="label">Part</div>
+        </div>
+        <div class="box">
+            <div class="num">1</div>
+            <div class="label">MVP</div>
+        </div>
+    </div>
+</div>
+
+<!-- Part结构 -->
+<div class="slide">
+    <span class="tag">Part 结构</span>
+    <h1>直播 1 完整结构</h1>
+    <div class="grid">
+        <div class="box">
+            <div class="num">5</div>
+            <div class="label">Part 0: 开场暖场</div>
+        </div>
+        <div class="box">
+            <div class="num">25</div>
+            <div class="label">Part 1: 认知升级</div>
+        </div>
+        <div class="box">
+            <div class="num">40</div>
+            <div class="label">Part 2: 现场搭建</div>
+        </div>
+        <div class="box">
+            <div class="num">25</div>
+            <div class="label">Part 3: 现场实操</div>
+        </div>
+        <div class="box">
+            <div class="num">10</div>
+            <div class="label">Part 4: Q&A</div>
+        </div>
+    </div>
+</div>
+
+<!-- 痛点共鸣 -->
+<div class="slide">
+    <span class="tag">Part 1.1</span>
+    <h2>痛点共鸣</h2>
+    <div class="card pink">
+        <p>你符合的扣 1：</p>
+    </div>
+    <div class="card">
+        <p>❶ Notion / 飞书 / Obsidian 都试过，但没一个用得起来</p>
+        <p>❷ 收藏了几百篇好文章，但写东西时还是从零开始</p>
+        <p>❸ 用 ChatGPT/Claude 时，它给你的回答总像在敷衍</p>
+    </div>
+    <div class="card purple">
+        <h3>💡 结论</h3>
+        <p>你不是不努力，你是<strong>用错了范式</strong></p>
+    </div>
+</div>
+
+<!-- LLM Wiki 三层架构 -->
+<div class="slide">
+    <span class="tag">Part 1.2</span>
+    <h2>LLM Wiki 三层架构</h2>
+    <pre>┌─────────────────────────────────────┐
+│  Schema 层（规则/契约）             │
+│  - CLAUDE.md（写作风格、边界）      │
+├─────────────────────────────────────┤
+│  Wiki 层（已编译的知识，AI拥有）    │
+│  - 六间房（01-06）的信息卡          │
+├─────────────────────────────────────┤
+│  Raw Sources 层（原始资料，不可变） │
+│  - 微信碎片/文章/逐字稿/灵感        │
+└─────────────────────────────────────┘</pre>
+    <div class="grid grid-2">
+        <div class="card">
+            <h3>Schema 层</h3>
+            <p>你和 AI 共同维护</p>
+        </div>
+        <div class="card">
+            <h3>Wiki 层</h3>
+            <p>AI 写，你读+纠错</p>
+        </div>
+        <div class="card">
+            <h3>Raw 层</h3>
+            <p>你写，AI 只读</p>
+        </div>
+    </div>
+</div>
+
+<!-- RAG vs LLM Wiki -->
+<div class="slide">
+    <span class="tag">对比</span>
+    <h2>RAG vs LLM Wiki</h2>
+    <table>
+        <tr><th>维度</th><th>传统 RAG</th><th>LLM Wiki</th></tr>
+        <tr><td>知识处理时机</td><td>查询时处理</td><td>摄入时处理</td></tr>
+        <tr><td>交叉引用</td><td>临时发现</td><td>预先构建</td></tr>
+        <tr><td>矛盾检测</td><td>被忽略</td><td>主动标记</td></tr>
+        <tr><td>知识积累</td><td>无</td><td>复利增长</td></tr>
+        <tr><td>类比</td><td>每次去图书馆翻书</td><td>私人图书管理员</td></tr>
+    </table>
+</div>
+
+<!-- 六间房×LLM Wiki -->
+<div class="slide">
+    <span class="tag">Part 1.3</span>
+    <h2>六间房 × LLM Wiki</h2>
+    <div class="card pink">
+        <h3>六间房 = "装什么"</h3>
+    </div>
+    <div class="card">
+        <h3>LLM Wiki = "怎么活"</h3>
+    </div>
+    <div class="card purple">
+        <h3>两者合起来 = 六间房 LLM Wiki</h3>
+    </div>
+    <div class="grid">
+        <div class="box"><div class="num">1</div><div class="label">我是谁</div></div>
+        <div class="box"><div class="num">2</div><div class="label">我会什么</div></div>
+        <div class="box"><div class="num">3</div><div class="label">我说过什么</div></div>
+        <div class="box"><div class="num">4</div><div class="label">我卖什么</div></div>
+        <div class="box"><div class="num">5</div><div class="label">我面对谁</div></div>
+        <div class="box"><div class="num">6</div><div class="label">我怎么想</div></div>
+    </div>
+</div>
+
+<!-- 实操部分 -->
+<div class="slide">
+    <span class="tag">Part 2&3</span>
+    <h2>现场实操内容</h2>
+    <div class="card">
+        <h3>Part 2: 现场搭建</h3>
+        <p>❶ 建目录（含 index.md/log.md）</p>
+        <p>❷ 写 CLAUDE.md</p>
+        <p>❸ 确定"谁写谁读"边界</p>
+    </div>
+    <div class="card pink">
+        <h3>Part 3: 跑通 MVP</h3>
+        <p>❶ 手写 01 地基卡</p>
+        <p>❷ 丢素材让 AI 整理</p>
+        <p>❸ 跑 Query 验证</p>
+    </div>
+</div>
+
+<!-- 卡片 -->
+<div class="slide">
+    <span class="tag">MVP</span>
+    <h2>交付承诺</h2>
+    <div class="card green">
+        <h3>直播结束时</h3>
+        <p style="font-size: 1.5em;">每人都拥有一个<strong>能跑</strong>的最小 MVP 知识库</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>魏师私教诊断报告</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #0a0e17 0%, #1a1a2e 50%, #0d1117 100%); color: #e6edf3; line-height: 1.8; padding: 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+        
+        .header { background: linear-gradient(145deg, #1a1a2e, #161b22); border-radius: 20px; padding: 30px; margin-bottom: 20px; border: 1px solid #30363d; text-align: center; }
+        .header h1 { color: #00ffff; font-size: 2em; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0,255,255,0.5); }
+        .header .meta { color: #8b949e; font-size: 0.9em; }
+        
+        .card { background: linear-gradient(145deg, #1a1a2e, #161b22); border-radius: 16px; padding: 25px; margin-bottom: 20px; border: 1px solid #30363d; }
+        .card h2 { color: #ff1493; font-size: 1.3em; margin-bottom: 15px; border-left: 4px solid #ff1493; padding-left: 15px; }
+        .card h3 { color: #9d4edd; font-size: 1.1em; margin: 15px 0 10px; }
+        
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 15px; font-size: 0.75em; margin-right: 8px; }
+        .tag.high { background: #ff1493; }
+        .tag.medium { background: #ffa500; }
+        .tag.low { background: #39ff14; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
+        th { background: #9d4edd; color: white; }
+        tr:nth-child(even) { background: rgba(22,27,34,0.5); }
+        
+        .step { display: flex; margin-bottom: 15px; }
+        .step-num { 
+            min-width: 35px; height: 35px; background: #00ffff; color: #0a0e17; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; margin-right: 15px; flex-shrink: 0;
+        }
+        .step-num.orange { background: #ffa500; }
+        .step-content { flex: 1; }
+        .step-content code { background: #161b22; padding: 2px 8px; border-radius: 4px; color: #00ffff; }
+        
+        .sub-step { margin-left: 50px; margin-top: 10px; }
+        .sub-step li { margin-bottom: 5px; color: #8b949e; }
+        
+        .conclusion { background: linear-gradient(90deg, rgba(0,255,255,0.1), rgba(157,78,221,0.1)); border-left: 4px solid #00ffff; padding: 20px; border-radius: 0 10px 10px 0; margin-top: 15px; }
+        
+        .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+        .flow-item { background: #161b22; padding: 8px 12px; border-radius: 8px; border: 1px solid #30363d; font-size: 0.9em; }
+        .flow-arrow { color: #00ffff; font-size: 1.2em; }
+        
+        .todo-item { display: flex; align-items: center; padding: 12px; background: #161b22; border-radius: 8px; margin-bottom: 10px; }
+        .todo-item .num { color: #00ffff; font-size: 1.2em; margin-right: 15px; width: 25px; text-align: center; }
+        
+        .phase { background: #0d1117; border-radius: 12px; padding: 20px; margin: 15px 0; border: 1px solid #30363d; }
+        .phase h4 { color: #00ffff; margin-bottom: 10px; }
+        .phase ul { margin-left: 20px; }
+        .phase li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<!-- 封面 -->
+<div class="header">
+    <h1>魏师私教诊断报告</h1>
+    <p class="meta">学员：魏师（Fiona）| 诊断时间：2026-05-08 | 包含行动方案</p>
+</div>
+
+<!-- 背景 -->
+<div class="card">
+    <h2>学员背景</h2>
+    <table>
+        <tr><th>维度</th><th>内容</th></tr>
+        <tr><td>职业</td><td>心理咨询师 / 督导</td></tr>
+        <tr><td>平台</td><td>6个合作平台（每月咨询量稳定）</td></tr>
+        <tr><td>业务</td><td>B端 EAP 活动项目 + C端咨询/督导</td></tr>
+    </table>
+</div>
+
+<!-- 问题1：六间房结合 -->
+<div class="card">
+    <h2><span class="tag high">🔴 问题1</span>六间房怎么和 Obsidian 结合？</h2>
+    
+    <h3>一、理论框架</h3>
+    <table>
+        <tr><th>原始素材</th><th>→ Raw 入库</th><th>→ Wiki 提炼</th></tr>
+        <tr><td>咨询逐字稿</td><td><code>01_Raw/咨询逐字稿/</code></td><td><code>02_Wiki/5号房-学员案例/</code></td></tr>
+        <tr><td>督导记录</td><td><code>01_Raw/督导记录/</code></td><td><code>02_Wiki/2号房-案例库/</code></td></tr>
+        <tr><td>EAP项目公文</td><td><code>01_Raw/EAP项目/</code></td><td><code>02_Wiki/2号房-方法论/</code></td></tr>
+        <tr><td>客户画像</td><td>自动生成</td><td><code>02_Wiki/5号房-信息卡/</code></td></tr>
+    </table>
+    
+    <h3>二、怎么做（行动步骤）</h3>
+    
+    <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+            <strong>建目录结构</strong>（5分钟）
+            <ul class="sub-step">
+                <li>在 Obsidian 里创建：<code>01_Raw/咨询逐字稿/</code></li>
+                <li>创建：<code>01_Raw/督导记录/</code></li>
+                <li>创建：<code>01_Raw/EAP项目/</code></li>
+                <li>创建：<code>02_Wiki/5号房-我面对谁/学员案例/</code></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+            <strong>入库现有素材</strong>（按命名规范）
+            <ul class="sub-step">
+                <li>命名格式：<code>YYYY-MM-DD_来访者名_咨询记录.md</code></li>
+                <li>例：<code>2026-05-08_张某某_咨询记录.md</code></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+            <strong>触发 AI 提炼</strong>
+            <ul class="sub-step">
+                <li>丢给 AI："帮我把这份咨询记录提炼成信息卡"</li>
+                <li>AI 生成 → 存到对应 Wiki 房间</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="conclusion">
+        <strong>💡 关键</strong>：Raw 是"原材料"，Wiki 是"AI 能调用的知识"。每次做完咨询，当天入库。
+    </div>
+</div>
+
+<!-- 问题2：创作SOP -->
+<div class="card">
+    <h2><span class="tag high">🔴 问题2</span>创作 SOP 对不对？怎么做？</h2>
+    
+    <h3>B端 EAP 公文 SOP</h3>
+    <div class="phase">
+        <h4>Phase 1：入库</h4>
+        <ul>
+            <li>① 原始对话/会议记录 → <code>01_Raw/EAP项目/</code></li>
+        </ul>
+    </div>
+    <div class="phase">
+        <h4>Phase 2：提炼</h4>
+        <ul>
+            <li>② AI 提炼项目背景 → 生成 <code>项目背景卡.md</code></li>
+            <li>③ 调用公文模板（存于 <code>02_Wiki/2号房/模板/</code>）</li>
+        </ul>
+    </div>
+    <div class="phase">
+        <h4>Phase 3：创作</h4>
+        <ul>
+            <li>④ AI 生成初稿 → 你审核修改</li>
+            <li>⑤ 客户确认 → ⑥ 定稿</li>
+        </ul>
+    </div>
+    <div class="phase">
+        <h4>Phase 4：沉淀</h4>
+        <ul>
+            <li>⑦ 把精华案例反向沉淀到 <code>02_Wiki/2号房-案例库/</code></li>
+        </ul>
+    </div>
+    
+    <h3>C端 咨询/督导 SOP</h3>
+    <div class="flow">
+        <div class="flow-item">① 逐字稿入库</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-item">② 咨询记录模板</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-item">③ AI 生成记录</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-item">④ 你审核</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-item">⑤ 个案报告</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-item">⑥ 汇总案例</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-item">⑦ 反向沉淀 Wiki</div>
+    </div>
+    
+    <div class="step">
+        <div class="step-num orange">⚡</div>
+        <div class="step-content">
+            <strong>下一步：你需要先建模板</strong>
+            <ul class="sub-step">
+                <li>在 <code>02_Wiki/2号房-模板/</code> 里创建：
+                    <ul>
+                        <li><code>EAP项目公文模板.md</code></li>
+                        <li><code>咨询记录模板.md</code></li>
+                        <li><code>个案报告模板.md</code></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 问题3：六平台自动化 -->
+<div class="card">
+    <h2><span class="tag medium">🟡 问题3</span>6个平台如何自动化更高效？</h2>
+    
+    <div class="conclusion" style="background: linear-gradient(90deg, rgba(57,255,20,0.1), rgba(157,78,221,0.1)); border-left-color: #39ff14;">
+        <strong>🌟 核心资产</strong>：6平台 × 每月咨询量 = 大量真实案例 = 最强内容来源
+    </div>
+    
+    <h3>怎么做（行动步骤）</h3>
+    
+    <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+            <strong>统一 Raw 结构</strong>
+            <ul class="sub-step">
+                <li>每个平台建一个子目录：<code>01_Raw/平台A/</code>、<code>01_Raw/平台B/</code>...</li>
+                <li>统一命名：<code>YYYY-MM-DD_平台名_咨询记录.md</code></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+            <strong>建平台信息卡</strong>
+            <ul class="sub-step">
+                <li>每个平台一张卡：格式要求 / 文书风格 / 典型案例</li>
+                <li>存到：<code>02_Wiki/2号房-平台信息/</code></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+            <strong>AI 调用</strong>
+            <ul class="sub-step">
+                <li>告诉 AI："帮我把这份咨询记录，改写成【平台A】格式的文书"</li>
+                <li>AI 基于平台信息卡，自动适配格式</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+            <strong>批量处理</strong>
+            <ul class="sub-step">
+                <li>每月末：批量入库当月所有咨询记录</li>
+                <li>AI 批量生成各平台需要的文书</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 下一步行动清单 -->
+<div class="card">
+    <h2>下一步行动清单</h2>
+    
+    <div class="phase">
+        <h4>本周必做（优先级 🔴）</h4>
+        <ul>
+            <li>□ 建目录：<code>01_Raw/咨询逐字稿/</code>、<code>01_Raw/督导记录/</code>、<code>01_Raw/EAP项目/</code></li>
+            <li>□ 建模板目录：<code>02_Wiki/2号房-模板/</code></li>
+            <li>□ 创建第一个模板：<code>EAP项目公文模板.md</code></li>
+        </ul>
+    </div>
+    
+    <div class="phase">
+        <h4>本月目标（优先级 🟡）</h4>
+        <ul>
+            <li>□ 入库3份咨询记录，跑通提炼流程</li>
+            <li>□ 建6个平台的信息卡</li>
+            <li>□ 产出第一份案例报告</li>
+        </ul>
+    </div>
+    
+    <div class="phase">
+        <h4>长期目标（优先级 🟢）</h4>
+        <ul>
+            <li>□ 实现月度批量自动化</li>
+            <li>□ 搭建完整的内容工厂</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 产品化建议 -->
+<div class="card">
+    <h2>产品化方向建议</h2>
+    <table>
+        <tr><th>方向</th><th>产品形态</th><th>特点</th></tr>
+        <tr><td>B端</td><td>EAP 项目执行包</td><td>标准化、可复用</td></tr>
+        <tr><td>C端</td><td>咨询 + 督导组合套餐</td><td>高单价、高复购</td></tr>
+        <tr><td>案例</td><td>真实案例库（脱敏）</td><td>内容资产、可变现</td></tr>
+    </table>
+</div>
+
+<div class="conclusion" style="text-align: center; margin-top: 30px;">
+    <p>诊断时间：2026-05-08</p>
+    <p><strong>蓉蓉子 × AI 协作</strong></p>
+</div>
+
+</div>
+</body>
+</html>

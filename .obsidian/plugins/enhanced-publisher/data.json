@@ -1,0 +1,10 @@
+{
+  "wechatAppId": "wx242e03fe9b1cbc82",
+  "wechatAppSecret": "3ae0b4f7b7ee2c60a0886b4f1a7faec9",
+  "autoSaveImages": true,
+  "hideImageFolders": true,
+  "imageAttachmentLocation": "${filename}__assets",
+  "debugMode": false,
+  "enableWechatStyle": true,
+  "wechatThemeStyle": "warm-orange"
+}

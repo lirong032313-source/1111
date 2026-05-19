@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>直播2·认知篇 | 为什么你的知识库总是「死的」？</title>
+
+    <!-- Fonts: Fontshare -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@200,300,400,500,700,900&display=swap" />
+
+    <style>
+      /* ===========================================
+         CSS CUSTOM PROPERTIES (THEME)
+         Neon Cyber Style — 赛博霓虹风
+         =========================================== */
+      :root {
+        /* Colors — Deep navy + Cyan/Magenta accents */
+        --bg-primary: #0a0f1c;
+        --bg-secondary: #111827;
+        --bg-card: #1a1f2e;
+        --text-primary: #ffffff;
+        --text-secondary: #a8b2c4;
+        --accent-cyan: #00ffcc;
+        --accent-magenta: #ff00aa;
+        --accent-blue: #4361ee;
+        --accent-neon: #d4ff00;
+        --glow-cyan: rgba(0, 255, 204, 0.4);
+        --glow-magenta: rgba(255, 0, 170, 0.4);
+
+        /* Typography — MUST use clamp() */
+        --font-display: "Clash Display", sans-serif;
+        --font-body: "Satoshi", sans-serif;
+        --title-size: clamp(1.8rem, 5vw, 3.5rem);
+        --h2-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        --h3-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        --body-size: clamp(0.8rem, 1.5vw, 1.1rem);
+        --small-size: clamp(0.65rem, 1vw, 0.875rem);
+
+        /* Spacing — MUST use clamp() */
+        --slide-padding: clamp(1.5rem, 4vw, 4rem);
+        --content-gap: clamp(0.8rem, 2vw, 1.5rem);
+        --element-gap: clamp(0.4rem, 1vw, 0.8rem);
+
+        /* Animation */
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --duration-normal: 0.6s;
+      }
+
+      /* ===========================================
+         BASE STYLES
+         =========================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+
+      html {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+      }
+
+      /* Each slide = exact viewport height */
+      .slide {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background: var(--bg-primary);
+      }
+
+      /* Content container */
+      .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 100%;
+        overflow: hidden;
+        padding: var(--slide-padding);
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Grid background effect */
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        z-index: 0;
+      }
+
+      /* Scanline effect */
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.1) 2px,
+          rgba(0, 0, 0, 0.1) 4px
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* ===========================================
+         TYPOGRAPHY
+         =========================================== */
+      h1, h2, h3 {
+        font-family: var(--font-display);
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+
+      h1 { font-size: var(--title-size); font-weight: 700; }
+      h2 { font-size: var(--h2-size); font-weight: 600; }
+      h3 { font-size: var(--h3-size); font-weight: 500; }
+
+      p, li {
+        font-family: var(--font-body);
+        font-size: var(--body-size);
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .accent-cyan { color: var(--accent-cyan); }
+      .accent-magenta { color: var(--accent-magenta); }
+      .accent-neon { color: var(--accent-neon); }
+
+      /* ===========================================
+         NEON GLOW EFFECTS
+         =========================================== */
+      .neon-text {
+        text-shadow:
+          0 0 10px var(--glow-cyan),
+          0 0 20px var(--glow-cyan),
+          0 0 40px var(--glow-cyan);
+      }
+
+      .neon-text-magenta {
+        text-shadow:
+          0 0 10px var(--glow-magenta),
+          0 0 20px var(--glow-magenta),
+          0 0 40px var(--glow-magenta);
+      }
+
+      .neon-border {
+        box-shadow:
+          0 0 5px var(--accent-cyan),
+          0 0 10px var(--accent-cyan),
+          inset 0 0 5px rgba(0, 255, 204, 0.1);
+        border: 1px solid var(--accent-cyan);
+      }
+
+      /* ===========================================
+         CARDS & CONTAINERS
+         =========================================== */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        border-radius: 12px;
+        padding: clamp(1rem, 2vw, 1.5rem);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+      }
+
+      .card-glow {
+        box-shadow:
+          0 0 20px rgba(0, 255, 204, 0.2),
+          0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+
+      /* ===========================================
+         ANIMATIONS
+         =========================================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity var(--duration-normal) var(--ease-out-expo),
+          transform var(--duration-normal) var(--ease-out-expo);
+      }
+
+      .slide.visible .reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Stagger children */
+      .reveal:nth-child(1) { transition-delay: 0.1s; }
+      .reveal:nth-child(2) { transition-delay: 0.2s; }
+      .reveal:nth-child(3) { transition-delay: 0.3s; }
+      .reveal:nth-child(4) { transition-delay: 0.4s; }
+      .reveal:nth-child(5) { transition-delay: 0.5s; }
+      .reveal:nth-child(6) { transition-delay: 0.6s; }
+
+      /* Glitch effect for titles */
+      @keyframes glitch {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+      }
+
+      .glitch-text:hover {
+        animation: glitch 0.3s ease infinite;
+      }
+
+      /* Pulse glow */
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 5px var(--accent-cyan), 0 0 10px var(--accent-cyan); }
+        50% { box-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+      }
+
+      .pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      /* Float animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Bounce animation */
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+
+      .bounce {
+        animation: bounce 1.5s ease-in-out infinite;
+      }
+
+      /* ===========================================
+         PROGRESS BAR
+         =========================================== */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+        z-index: 1000;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px var(--accent-cyan);
+      }
+
+      /* ===========================================
+         NAVIGATION DOTS
+         =========================================== */
+      .nav-dots {
+        position: fixed;
+        right: clamp(1rem, 2vw, 2rem);
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid var(--accent-cyan);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .nav-dot.active {
+        background: var(--accent-cyan);
+        box-shadow: 0 0 10px var(--accent-cyan);
+        transform: scale(1.3);
+      }
+
+      .nav-dot:hover {
+        background: var(--accent-magenta);
+        border-color: var(--accent-magenta);
+      }
+
+      /* ===========================================
+         SLIDE-SPECIFIC STYLES
+         =========================================== */
+
+      /* Slide 1: Cover */
+      .cover-slide {
+        background:
+          radial-gradient(ellipse at 30% 20%, rgba(0, 255, 204, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 70% 80%, rgba(255, 0, 170, 0.1) 0%, transparent 50%),
+          var(--bg-primary);
+      }
+
+      .cover-slide .slide-content {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cover-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid var(--accent-cyan);
+        border-radius: 50px;
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        color: var(--accent-cyan);
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .cover-title {
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+      }
+
+      .cover-subtitle {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+      }
+
+      .cover-slogan {
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+        color: var(--accent-cyan);
+        padding: 1rem 2rem;
+        border: 1px solid rgba(0, 255, 204, 0.3);
+        border-radius: 8px;
+        background: rgba(0, 255, 204, 0.05);
+        max-width: 600px;
+      }
+
+      /* Slide 2: Soul searching */
+      .question-card {
+        background: var(--bg-card);
+        border-left: 3px solid var(--accent-magenta);
+        padding: clamp(0.8rem, 1.5vw, 1.2rem);
+        margin-bottom: var(--element-gap);
+        border-radius: 0 8px 8px 0;
+        color: var(--text-primary);
+      }
+
+      .question-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: var(--accent-magenta);
+        margin-right: 1rem;
+      }
+
+      .question-text {
+        font-size: var(--body-size);
+        color: var(--text-primary);
+      }
+
+      /* Slide 3: Why broken */
+      .flow-box {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        border-radius: 8px;
+        padding: clamp(0.6rem, 1vw, 1rem);
+        text-align: center;
+        position: relative;
+        color: var(--text-primary);
+      }
+
+      .flow-arrow {
+        color: var(--accent-cyan);
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        margin: var(--element-gap) 0;
+        text-shadow: 0 0 10px var(--accent-cyan);
+      }
+
+      .flow-error {
+        border-color: var(--accent-magenta);
+        background: rgba(255, 0, 170, 0.1);
+      }
+
+      /* Slide 4: Three tools */
+      .tool-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(0.5rem, 1.5vw, 1rem);
+        flex-wrap: wrap;
+      }
+
+      .tool-box {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 204, 0.3);
+        border-radius: 12px;
+        padding: clamp(0.8rem, 1.5vw, 1.2rem);
+        text-align: center;
+        min-width: clamp(100px, 20vw, 150px);
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+
+      .tool-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
+        border-color: var(--accent-cyan);
+      }
+
+      .tool-icon {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .tool-name {
+        font-family: var(--font-display);
+        font-size: var(--h3-size);
+        font-weight: 600;
+        color: var(--accent-cyan);
+      }
+
+      .tool-role {
+        font-size: var(--small-size);
+        color: var(--text-secondary);
+        margin-top: 0.3rem;
+      }
+
+      .tool-arrow {
+        color: var(--accent-neon);
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+      }
+
+      /* Slide 5: Why layered */
+      .compare-box {
+        border: 2px solid;
+        border-radius: 12px;
+        padding: clamp(0.8rem, 1.5vw, 1.2rem);
+        margin-bottom: var(--content-gap);
+      }
+
+      .compare-box.before {
+        border-color: var(--accent-magenta);
+        background: rgba(255, 0, 170, 0.05);
+      }
+
+      .compare-box.after {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 255, 204, 0.05);
+      }
+
+      .compare-label {
+        font-family: var(--font-display);
+        font-size: var(--h3-size);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Slide 6: Journey - fun version */
+      .journey-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--content-gap);
+      }
+
+      .journey-step {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.8rem, 2vw, 1.5rem);
+        padding: clamp(0.6rem, 1vw, 1rem);
+        background: var(--bg-card);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .journey-step::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+      }
+
+      .journey-icon {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        min-width: clamp(2.5rem, 5vw, 4rem);
+        height: clamp(2.5rem, 5vw, 4rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-secondary);
+        border-radius: 50%;
+        border: 2px solid var(--accent-cyan);
+      }
+
+      .journey-content {
+        flex: 1;
+      }
+
+      .journey-action {
+        font-family: var(--font-display);
+        font-size: var(--body-size);
+        color: var(--accent-cyan);
+        margin-bottom: 0.3rem;
+      }
+
+      .journey-detail {
+        font-size: var(--small-size);
+        color: var(--text-secondary);
+      }
+
+      .journey-step.highlight {
+        background: rgba(0, 255, 204, 0.1);
+        border-color: var(--accent-cyan);
+      }
+
+      .journey-step.highlight .journey-icon {
+        animation: pulse-glow 1.5s ease-in-out infinite;
+      }
+
+      /* Slide 7: Core difference */
+      .ai-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--content-gap);
+      }
+
+      @media (max-width: 768px) {
+        .ai-compare {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .ai-box {
+        border-radius: 12px;
+        padding: clamp(1rem, 2vw, 1.5rem);
+        border: 2px solid;
+      }
+
+      .ai-box.other {
+        border-color: var(--text-secondary);
+        background: var(--bg-secondary);
+      }
+
+      .ai-box.clawbot {
+        border-color: var(--accent-cyan);
+        background: rgba(0, 255, 204, 0.05);
+        box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
+      }
+
+      .ai-box-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .ai-box-title {
+        font-family: var(--font-display);
+        font-size: var(--h3-size);
+        font-weight: 600;
+      }
+
+      .ai-list {
+        list-style: none;
+      }
+
+      .ai-list li {
+        padding: 0.3rem 0;
+        font-size: var(--small-size);
+        color: var(--text-primary);
+      }
+
+      .ai-list li::before {
+        content: '→ ';
+        color: var(--accent-cyan);
+      }
+
+      /* Slide 8: WorkBuddy vs Claude Code */
+      .vs-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: var(--content-gap);
+        align-items: center;
+      }
+
+      @media (max-width: 768px) {
+        .vs-container {
+          grid-template-columns: 1fr;
+        }
+        .vs-divider {
+          display: none;
+        }
+      }
+
+      .vs-box {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        border-radius: 12px;
+        padding: clamp(1rem, 2vw, 1.5rem);
+      }
+
+      .vs-divider {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: var(--accent-magenta);
+        text-shadow: 0 0 20px var(--glow-magenta);
+      }
+
+      /* Slide 9: Company analogy */
+      .analogy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+        gap: var(--element-gap);
+      }
+
+      .analogy-item {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        border-radius: 8px;
+        padding: clamp(0.6rem, 1vw, 1rem);
+        text-align: center;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+      }
+
+      .analogy-item:hover {
+        transform: scale(1.05);
+        border-color: var(--accent-cyan);
+      }
+
+      .analogy-icon {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 0.3rem;
+      }
+
+      .analogy-label {
+        font-family: var(--font-display);
+        font-size: var(--body-size);
+        font-weight: 600;
+        color: var(--accent-cyan);
+      }
+
+      .analogy-desc {
+        font-size: var(--small-size);
+        color: var(--text-secondary);
+      }
+
+      /* Slide 10: Acceptance criteria */
+      .checklist {
+        list-style: none;
+      }
+
+      .checklist li {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.5rem 0;
+        font-size: var(--body-size);
+        color: var(--text-primary);
+      }
+
+      .check-icon {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--accent-cyan);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-cyan);
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      /* Slide 11: Gains/收获 */
+      .gain-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+        gap: var(--content-gap);
+      }
+
+      .gain-item {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        border-radius: 12px;
+        padding: clamp(1rem, 2vw, 1.5rem);
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gain-item:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-cyan);
+        box-shadow: 0 10px 30px rgba(0, 255, 204, 0.2);
+      }
+
+      .gain-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+      }
+
+      .gain-icon {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 0.8rem;
+      }
+
+      .gain-title {
+        font-family: var(--font-display);
+        font-size: var(--h3-size);
+        font-weight: 600;
+        color: var(--accent-cyan);
+        margin-bottom: 0.5rem;
+      }
+
+      .gain-desc {
+        font-size: var(--small-size);
+        color: var(--text-secondary);
+      }
+
+      /* ===========================================
+         RESPONSIVE BREAKPOINTS
+         =========================================== */
+      @media (max-height: 700px) {
+        :root {
+          --slide-padding: clamp(0.75rem, 3vw, 2rem);
+          --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+          --title-size: clamp(1.5rem, 5vw, 3rem);
+        }
+      }
+
+      @media (max-height: 600px) {
+        :root {
+          --title-size: clamp(1.2rem, 4vw, 2rem);
+          --body-size: clamp(0.7rem, 1.2vw, 0.9rem);
+        }
+        .nav-dots, .decorative {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .tool-flow {
+          flex-direction: column;
+        }
+        .tool-arrow {
+          transform: rotate(90deg);
+        }
+      }
+
+      /* ===========================================
+         REDUCED MOTION
+         =========================================== */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.2s !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ===========================================
+         KEYBOARD HINT
+         =========================================== */
+      .keyboard-hint {
+        position: fixed;
+        bottom: clamp(1rem, 2vw, 2rem);
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--font-body);
+        font-size: var(--small-size);
+        color: var(--text-secondary);
+        opacity: 0.5;
+        z-index: 100;
+      }
+
+      .keyboard-hint kbd {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(0, 255, 204, 0.3);
+        border-radius: 4px;
+        padding: 0.2rem 0.5rem;
+        margin: 0 0.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation dots -->
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- Keyboard hint -->
+    <div class="keyboard-hint">
+      <kbd>↑</kbd><kbd>↓</kbd> 或 <kbd>Space</kbd> 翻页
+    </div>
+
+    <!-- =========================================
+         SLIDE 1: 封面
+         ========================================= -->
+    <section class="slide cover-slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <div class="cover-badge reveal">直播 2 · 认知篇</div>
+        <h1 class="cover-title reveal neon-text">
+          为什么你的知识库<br/>总是<span class="accent-magenta">「死的」</span>？
+        </h1>
+        <p class="cover-subtitle reveal">让 AI 真正为你工作</p>
+        <div class="cover-slogan reveal">
+          「Obsidian 是大脑，WorkBuddy 是助理，ClawBot 是信使——<br/>
+          三个工具各司其职，不是相互替代。」
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 2: 灵魂拷问
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">灵魂拷问</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--text-secondary);">先回答 3 个问题：</p>
+
+        <div class="question-card reveal">
+          <span class="question-number">01</span>
+          <span class="question-text">上周你发的朋友圈感悟，现在在哪个文件夹？</span>
+        </div>
+
+        <div class="question-card reveal">
+          <span class="question-number">02</span>
+          <span class="question-text">你脑子里刚冒出来的一个选题灵感，3天后你还能找到吗？</span>
+        </div>
+
+        <div class="question-card reveal">
+          <span class="question-number">03</span>
+          <span class="question-text">那个学员问你的好问题，你除了回复她，有没有存下来？</span>
+        </div>
+
+        <p class="reveal accent-magenta" style="margin-top: var(--content-gap); font-weight: 600; color: var(--accent-magenta);">
+          中 2 条以上？<br/>
+          那你的知识库还只是「资料柜」，不是「会呼吸的大脑」。
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 3: 为什么入库断掉
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">为什么「入库」总是断掉？</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--text-secondary);">来看看你的入库之旅有多艰难 😏</p>
+
+        <div class="reveal journey-container" style="display: flex; flex-direction: column; gap: var(--element-gap); max-width: 600px; margin: 0 auto;">
+          <div class="journey-step">
+            <div class="journey-icon">💡</div>
+            <div class="journey-content">
+              <div class="journey-action">灵感爆发！</div>
+              <div class="journey-detail">刷朋友圈、跟学员聊天、蹲厕所时想到的绝佳点子</div>
+            </div>
+          </div>
+
+          <div class="journey-step">
+            <div class="journey-icon">🤔</div>
+            <div class="journey-content">
+              <div class="journey-action">灵魂拷问出现</div>
+              <div class="journey-detail">「这个要不要存进知识库呢...」</div>
+            </div>
+          </div>
+
+          <div class="journey-step">
+            <div class="journey-icon">💻</div>
+            <div class="journey-content">
+              <div class="journey-action">打开电脑，仪式开始</div>
+              <div class="journey-detail">找到Obsidian → 新建文件 → 想标题 → 写内容 → 纠结分类...</div>
+            </div>
+          </div>
+
+          <div class="journey-step">
+            <div class="journey-icon">😵</div>
+            <div class="journey-content">
+              <div class="journey-action">5分钟后...</div>
+              <div class="journey-detail">还在想标题格式，灵感早就跑了</div>
+            </div>
+          </div>
+
+          <div class="journey-step" style="background: rgba(255,0,170,0.1); border-color: var(--accent-magenta);">
+            <div class="journey-icon" style="border-color: var(--accent-magenta);">❌</div>
+            <div class="journey-content">
+              <div class="journey-action" style="color: var(--accent-magenta);">算了，下次再说吧...</div>
+              <div class="journey-detail">然后就再也没有下次了 😅</div>
+            </div>
+          </div>
+        </div>
+
+              </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 4: 三个工具三个角色
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">三个工具，三个角色</h2>
+
+        <div class="tool-flow reveal" style="margin-bottom: var(--content-gap);">
+          <div class="tool-box">
+            <div class="tool-icon">👤</div>
+            <div class="tool-name">你</div>
+            <div class="tool-role">发消息</div>
+          </div>
+          <div class="tool-arrow">→</div>
+          <div class="tool-box pulse-glow">
+            <div class="tool-icon">🦞</div>
+            <div class="tool-name">微信 ClawBot</div>
+            <div class="tool-role">信使 · 送消息</div>
+          </div>
+          <div class="tool-arrow">→</div>
+          <div class="tool-box">
+            <div class="tool-icon">🐾</div>
+            <div class="tool-name">WorkBuddy</div>
+            <div class="tool-role">助理 · 调度任务</div>
+          </div>
+          <div class="tool-arrow">→</div>
+          <div class="tool-box">
+            <div class="tool-icon">📚</div>
+            <div class="tool-name">Obsidian</div>
+            <div class="tool-role">大脑 · 仓库</div>
+          </div>
+        </div>
+
+        <div class="reveal card card-glow" style="text-align: center;">
+          <p class="neon-text" style="font-size: var(--h3-size); font-weight: 600; color: var(--text-primary);">
+            「Obsidian 是大脑（装知识），<br/>
+            WorkBuddy 是助理（处理任务），<br/>
+            ClawBot 是信使（送消息）——<br/>
+            三个工具<span class="accent-magenta" style="color: var(--accent-magenta);">各司其职</span>，不是相互替代。」
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 5: 为什么分三层
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">为什么分三层？</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--text-secondary);">工程上的「关注点分离」</p>
+
+        <div class="reveal compare-box before">
+          <div class="compare-label accent-magenta" style="color: var(--accent-magenta);">打通前（直播1之后你的状态）</div>
+          <p style="color: var(--text-primary);">微信(碎片) ←→ Obsidian(孤岛) ←→ AI(陌生人)</p>
+          <p style="color: var(--text-secondary); font-size: var(--small-size);">三者各干各的，你手动搬运，累且容易断</p>
+        </div>
+
+        <div class="reveal compare-box after">
+          <div class="compare-label accent-cyan" style="color: var(--accent-cyan);">打通后（这节课之后）</div>
+          <p style="color: var(--text-primary);">微信 ←→ ClawBot(信使) ←→ WorkBuddy(助理) ←→ Obsidian(底座)</p>
+          <p style="color: var(--accent-neon); font-size: var(--small-size);">你只负责「发微信」和「确认」，中间全自动</p>
+        </div>
+
+        <p class="reveal" style="margin-top: var(--content-gap); text-align: center; color: var(--text-secondary);">
+          类比：IT 部门会让电脑上同时运行「打印机+邮件+文件柜+ChatGPT」在同一个软件里吗？<br/>
+          <span class="accent-cyan" style="color: var(--accent-cyan);">每个工具做自己最擅长的事，组合起来才稳定。</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 6: 一条消息的旅程 - 趣味版
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">🚀 一条消息的奇幻旅程</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--text-secondary);">你发一条微信给龙虾，看看发生了什么！</p>
+
+        <div class="journey-container reveal">
+          <div class="journey-step">
+            <div class="journey-icon">👤</div>
+            <div class="journey-content">
+              <div class="journey-action">🎯 你发送消息</div>
+              <div class="journey-detail" style="color: var(--text-primary);">「今天和学员聊到，她觉得AI不懂她，做知识库太累」</div>
+            </div>
+          </div>
+
+          <div class="journey-step">
+            <div class="journey-icon">🦞</div>
+            <div class="journey-content">
+              <div class="journey-action">📬 ClawBot 收到啦！</div>
+              <div class="journey-detail" style="color: var(--text-secondary);">「收到消息 → 火速转发给 WorkBuddy」</div>
+            </div>
+          </div>
+
+          <div class="journey-step highlight">
+            <div class="journey-icon">🐾</div>
+            <div class="journey-content">
+              <div class="journey-action">⚡ WorkBuddy 开始处理！</div>
+              <div class="journey-detail" style="color: var(--text-secondary);">
+                🎯【意图识别】用户调研碎片<br/>
+                📖【查规则书】CLAUDE.md → 05_我面对谁<br/>
+                🗂️【查路径】MEMORY.md → 知识库位置<br/>
+                📝【入库】写入 wiki/05_我面对谁/信息卡/<br/>
+                📊【记日志】更新 log.md
+              </div>
+            </div>
+          </div>
+
+          <div class="journey-step">
+            <div class="journey-icon bounce">✅</div>
+            <div class="journey-content">
+              <div class="journey-action">🎉 你收到回复！</div>
+              <div class="journey-detail" style="color: var(--accent-cyan);">
+                「✅ 已入库 05_我面对谁/信息卡/<br/>
+                🔗 关联到「AI不懂我」这个高频痛点」
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="reveal accent-neon" style="margin-top: var(--content-gap); text-align: center; font-weight: 600; color: var(--accent-neon);">
+          ✨ 你只发了一条微信，AI干了5件事！这就是『AI帮你工作』的具象 ✨
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 7: 核心区别
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">核心区别</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--accent-magenta);">这是最重要的认知升级：</p>
+
+        <div class="ai-compare reveal">
+          <div class="ai-box other">
+            <div class="ai-box-header">
+              <span style="font-size: 2rem;">🤖</span>
+              <span class="ai-box-title">大部分AI工具</span>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">ChatGPT / Claude / 豆包 / DeepSeek</p>
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">帮你「想」</p>
+            <ul class="ai-list">
+              <li>回答问题</li>
+              <li>写文章初稿</li>
+              <li>给建议、出方案</li>
+            </ul>
+            <p style="color: var(--accent-magenta); font-size: var(--small-size); margin-top: 1rem;">但：说完就完了，不会帮你执行</p>
+          </div>
+
+          <div class="ai-box clawnot">
+            <div class="ai-box-header">
+              <span style="font-size: 2rem;">🦞</span>
+              <span class="ai-box-title" style="color: var(--accent-cyan);">ClawBot + WorkBuddy</span>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">基于OpenClaw底座</p>
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">帮你「干」</p>
+            <ul class="ai-list">
+              <li>收到消息 → 自动入库到Obsidian</li>
+              <li>识别意图 → 调用Skills执行工作流</li>
+              <li>定时任务 → 自动推送日报/汇总</li>
+              <li>写完文件 → 帮你更新到对应房间</li>
+            </ul>
+            <p style="color: var(--accent-neon); font-size: var(--small-size); margin-top: 1rem;">干完才告诉你结果</p>
+          </div>
+        </div>
+
+        <p class="reveal" style="margin-top: var(--content-gap); text-align: center; font-weight: 600; font-size: var(--h3-size); color: var(--accent-magenta);">
+          别人用AI是『想完自己干』，<br/>你用ClawBot是『说一声它就干了』。
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 8: WorkBuddy 和 Claude Code
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">WorkBuddy 和 Claude Code 的关系</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--text-secondary);">不是一个，是两个</p>
+
+        <div class="vs-container reveal">
+          <div class="vs-box">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐾</div>
+            <h3 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">WorkBuddy</h3>
+            <p style="font-size: var(--small-size); color: var(--text-secondary); margin-bottom: 0.8rem;">像：24小时值班的主管</p>
+            <ul class="ai-list" style="font-size: var(--small-size);">
+              <li>定时任务自动跑（每天9点发日报）</li>
+              <li>微信消息自动响应</li>
+              <li>调度多个Skills工作流</li>
+              <li>你不在线，它也在后台跑</li>
+            </ul>
+          </div>
+
+          <div class="vs-divider">VS</div>
+
+          <div class="vs-box">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💻</div>
+            <h3 style="color: var(--accent-magenta); margin-bottom: 0.5rem;">Claude Code</h3>
+            <p style="font-size: var(--small-size); color: var(--text-secondary); margin-bottom: 0.8rem;">像：随时听你话的桌面秘书</p>
+            <ul class="ai-list" style="font-size: var(--small-size);">
+              <li>你在终端/桌面直接说「帮我整理文件夹」</li>
+              <li>直接读写本地文件、改代码</li>
+              <li>每次主动启动，你说什么它做什么</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal card card-glow" style="margin-top: var(--content-gap); text-align: center;">
+          <p style="color: var(--accent-neon); font-weight: 600;">
+            Claude Code 是你的桌面贴身秘书，WorkBuddy 是你的24小时数字员工。<br/>
+            两个都用，互为补充。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE 9: 比喻总结
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">比喻总结</h2>
+        <p class="reveal" style="margin-bottom: var(--content-gap); color: var(--text-secondary);">像开一家公司</p>
+
+        <div class="analogy-grid reveal">
+          <div class="analogy-item">
+            <div class="analogy-icon">👑</div>
+            <div class="analogy-label">你 = 老板</div>
+          </div>
+          <div class="analogy-item">
+            <div class="analogy-icon">📚</div>
+            <div class="analogy-label">Obsidian</div>
+            <div class="analogy-desc">文件仓库/图书馆<br/>（在哪找资料）</div>
+          </div>
+          <div class="analogy-item">
+            <div class="analogy-icon">💻</div>
+            <div class="analogy-label">Claude Code</div>
+            <div class="analogy-desc">桌面秘书<br/>（你直接指挥，快速执行）</div>
+          </div>
+          <div class="analogy-item">
+            <div class="analogy-icon">🐾</div>
+            <div class="analogy-label">WorkBuddy</div>
+            <div class="analogy-desc">24小时主管<br/>（后台帮你安排工作、自动流转）</div>
+          </div>
+          <div class="analogy-item">
+            <div class="analogy-icon">🦞</div>
+            <div class="analogy-label">ClawBot</div>
+            <div class="analogy-desc">前台接待<br/>（接收消息，转给主管，主管处理完再通知你）</div>
+          </div>
+          <div class="analogy-item">
+            <div class="analogy-icon">📝</div>
+            <div class="analogy-label">CLAUDE.md</div>
+            <div class="analogy-desc">员工手册/劳动合同<br/>（告诉他们做什么、怎么做、什么不能做）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- =========================================
+         SLIDE 10: 这节课你能收获什么
+         ========================================= -->
+    <section class="slide">
+      <div class="grid-bg"></div>
+      <div class="scanlines"></div>
+      <div class="slide-content">
+        <h2 class="reveal neon-text" style="margin-bottom: var(--content-gap);">🎁 这节课你能收获什么？</h2>
+
+        <div class="gain-grid reveal" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto;">
+          <div class="gain-item">
+            <div class="gain-icon">🦞</div>
+            <div class="gain-title">拥有养属于自己的龙虾</div>
+            <div class="gain-desc">员工入职 — 龙虾有名字、性格、知道你是谁</div>
+          </div>
+          <div class="gain-item">
+            <div class="gain-icon">🔄</div>
+            <div class="gain-title">跑通自动运转的知识库工作流</div>
+            <div class="gain-desc">微信最简化入库 — 发条消息就完成</div>
+          </div>
+          <div class="gain-item">
+            <div class="gain-icon">📊</div>
+            <div class="gain-title">让AI帮我们工作</div>
+            <div class="gain-desc">AI日报 — 每天9点自动收到工作汇总</div>
+          </div>
+        </div>
+
+        <div class="reveal" style="margin-top: var(--content-gap); text-align: center;">
+          <p class="neon-text" style="font-size: var(--h3-size); font-weight: 600; color: var(--text-primary);">
+            认知篇完 · 下一部分：实操篇 👇
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SLIDE PRESENTATION CONTROLLER
+         ========================================= -->
+    <script>
+      class SlidePresentation {
+        constructor() {
+          this.slides = document.querySelectorAll('.slide');
+          this.currentSlide = 0;
+          this.progressBar = document.getElementById('progressBar');
+          this.navDotsContainer = document.getElementById('navDots');
+
+          this.init();
+        }
+
+        init() {
+          this.setupIntersectionObserver();
+          this.setupKeyboardNav();
+          this.setupProgressBar();
+          this.setupNavDots();
+        }
+
+        setupIntersectionObserver() {
+          const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                this.currentSlide = Array.from(this.slides).indexOf(entry.target);
+                this.updateProgress();
+                this.updateNavDots();
+              }
+            });
+          }, options);
+
+          this.slides.forEach(slide => observer.observe(slide));
+        }
+
+        setupKeyboardNav() {
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+              e.preventDefault();
+              this.goToSlide(Math.min(this.currentSlide + 1, this.slides.length - 1));
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+              e.preventDefault();
+              this.goToSlide(Math.max(this.currentSlide - 1, 0));
+            } else if (e.key === 'Home') {
+              e.preventDefault();
+              this.goToSlide(0);
+            } else if (e.key === 'End') {
+              e.preventDefault();
+              this.goToSlide(this.slides.length - 1);
+            }
+          });
+        }
+
+        setupProgressBar() {
+          this.updateProgress();
+        }
+
+        setupNavDots() {
+          this.navDotsContainer.innerHTML = '';
+          this.slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => this.goToSlide(index));
+            this.navDotsContainer.appendChild(dot);
+          });
+        }
+
+        updateProgress() {
+          const progress = ((this.currentSlide + 1) / this.slides.length) * 100;
+          this.progressBar.style.width = `${progress}%`;
+        }
+
+        updateNavDots() {
+          const dots = this.navDotsContainer.querySelectorAll('.nav-dot');
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentSlide);
+          });
+        }
+
+        goToSlide(index) {
+          this.slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', () => {
+        new SlidePresentation();
+      });
+    </script>
+  </body>
+</html>

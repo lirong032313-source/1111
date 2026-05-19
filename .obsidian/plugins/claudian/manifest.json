@@ -1,0 +1,11 @@
+{
+  "id": "claudian",
+  "name": "Claudian",
+  "version": "2.0.10",
+  "minAppVersion": "1.4.5",
+  "description": "Embeds Claude Code as an AI collaborator in your vault",
+  "author": "Yishen Tu",
+  "authorUrl": "https://github.com/YishenTu",
+  "isDesktopOnly": true,
+  "fundingUrl": "https://github.com/YishenTu/claudian"
+}

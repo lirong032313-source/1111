@@ -1,0 +1,247 @@
+{
+  "main": {
+    "id": "a2a2ae2a292cdd7b",
+    "type": "split",
+    "children": [
+      {
+        "id": "1aee0199461905e4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ebeb0a9cc5597ea8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02_Wiki/1号房-我是谁/品牌规范/2026-05-18_品牌视觉规范_v2.0.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-05-18_品牌视觉规范_v2.0"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f512c110e7409215",
+    "type": "split",
+    "children": [
+      {
+        "id": "63f97ae7cdcd533a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3e5a3b135fa5232c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "234a460f13df26f6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "7ac328496202f023",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 361.5
+  },
+  "right": {
+    "id": "082b82e6ed737b16",
+    "type": "split",
+    "children": [
+      {
+        "id": "4ec405c9db36cfaf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4aa6f99403e14e79",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "04_Output/课件资料/2026-05_实操营升级版/学员成长手册_21天AI实操营.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "学员成长手册_21天AI实操营 的反向链接列表"
+            }
+          },
+          {
+            "id": "a8bb3ae078a6d80c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "7200f652be7a1546",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "19af227b86be8729",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "fd505b26ae77f9d4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          },
+          {
+            "id": "d909b6e07b47b834",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 384.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "claudian:Open Claudian": false,
+      "markdown-importer:打开 Markdown 格式转换器": false
+    }
+  },
+  "active": "ebeb0a9cc5597ea8",
+  "lastOpenFiles": [
+    "02_Wiki/1号房-我是谁/信息卡/2026-05-02_信息卡_飞书导入_我是谁.md",
+    "02_Wiki/1号房-我是谁/信息卡/2026-05-02_信息卡_版本人生叙事.md",
+    "02_Wiki/1号房-我是谁/2026-04-26_身份基座_我是谁.md",
+    "02_Wiki/1号房-我是谁/品牌规范/2026-05-18_品牌视觉规范_v2.0.md",
+    "02_Wiki/1号房-我是谁/品牌规范",
+    "CLAUDE.md",
+    "02_Wiki/5号房-我面对谁/2026-04-26_客户画像_目标受众-我面对谁.md",
+    "02_Wiki/4号房-我卖什么/2026-04-26_产品体系_服务定价-我卖什么.md",
+    "02_Wiki/5号房-我面对谁/用户画像/2026-05-19_用户画像_三大目标群体.md",
+    "02_Wiki/5号房-我面对谁/用户画像",
+    "05_System/agents/产品教练.md",
+    "05_System/agents/工作助理.md",
+    "05_System/agents/交付助手-小懂.md",
+    "05_System/agents/内容助理.md",
+    "05_System/agents/咨询分身.md",
+    "05_System/agents/AI分身-蓉蓉子-V1.md",
+    "05_System/agents/_AI私教团-总体架构-V2.md",
+    "05_System/agents/_AI智囊团-总体架构-V1.md",
+    "04_Output/自媒体内容/公众号/已发布/2026-05-02_当你用 AI 仍然写不动后，个人 IP 真正的解法：先搭内容底座.md",
+    "04_Output/自媒体内容/公众号/已发布/2026-05-02_当你每天都在追热点后，个人IP真正的主线：一份“母题清单”.md",
+    "04_Output/自媒体内容/公众号/已发布/2026-05-02_当时间被工作掏空后，个人 IP 真正的外挂：一套 24 小时在线的 AI 私教智囊团.md",
+    "04_Output/自媒体内容/公众号/已发布/2026-05-02_盖楼前先打地基：给个人 IP 搭一套能被 AI 放大的知识库，是最值得的开始.md",
+    "04_Output/自媒体内容/公众号/已发布/2026-05-02_“我想要的副业，不是搞钱工具，是我的第二人生”.md",
+    "04_Output/自媒体内容/公众号/已发布/2024-10-30_从0到1打造个人品牌，5天赚回学费，我是如何做到的？（含实操方法）.md",
+    "05_System/工作流程SOP/2026-05-05_SOP_内容生产全流程.md",
+    "04_Output/自媒体内容/公众号/草稿箱/images/2026-05-18_图4-消息自动入库旅程_配图.png",
+    "04_Output/自媒体内容/公众号/草稿箱/images/2026-05-18_图3-AI入职三件套_配图.png",
+    "04_Output/自媒体内容/公众号/草稿箱/images/2026-05-18_图2-微信龙虾AI员工_配图.png",
+    "04_Output/自媒体内容/公众号/草稿箱/images/2026-05-18_图1-灵感飘走_配图.png",
+    "04_Output/自媒体内容/公众号/草稿箱/images",
+    "04_Output/自媒体内容/公众号/草稿箱/2026-05-18_公众号_AI员工知识库入门-小蜜初稿.md",
+    "04_Output/自媒体内容/公众号/草稿箱/2026-05-11_第3篇_六间房详解.md",
+    "04_Output/为什么你越努力做教练，越像在打一份你讨厌的工?.md",
+    "01_Raw/课程相关/20260517195546-5月实操营第二次直播-逐字稿文本-1.txt",
+    "02_Wiki/00_Wiki索引",
+    "04_Output/课件资料/2026-05_实操营升级版/Skills打包/学员Skills 3",
+    "04_Output/课件资料/2026-05_实操营升级版/Skills打包/学员Skills 2",
+    "01_Raw/私教逐字稿/20260517095920-蓉蓉子-六六私教#4-逐字稿文本-1.txt",
+    "01_Raw/私教逐字稿/20260409195855-蓉蓉子-张萍老师私教#1-逐字稿文本-1.pdf",
+    "01_Raw/私教逐字稿/20260513195818-蓉蓉子-张萍老师私教#2-逐字稿文本-1.txt",
+    "04_Output/课件资料/2026-05_实操营升级版/images/cover-goals.png",
+    "04_Output/课件资料/2026-05_实操营升级版/images/rag-vs-wiki.png",
+    "04_Output/课件资料/2026-05_实操营升级版/images/buddy-detail.png",
+    "04_Output/课件资料/2026-05_实操营升级版/images/buddy-system.png",
+    "04_Output/课件资料/2026-05_实操营升级版/images/index-log.png",
+    "04_Output/课件资料/2026-05_实操营升级版/images/webclipper-demo2.png",
+    "未命名 1.canvas",
+    "未命名.canvas"
+  ]
+}

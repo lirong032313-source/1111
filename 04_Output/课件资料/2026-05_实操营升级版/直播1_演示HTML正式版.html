@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>直播1｜认知升级 + 三层架构 + 跑通你的 MVP 知识库</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan: #00ffff;
+      --pink: #ff1493;
+      --purple: #9d4edd;
+      --blue: #3498db;
+      --orange: #f39c12;
+      --green: #27ae60;
+      --dark-bg: #0a0e17;
+      --card-bg: rgba(22, 27, 34, 0.85);
+      --border-color: rgba(0, 255, 255, 0.15);
+    }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e17;
+      color: #e6edf3;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ===== SLIDE NAVIGATION ===== */
+    .slide-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      background: rgba(10, 14, 23, 0.95);
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .slide-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .slide-dot.active { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .slide-dot:hover { background: rgba(0,255,255,0.5); }
+
+    .nav-arrow {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .nav-arrow:hover { background: var(--cyan); color: #0a0e17; }
+
+    /* ===== SLIDES ===== */
+    .slide {
+      min-height: 100vh;
+      padding: 80px 60px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeSlide 0.5s ease;
+    }
+    .slide.active { display: flex; }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Slide backgrounds */
+    .bg-dark { background: linear-gradient(135deg, #0a0e17 0%, #1a1a2e 50%, #0d1117 100%); }
+    .bg-purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .bg-blue { background: linear-gradient(135deg, #0f3460 0%, #1a5276 100%); }
+    .bg-green { background: linear-gradient(135deg, #1e8449 0%, #145a32 100%); }
+    .bg-orange { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); }
+    .bg-pink { background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%); }
+
+    /* Typography */
+    h1 {
+      font-size: 3em;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2em;
+      color: var(--pink);
+      margin: 30px 0 20px;
+      padding-left: 15px;
+      border-left: 4px solid var(--pink);
+    }
+    h3 {
+      font-size: 1.5em;
+      color: var(--purple);
+      margin: 25px 0 15px;
+    }
+    h4 {
+      font-size: 1.2em;
+      color: var(--cyan);
+      margin: 20px 0 12px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.3em;
+      margin-bottom: 40px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 25px 30px;
+      margin: 15px 0;
+      transition: all 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(0, 255, 255, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(0,255,255,0.1);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    /* Quote */
+    .quote {
+      background: linear-gradient(135deg, rgba(157,78,221,0.15), rgba(0,255,255,0.08));
+      border-left: 5px solid var(--purple);
+      padding: 25px 30px;
+      margin: 25px 0;
+      border-radius: 0 16px 16px 0;
+      font-size: 1.15em;
+      font-style: italic;
+      line-height: 1.8;
+    }
+    .quote strong { color: var(--cyan); }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.95em;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+    th {
+      background: linear-gradient(135deg, rgba(0,255,255,0.2), rgba(157,78,221,0.2));
+      color: var(--cyan);
+      padding: 14px 18px;
+      text-align: left;
+      font-weight: 700;
+    }
+    td {
+      padding: 12px 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      vertical-align: top;
+    }
+    tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+    tr:hover { background: rgba(0,255,255,0.05); }
+
+    /* Code */
+    pre {
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      font-size: 0.9em;
+      line-height: 1.6;
+      margin: 15px 0;
+    }
+    code {
+      color: var(--cyan);
+      font-family: "SF Mono", "Fira Code", monospace;
+    }
+    pre code { color: inherit; }
+
+    /* Lists */
+    ul, ol {
+      margin: 15px 0 15px 30px;
+      font-size: 1.05em;
+    }
+    li { margin: 10px 0; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 700;
+      margin: 5px;
+    }
+    .badge-cyan { background: rgba(0,255,255,0.15); color: var(--cyan); }
+    .badge-pink { background: rgba(255,20,147,0.15); color: var(--pink); }
+    .badge-purple { background: rgba(157,78,221,0.15); color: var(--purple); }
+    .badge-orange { background: rgba(243,156,18,0.15); color: var(--orange); }
+    .badge-green { background: rgba(39,174,96,0.15); color: var(--green); }
+
+    /* Image placeholders */
+    .img-placeholder {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 2px dashed rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 50px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 1em;
+      margin: 20px 0;
+    }
+
+    /* Two columns */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 20px 0;
+    }
+
+    /* Step boxes */
+    .step-box {
+      background: linear-gradient(135deg, rgba(0,255,255,0.08), rgba(157,78,221,0.05));
+      border: 1px solid rgba(0,255,255,0.2);
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin: 12px 0;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-radius: 50%;
+      font-weight: 800;
+      margin-right: 12px;
+    }
+
+    /* Split boxes */
+    .split-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin: 25px 0;
+    }
+    .split-box {
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .split-hand {
+      background: linear-gradient(135deg, rgba(157,78,221,0.15), rgba(157,78,221,0.05));
+      border: 1px solid rgba(157,78,221,0.3);
+    }
+    .split-ai {
+      background: linear-gradient(135deg, rgba(0,255,255,0.12), rgba(0,255,255,0.05));
+      border: 1px solid rgba(0,255,255,0.25);
+    }
+    .split-header {
+      font-weight: 800;
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .split-hand .split-header { color: var(--purple); }
+    .split-ai .split-header { color: var(--cyan); }
+
+    /* Q&A */
+    .qa-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 12px 0;
+      border-left: 3px solid var(--cyan);
+    }
+    .qa-q { font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+    .qa-a { color: rgba(255,255,255,0.8); padding-left: 15px; border-left: 2px solid rgba(255,255,255,0.1); }
+
+    /* Progress items */
+    .progress-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .progress-check {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--cyan);
+      border-radius: 6px;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Footer */
+    .slide-footer {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85em;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide { padding: 60px 30px; }
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      .two-col, .split-container { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Slide 1: Cover -->
+<div class="slide bg-purple active" id="slide-1">
+  <div style="text-align:center;">
+    <p style="font-size: 1.5em; opacity: 0.9; margin-bottom: 20px;">🦞</p>
+    <h1 style="font-size: 2.8em;">直播1｜认知升级 + 三层架构<br>+ 跑通你的 MVP 知识库</h1>
+    <p class="subtitle">5月「LLM Wiki × 六间房」AI 实操营 · 第 1 课<br>90-120 分钟</p>
+    <div style="margin-top: 30px;">
+      <span class="badge" style="background:rgba(255,255,255,0.2);color:white;">5月10日 20:00</span>
+      <span class="badge" style="background:rgba(255,255,255,0.2);color:white;">蓉蓉子 × 石榴🐾</span>
+    </div>
+  </div>
+  <div style="text-align: center; margin: 40px 0;">
+    <img src="images/header.png" alt="实操营目标" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);" />
+  </div>
+</div>
+
+<!-- Slide 2: Why Knowledge Base Fails -->
+<div class="slide bg-dark" id="slide-2">
+  <h2>1.1 为什么以前的知识库搭不起来？</h2>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/1-1-old-new.png" alt="旧范式 vs 新范式" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+  <div class="quote">
+    "先问大家几个问题，符合的扣 1：<br><br>
+    • 你是不是 Notion / 飞书 / Obsidian 都试过，但没一个用得起来？<br>
+    • 你是不是收藏了几百篇好文章，但写东西时还是从零开始？<br>
+    • 你是不是用 ChatGPT/Claude 时，它给你的回答总像在敷衍——『太对了，但跟你没关系』？<br><br>
+    如果都中招，恭喜你——你不是不努力，你是<strong>用错了范式</strong>。
+    你做的是『资料堆积』，但这个时代真正有用的是<strong>让 AI 读懂你的大脑</strong>。"
+  </div>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/pain-points.png" alt="真实痛点" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+</div>
+
+<!-- Slide 3: Karpathy LLM Wiki -->
+<div class="slide bg-dark" id="slide-3">
+  <h2>1.2 Karpathy 的 LLM Wiki 是什么</h2>
+  <div class="quote" style="font-size: 1.2em;">
+    <strong>传统 RAG</strong> 是『每次让 AI 临时去图书馆翻书』<br><br>
+    <strong>LLM Wiki</strong> 是『你雇了一个私人图书管理员，他每天帮你整理书架，下次你问什么他直接答』
+  </div>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/karpathy.png" alt="Karpathy LLM Wiki" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+
+  <h3>🔑 记住这三个角色的分工</h3>
+  <table>
+    <tr><th>层</th><th>谁写</th><th>谁读</th><th>规则</th></tr>
+    <tr><td><strong>Raw/</strong></td><td>你</td><td>AI</td><td>你的原始素材，不可变。丢进去就别管了</td></tr>
+    <tr><td><strong>Wiki/</strong></td><td>AI</td><td>你</td><td>AI 自动提炼的信息卡，你审核纠正。不要手动改</td></tr>
+    <tr><td><strong>CLAUDE.md</strong></td><td>你+AI</td><td>AI</td><td>你和 AI 的契约。你写规则，AI 遵守</td></tr>
+  </table>
+</div>
+
+<!-- Slide 4: RAG vs LLM Wiki -->
+<div class="slide bg-dark" id="slide-4">
+  <h2>RAG vs LLM Wiki 对比</h2>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/rag-vs-wiki.png" alt="RAG vs LLM Wiki 对比" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+  <div class="quote">
+    你以前用 AI 是 <strong>左边那一列</strong>：每次提问它都从零开始去理解你。<br>
+    LLM Wiki 是<strong>右边那一列</strong>：你的素材进来一次，AI 就帮你整理、分类、做交叉引用、写进信息卡。<br><br>
+    <strong>下一次你问问题时，AI 调的是已经整理好的『你』——不是临时的搜索结果。</strong>
+  </div>
+</div>
+
+<!-- Slide 5: Six Rooms -->
+<div class="slide bg-dark" id="slide-5">
+  <h2>🏠 1.3 六间房 × LLM Wiki 联动</h2>
+  <div class="quote">
+    去年我搭了个『六间房』框架——01我是谁 / 02我会什么 / 03我说过什么 / 04我卖什么 / 05我面对谁 / 06我怎么想——这个框架解决的是『<strong>装什么</strong>』。<br><br>
+    但很多人卡在了：装是装了，AI 还是不懂我。为什么？因为缺了<strong>怎么运转</strong>——也就是 LLM Wiki 的部分。<br><br>
+    这次升级，我把两者合起来叫『<strong>六间房 LLM Wiki</strong>』：六间房告诉 AI 装什么，LLM Wiki 告诉 AI 怎么活。
+  </div>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/six-rooms.png" alt="六间房 × LLM Wiki 对照图" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+  <p style="text-align: center; color: var(--purple); font-size: 1.3em; margin-top: 30px;">
+    <strong>六间房解决"装什么"，LLM Wiki 解决"怎么活"。CLAUDE.md 是你和 AI 之间的契约。</strong>
+  </p>
+</div>
+
+<!-- Slide 6: Three Misconceptions -->
+<div class="slide bg-dark" id="slide-6">
+  <h2>🆚 1.4 三个误区</h2>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/misconceptions.png" alt="三个误区" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+</div>
+
+<!-- Slide 7: Mental Preparation -->
+<div class="slide bg-dark" id="slide-7">
+  <h2>1.5 课前心理建设（3 条）</h2>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/mental-prep.png" alt="心理建设" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+</div>
+
+<!-- Slide 8: Part 2 Intro -->
+<div class="slide bg-blue" id="slide-8">
+  <div style="text-align:center;">
+    <h1 style="color: white;">🛠 Part 2｜实操篇</h1>
+    <p class="subtitle" style="color: rgba(255,255,255,0.8);">现场搭建三层架构</p>
+    <div class="card" style="background: rgba(255,255,255,0.1); max-width: 600px; margin: 40px auto; text-align: left;">
+      <p style="font-size: 1.1em; color: var(--orange);">
+        ⚠️ <strong>下面开始动手。每一节都有明确的操作指令，直播时我跟屏幕共享带做。</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 9: Tool Installation -->
+<div class="slide bg-dark" id="slide-9">
+  <h2>安装工具</h2>
+  <div class="two-col">
+    <div class="card">
+      <h4>Obsidian（必装）</h4>
+      <p>下载：<code>https://obsidian.md</code></p>
+    </div>
+    <div class="card">
+      <h4>WorkBuddy（推荐）</h4>
+      <p>下载：<code>https://copilot.tencent.com/work/</code></p>
+      <p style="font-size: 0.9em; color: rgba(255,255,255,0.6);">安装后扫码登录 · 图形界面，无需命令行</p>
+    </div>
+  </div>
+  <h3>Claude Code（备选）</h3>
+  <pre><code># 终端里粘贴这行，回车
+curl -fsSL https://claude.ai/install.sh | bash
+
+# 安装完后，输入 claude 启动
+claude</code></pre>
+</div>
+
+<!-- Slide 10: Directory Structure -->
+<div class="slide bg-dark" id="slide-10">
+  <h2>🛠 2.1 建目录结构</h2>
+
+  <div class="step-box">
+    <span class="step-num">1</span>
+    <strong>在桌面建一个空文件夹</strong>：<code>ob-大脑</code>（带连字符）
+  </div>
+
+  <div class="step-box">
+    <span class="step-num">2</span>
+    <strong>打开 WorkBuddy / Claude Code</strong>，输入：<br>
+    "帮我建一个 ob-大脑 目录，里面有 raw/、wiki/、Output/ 三个文件夹，wiki 下面有 6 个子文件夹"
+  </div>
+
+  <div class="step-box">
+    <span class="step-num">3</span>
+    <strong>打开 Obsidian 管理仓库</strong>，选择本地建好的 ob-大脑
+  </div>
+
+  <pre><code>ob-大脑/
+├── 01-raw/                    ← 你的原始素材丢这里
+│   ├── articles/           ← 文章
+│   ├── chats/              ← 对话记录
+│   └── notes/              ← 灵感碎片
+├── 02-wiki/                   ← AI 自动维护的信息卡
+│   ├── 01_我是谁/          ← 身份/故事/VMV
+│   ├── 02_我会什么/        ← 能力/方法论
+│   ├── 03_我说过什么/      ← 风格/金句/代表作
+│   ├── 04_我卖什么/        ← 产品/定价/SOP
+│   ├── 05_我面对谁/        ← 用户画像/痛点
+│   └── 06_我怎么想/        ← 框架/原则/边界
+├── 03-output/
+├── CLAUDE.md               ← 你和 AI 的契约
+├── index.md                ← Wiki 索引
+└── log.md                  ← 变更日志</code></pre>
+</div>
+
+<!-- Slide 11: Web Clipper -->
+<div class="slide bg-dark" id="slide-11">
+  <h2>📝 2.2 安装 Obsidian Web Clipper 浏览器插件⭐ 5月新增</h2>
+  <div class="quote">
+    "Day 4-5 你要喂大量素材给 AI——好文章 / 行业资料 / 竞品爆款。<br><br>
+    <strong>没有 Web Clipper</strong>：复制粘贴一篇 5 分钟，喂 30 篇要 2.5 小时。<br>
+    <strong>有了 Web Clipper</strong>：一键剪藏，喂 30 篇 < 10 分钟。<br>
+    <strong>这是 21 天里最高 ROI 的工具</strong>。"
+  </div>
+
+  <div class="step-box">
+    <span class="step-num">1</span>
+    <strong>浏览器右上角点 🟫 Obsidian 图标</strong>
+  </div>
+  <div class="step-box">
+    <span class="step-num">2</span>
+    <strong>点击设置，选 ob大脑</strong>
+  </div>
+
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/webclipper-config.png" alt="Web Clipper 配置" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/webclipper-demo1.png" alt="Web Clipper 演示1" style="max-width: 48%; border-radius: 12px; margin-right: 2%;" />
+    <img src="images/webclipper-demo2.png" alt="Web Clipper 演示2" style="max-width: 48%; border-radius: 12px;" />
+  </div>
+</div>
+
+<!-- Slide 12: CLAUDE.md Template -->
+<div class="slide bg-dark" id="slide-12">
+  <h2>📝 2.3 写第一版 CLAUDE.md—— 你的「大脑芯片」</h2>
+  <p style="color: var(--purple); margin-bottom: 20px;">复制到你的 CLAUDE.md里，填写（先用模板，后面迭代）</p>
+
+  <pre style="max-height: 400px; overflow-y: auto;"><code># 我的 LLM Wiki 规则书
+
+## 一、我是谁（一句话定位）
+- 名字：
+- 一句话：[职业身份] + [服务对象] + [独特价值]
+  例：我是 [xx教练]，帮 [30+职场人] [打造小而美产品]
+- MBTI/性格关键词：
+
+## 二、六间房含义（AI 用这个分类素材）
+| 房间 | 装什么 | 不装什么 |
+|---|---|---|
+| 01_我是谁 | 身份/故事/价值观 | 工作方法 |
+| 02_我会什么 | 方法论/案例/能力 | 个人感悟 |
+| 03_我说过什么 | 文章/金句/原话 | 别人说的 |
+| 04_我卖什么 | 产品/价格/服务 | 想做未做的 |
+| 05_我面对谁 | 用户画像/痛点/原话 | 我自己的话 |
+| 06_我怎么想 | 框架/原则/边界 | 具体执行 |
+
+## 三、写作风格（AI 模仿这个语气）
+## 四、母题清单
+## 五、Ingest 规则（AI 整理素材的方法）
+## 六、Query 规则（AI 回答问题的方法）
+## 七、边界规则（AI 必须守的红线）</code></pre>
+</div>
+
+<!-- Slide 13: Boundaries -->
+<div class="slide bg-dark" id="slide-13">
+  <h2>🚧 2.4 划清"谁写谁读"边界</h2>
+  <div class="quote">
+    "**<strong>这个边界守住了，你的知识库才不会越用越乱。</strong><br>
+    raw 是你的档案室，wiki 是 AI 整理出来的图书馆，CLAUDE.md 是你们之间的契约。**"
+  </div>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/index-log.png" alt="边界图" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+
+  <h2>2.5 「index.md / log.md」是 Wiki 的脊梁</h2>
+  <div class="quote">
+    它怎么知道'用户痛点在 5 号房而不是 6 号房'？<br>
+    怎么知道'我昨天问的那个问题答案在哪张卡里'？<br><br>
+    答案是 <strong>index.md</strong>——它是这个 wiki 的'门牌号系统'。<br>
+    没有 index.md，AI 每次都得'瞎找'；有了 index.md，AI 才能'精准调用'。<br><br>
+    而 <strong>log.md</strong> 是另一个隐藏主角——它记录每一次操作，是 wiki 健康的脊梁。
+  </div>
+</div>
+
+<!-- Slide 14: Hand vs AI -->
+<div class="slide bg-dark" id="slide-14">
+  <h2>🎯 2.6 ⭐ 手写 vs AI 提炼分工</h2>
+
+  <div class="split-container">
+    <div class="split-box split-hand">
+      <div class="split-header">✋ 必须你自己写（约 3 张地基卡）</div>
+      <div style="margin: 15px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+        <strong>❶ 01_我是谁/一句话定位.md</strong><br>
+        <small style="color: rgba(255,255,255,0.6);">→ 必须自己想清楚"我是谁"——这本身是过程</small>
+      </div>
+      <div style="margin: 15px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+        <strong>❷ 06_我怎么想/核心价值观.md</strong><br>
+        <small style="color: rgba(255,255,255,0.6);">→ 必须从内心来——AI 编不出真价值观</small>
+      </div>
+      <div style="margin: 15px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+        <strong>❸ CLAUDE.md 第三节"写作风格"</strong><br>
+        <small style="color: rgba(255,255,255,0.6);">→ 你和 AI 的契约，必须你写</small>
+      </div>
+    </div>
+
+    <div class="split-box split-ai">
+      <div class="split-header">🤖 默认交给 AI（约 80% 的卡片）</div>
+      <div style="margin: 8px 0; padding: 8px 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+        <strong>02_我会什么</strong> ← 方法论文章 / 课件
+      </div>
+      <div style="margin: 8px 0; padding: 8px 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+        <strong>03_我说过什么</strong> ← 公众号历史 / 朋友圈
+      </div>
+      <div style="margin: 8px 0; padding: 8px 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+        <strong>04_我卖什么</strong> ← 产品说明书 PDF
+      </div>
+      <div style="margin: 8px 0; padding: 8px 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+        <strong>05_我面对谁</strong> ← 咨询记录 / 学员反馈
+      </div>
+    </div>
+  </div>
+
+  <div class="quote">
+    "**<strong>地基卡你必须手写</strong>——因为这是 AI 替代不了的'你成为你'的过程。<br>
+    <strong>装修部分让 AI 干</strong>——因为这是 AI 比你快 100 倍的事。**"
+  </div>
+</div>
+
+<!-- Slide 15: Running MVP -->
+<div class="slide bg-dark" id="slide-15">
+  <h2>✋ 3.1 填 01_我是谁的第一张信息卡（8 分钟）— 手写地基卡 #1</h2>
+  <div class="quote">
+    "现在我们做最关键的一步——给 AI <strong>先认识你</strong>。我们填 01 房间的第一张信息卡。<br>
+    这是刚才讲的『3 张必须手写的地基卡』里的第一张——<strong>AI 替不了你</strong>。<br>
+    因为'我是谁'这件事必须从你内心来，AI 编不出来。"
+  </div>
+
+  <h3>📌 信息卡模板</h3>
+  <pre><code># 01-身份基座_我是谁.md
+
+## 一句话定位
+[在这里写一句话]
+
+## 关键标签（3-5 个）
+- 标签1：
+- 标签2：
+- 标签3：
+
+## 我的三个高频原话
+1. "________"
+2. "________"
+3. "________"
+
+## 我最讨厌别人对我的误解
+- "他们以为我是 X，其实我是 Y"
+
+## 我的核心价值观（3 条）
+1.
+2.
+3.</code></pre>
+</div>
+
+<!-- Slide 16: First Ingest -->
+<div class="slide bg-dark" id="slide-16">
+  <h2>🤖 3.2 第一次 Ingest——见证魔法时刻🪄</h2>
+
+  <div class="step-box">
+    <span class="step-num">1</span>
+    <strong>准备一段真实素材</strong><br>
+    <span style="color: rgba(255,255,255,0.7);">从你的电脑里找一段你自己的内容——最近写的文章、朋友圈、咨询记录都可以。</span>
+  </div>
+
+  <div class="step-box">
+    <span class="step-num">2</span>
+    <strong>丢到 raw/ 文件夹</strong><br>
+    <span style="color: rgba(255,255,255,0.7);">把素材文件拖到 <code>raw/articles/</code> 或 <code>raw/notes/</code></span>
+  </div>
+
+  <div class="step-box">
+    <span class="step-num">3</span>
+    <strong>对 AI 说</strong>
+  </div>
+
+  <pre><code>请扫描 raw/ 目录下的新文件，
+按 CLAUDE.md 的规则提炼信息卡，
+写到对应的 wiki 房间。
+如果有不确定归类的，先放到 Inbox。</code></pre>
+
+  <h3>验证</h3>
+  <p style="font-size: 1.1em;">打开 wiki/ 对应房间——AI 应该已经帮你生成了一张信息卡 ✅</p>
+</div>
+
+<!-- Slide 17: First Query -->
+<div class="slide bg-dark" id="slide-17">
+  <h2>🔍 3.3 第一次 Query——向你的 Wiki 提问</h2>
+  <p style="font-size: 1.1em; color: rgba(255,255,255,0.8); margin-bottom: 20px;">现在反过来——你的 Wiki 已经有内容了，咱们让 AI 用你的 Wiki 回答问题。</p>
+
+  <h3>📝 Query 示范题（选一个跑）</h3>
+  <ul style="font-size: 1.1em;">
+    <li>"用我的 Wiki 给我写一段 100 字的自我介绍"</li>
+    <li>"我的核心价值观是什么？引用来源"</li>
+    <li>"如果有一个 30 岁的设计师来咨询，我应该怎么介绍自己？"</li>
+  </ul>
+
+  <div class="step-box" style="margin-top: 25px;">
+    <strong>演示步骤</strong>：
+    <ol style="margin-top: 10px;">
+      <li>在 Claude / WorkBuddy 输入上面任一问题</li>
+      <li>看 AI 是否调用了 wiki/01-我是谁 的内容 ✅</li>
+      <li>看 AI 是否标注了来源 ✅</li>
+      <li>看 AI 风格是否符合 CLAUDE.md 的语气定义 ✅</li>
+    </ol>
+  </div>
+
+  <div class="quote" style="margin-top: 30px; font-size: 1.1em;">
+    <strong>这就是 LLM Wiki 的复利</strong>——你今天填的一张信息卡，AI 明天能用、后天能用、一年后还能用。<br><br>
+    <strong>你不是在堆资料，你是在养一个会越来越懂你的助手。</strong>
+  </div>
+</div>
+
+<!-- Slide 18: Homework -->
+<div class="slide bg-dark" id="slide-18">
+  <h2>🎯 课后作业</h2>
+
+  <table>
+    <tr><th>Day</th><th>任务</th><th>验收</th></tr>
+    <tr><td><span class="badge badge-pink">Day 1（今晚）</span></td><td>✅ 完成验收清单 5 项</td><td>实操营群里发「目录建好」截图</td></tr>
+    <tr><td><span class="badge badge-cyan">Day 2-3</span></td><td>🤖 把 3-5 篇方法论文章丢 raw/ → AI 提炼到 02 房间</td><td>02 房间 ≥2 张卡</td></tr>
+    <tr><td><span class="badge badge-cyan">Day 4-5</span></td><td>🤖 公众号文章 + 咨询记录 → AI 提炼到 03 + 05</td><td>03 风格采样 ≥30 段；05 痛点卡 ≥1 张</td></tr>
+    <tr><td><span class="badge badge-purple">Day 6</span></td><td>✋ 手写 06 核心价值观</td><td>Query 测试：AI 自我介绍「像你」</td></tr>
+    <tr><td><span class="badge badge-green">Day 7</span></td><td>✅ Phase 1 验收</td><td>Lint 体检 + CLAUDE.md v2</td></tr>
+  </table>
+
+  <p style="margin-top: 25px; color: var(--orange); font-size: 1.1em;">
+    💬 <strong>作业提交方式</strong>：和搭子互相确认 + 主群里发完成截图
+  </p>
+</div>
+
+<!-- Slide 19: Buddy System -->
+<div class="slide bg-dark" id="slide-19">
+  <h2>🤝 搭子认领</h2>
+  <div class="quote">
+    搭子是这次实操营的『暗器』——技术陡增的时候，搭子能救你的命。<br>
+    开营问卷里我已经收集了大家的技术背景，我会发『搭子配对名单』到群里。<br>
+    <strong>强弱混搭</strong>，每组 2-3 人。
+  </div>
+
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/buddy-system.png" alt="搭子配对" style="max-width: 100%; border-radius: 12px;" />
+  </div>
+  <div style="text-align: center; margin: 30px 0;">
+    <img src="images/buddy-detail.png" alt="搭子详情" style="max-width: 80%; border-radius: 12px;" />
+  </div>
+
+  <h3>搭子游戏规则</h3>
+  <div class="card-grid">
+    <div class="card" style="text-align:center;">
+      <span style="font-size:2em;">⏰</span>
+      <p style="font-weight:700;margin-top:10px;">每周至少互打卡 2 次</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <span style="font-size:2em;">🆘</span>
+      <p style="font-weight:700;margin-top:10px;">遇到问题先问搭子</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <span style="font-size:2em;">🏆</span>
+      <p style="font-weight:700;margin-top:10px;">最佳搭子奖</p>
+      <p style="font-size:0.85em;color:rgba(255,255,255,0.6);">私教抵扣2000×2 + 小群深度辅导 + 学费全额退还</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <span style="font-size:2em;">🌟</span>
+      <p style="font-weight:700;margin-top:10px;">互助之星</p>
+      <p style="font-size:0.85em;color:rgba(255,255,255,0.6);">私教抵扣1000 + 学费退还 + 30min 999咨询诊断</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 20: Q&A -->
+<div class="slide bg-dark" id="slide-20">
+  <h2>❓ Q&A 问题</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q1：我的 Obsidian 客户端打不开 ob-大脑？</div>
+    <div class="qa-a">A：换网页版。Obsidian 网页版支持本地文件夹，更轻量。</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q2：CLAUDE.md 写不出来怎么办？</div>
+    <div class="qa-a">A：先用模板原文，跑两天后再调。Schema 是迭代出来的，不是一次写好的。</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q3：raw/ 文件夹里能不能放 PDF？</div>
+    <div class="qa-a">A：可以，但 AI 直接读 PDF 体验差。建议：先把 PDF 转成 Markdown 再放进去。</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q4：04_我卖什么必须填吗？</div>
+    <div class="qa-a">A：不必。如果你还没有产品，先空着。等你的产品出来，再回头填。</div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q5：我的 Wiki 写错了能改吗？</div>
+    <div class="qa-a">A：<strong>默认让 AI 改，不要直接改 wiki/</strong>——跟 AI 说"我看到 wiki/01.md 第 X 段不对，请改成 [新内容]"，它会改 + 自动写 log.md。例外：手写地基卡你可以直接改，但改完 @AI 同步一下。</div>
+  </div>
+</div>
+
+<!-- Slide 21: Verification Checklist -->
+<div class="slide bg-green" id="slide-21">
+  <div style="text-align:center;">
+    <h1 style="color: white;">✅ 直播 1 验收清单</h1>
+    <p class="subtitle" style="color: rgba(255,255,255,0.8);">下课前，确认以下 5 条全部 ✅</p>
+
+    <div class="card" style="background: rgba(255,255,255,0.15); max-width: 600px; margin: 40px auto; text-align: left;">
+      <div class="progress-item">
+        <div class="progress-check"></div>
+        <span>三层目录已建好（raw/ + wiki/ + CLAUDE.md）</span>
+      </div>
+      <div class="progress-item">
+        <div class="progress-check"></div>
+        <span>CLAUDE.md 初版已填写（前 4 节必有）</span>
+      </div>
+      <div class="progress-item">
+        <div class="progress-check"></div>
+        <span>01_我是谁 信息卡已手写完成</span>
+      </div>
+      <div class="progress-item">
+        <div class="progress-check"></div>
+        <span>跑通 1 次 Ingest（丢素材 → AI 提炼）</span>
+      </div>
+      <div class="progress-item">
+        <div class="progress-check"></div>
+        <span>跑通 1 次 Query（提问 → AI 调 Wiki 回答）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 22: Next Week Preview -->
+<div class="slide bg-orange" id="slide-22">
+  <h2 style="border-color: white; color: white;">📋 下周直播预告</h2>
+
+  <table style="background: rgba(255,255,255,0.1);">
+    <tr><th></th><th>日期</th><th>内容</th></tr>
+    <tr>
+      <td><span class="badge badge-pink" style="font-size:1em;">直播 2</span></td>
+      <td>5月17日 20:00</td>
+      <td>🦞 领养你的龙虾 + 微信碎片自动入库 + AI 日报</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-purple" style="font-size:1em;">直播 3</span></td>
+      <td>5月24日 20:00</td>
+      <td>🤖 打造数字员工 + 8 步法内容生产</td>
+    </tr>
+  </table>
+
+  <div class="quote" style="margin-top: 50px; background: rgba(255,255,255,0.1); border-color: white;">
+    💡 <strong>有任何问题，先在搭子群里问。搭子答不出，再到主群 @ 蓉蓉子。</strong><br><br>
+    —— 蓉蓉子 × 石榴🐾
+  </div>
+</div>
+
+<!-- Slide Navigation -->
+<div class="slide-nav">
+  <button class="nav-arrow" onclick="prevSlide()">‹</button>
+  <div class="slide-dot active" onclick="goToSlide(1)"></div>
+  <div class="slide-dot" onclick="goToSlide(2)"></div>
+  <div class="slide-dot" onclick="goToSlide(3)"></div>
+  <div class="slide-dot" onclick="goToSlide(4)"></div>
+  <div class="slide-dot" onclick="goToSlide(5)"></div>
+  <div class="slide-dot" onclick="goToSlide(6)"></div>
+  <div class="slide-dot" onclick="goToSlide(7)"></div>
+  <div class="slide-dot" onclick="goToSlide(8)"></div>
+  <div class="slide-dot" onclick="goToSlide(9)"></div>
+  <div class="slide-dot" onclick="goToSlide(10)"></div>
+  <div class="slide-dot" onclick="goToSlide(11)"></div>
+  <div class="slide-dot" onclick="goToSlide(12)"></div>
+  <div class="slide-dot" onclick="goToSlide(13)"></div>
+  <div class="slide-dot" onclick="goToSlide(14)"></div>
+  <div class="slide-dot" onclick="goToSlide(15)"></div>
+  <div class="slide-dot" onclick="goToSlide(16)"></div>
+  <div class="slide-dot" onclick="goToSlide(17)"></div>
+  <div class="slide-dot" onclick="goToSlide(18)"></div>
+  <div class="slide-dot" onclick="goToSlide(19)"></div>
+  <div class="slide-dot" onclick="goToSlide(20)"></div>
+  <div class="slide-dot" onclick="goToSlide(21)"></div>
+  <div class="slide-dot" onclick="goToSlide(22)"></div>
+  <button class="nav-arrow" onclick="nextSlide()">›</button>
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 22;
+
+  function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slide-dot');
+
+    if (n > totalSlides) currentSlide = 1;
+    if (n < 1) currentSlide = totalSlides;
+
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    document.getElementById('slide-' + currentSlide).classList.add('active');
+    dots[currentSlide - 1].classList.add('active');
+  }
+
+  function nextSlide() {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide--;
+    showSlide(currentSlide);
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    showSlide(currentSlide);
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevSlide();
+    }
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  });
+  document.addEventListener('touchend', function(e) {
+    let touchEndX = e.changedTouches[0].clientX;
+    let diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  });
+</script>
+
+</body>
+</html>

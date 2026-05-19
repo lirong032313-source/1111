@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1800, height=1000">
+<title>CLAUDE.md 6个核心章节</title>
+<style>
+  * { margin:0; padding:0; box-sizing: border-box; }
+  body {
+    width: 1800px;
+    height: 1000px;
+    background: linear-gradient(135deg, #0D1B2A 0%, #1A1A2E 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    overflow: hidden;
+    gap: 40px;
+    padding: 60px;
+  }
+  .title {
+    font-size: 52px;
+    font-weight: 700;
+    color: #FFF5E1;
+    letter-spacing: 6px;
+    text-shadow: 0 0 30px rgba(255,107,53,0.4);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1600px;
+  }
+  .cell {
+    border-radius: 16px;
+    padding: 30px 28px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+  }
+  .cell:nth-child(1) { border-color: rgba(255,0,255,0.5); }
+  .cell:nth-child(2) { border-color: rgba(0,255,255,0.5); }
+  .cell:nth-child(3) { border-color: rgba(255,215,0,0.5); }
+  .cell:nth-child(4) { border-color: rgba(255,107,53,0.5); }
+  .cell:nth-child(5) { border-color: rgba(168,85,247,0.5); }
+  .cell:nth-child(6) { border-color: rgba(103,232,249,0.5); }
+
+  .num {
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .cell:nth-child(1) .num { color: rgba(255,0,255,0.35); }
+  .cell:nth-child(2) .num { color: rgba(0,255,255,0.35); }
+  .cell:nth-child(3) .num { color: rgba(255,215,0,0.35); }
+  .cell:nth-child(4) .num { color: rgba(255,107,53,0.35); }
+  .cell:nth-child(5) .num { color: rgba(168,85,247,0.35); }
+  .cell:nth-child(6) .num { color: rgba(103,232,249,0.35); }
+
+  .cell-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .cell:nth-child(1) .cell-title { color: #FF00FF; }
+  .cell:nth-child(2) .cell-title { color: #00FFFF; }
+  .cell:nth-child(3) .cell-title { color: #FFD700; }
+  .cell:nth-child(4) .cell-title { color: #FF6B35; }
+  .cell:nth-child(5) .cell-title { color: #A855F7; }
+  .cell:nth-child(6) .cell-title { color: #67E8F9; }
+
+  .cell-desc {
+    font-size: 24px;
+    color: #C0C0C0;
+    line-height: 1.7;
+  }
+  .icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 40px;
+    opacity: 0.25;
+  }
+</style>
+</head>
+<body>
+  <div class="title">📄 CLAUDE.md · 6个核心章节</div>
+  <div class="grid">
+    <div class="cell">
+      <div class="icon">👤</div>
+      <div class="num">01</div>
+      <div class="cell-title">我是谁（身份定义）</div>
+      <div class="cell-desc">名字 / 称呼 / 性格 / 价值观<br>AI 的"第一印象"</div>
+    </div>
+    <div class="cell">
+      <div class="icon">📖</div>
+      <div class="num">02</div>
+      <div class="cell-title">我的真实故事（成长经历）</div>
+      <div class="cell-desc">关键转折点 / 重要选择<br>让 AI 理解你的来路</div>
+    </div>
+    <div class="cell">
+      <div class="icon">✍️</div>
+      <div class="num">03</div>
+      <div class="cell-title">写作风格（语气+金句+禁忌）</div>
+      <div class="cell-desc">喜欢怎么说话 / 哪些话绝不讲<br>AI 的"语气模板"</div>
+    </div>
+    <div class="cell">
+      <div class="icon">🛍️</div>
+      <div class="num">04</div>
+      <div class="cell-title">产品体系（卖什么）</div>
+      <div class="cell-desc">产品矩阵 / 价格锚点<br>AI 的"销售指南"</div>
+    </div>
+    <div class="cell">
+      <div class="icon">👥</div>
+      <div class="num">05</div>
+      <div class="cell-title">用户是谁（目标人群）</div>
+      <div class="cell-desc">30-35岁 IP / 自由职业者<br>AI 的"客服手册"</div>
+    </div>
+    <div class="cell">
+      <div class="icon">🛡️</div>
+      <div class="num">06</div>
+      <div class="cell-title">思考边界（什么能做/不能做）</div>
+      <div class="cell-desc">红线 / 价值观边界<br>AI 的"行为准则"</div>
+    </div>
+  </div>
+</body>
+</html>
