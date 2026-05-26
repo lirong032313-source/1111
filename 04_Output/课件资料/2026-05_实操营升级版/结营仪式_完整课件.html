@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>结营仪式·5月30日 | 完整课件</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@200,300,400,500,700,900&display=swap"/>
+<style>
+:root{
+--bg-primary:#0a0f1c;--bg-secondary:#111827;--bg-card:#1a1f2e;
+--text-primary:#fff;--text-secondary:#a8b2c4;
+--accent-cyan:#00ffcc;--accent-magenta:#ff00aa;--accent-blue:#4361ee;--accent-neon:#d4ff00;--accent-orange:#ff6b35;--accent-gold:#ffd700;
+--glow-cyan:rgba(0,255,204,.4);--glow-magenta:rgba(255,0,170,.4);--glow-gold:rgba(255,215,0,.4);
+--font-display:"Clash Display",sans-serif;--font-body:"Satoshi",sans-serif;
+--title-size:clamp(1.8rem,5vw,3.5rem);--h2-size:clamp(1.3rem,3vw,2.3rem);--h3-size:clamp(1rem,2.2vw,1.4rem);
+--body-size:clamp(.76rem,1.35vw,1rem);--small-size:clamp(.6rem,1vw,.82rem);
+--slide-padding:clamp(1rem,2.8vw,2.5rem);--gap:clamp(.6rem,1.3vw,1.1rem);
+--ease-out:cubic-bezier(.16,1,.3,1);--dur:.6s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative;background:var(--bg-primary)}
+.sc{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;padding:var(--slide-padding);position:relative;z-index:2}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,204,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,204,.03) 1px,transparent 1px);background-size:60px 60px;z-index:0}
+.scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);pointer-events:none;z-index:1}
+h1,h2,h3{font-family:var(--font-display);color:var(--text-primary);line-height:1.2}
+h1{font-size:var(--title-size);font-weight:700}h2{font-size:var(--h2-size);font-weight:600}h3{font-size:var(--h3-size);font-weight:500}
+p,li,td,th{font-family:var(--font-body);font-size:var(--body-size);color:var(--text-primary);line-height:1.55}
+.cy{color:var(--accent-cyan)}.mg{color:var(--accent-magenta)}.ne{color:var(--accent-neon)}.or{color:var(--accent-orange)}.gold{color:var(--accent-gold)}
+.neon-t{text-shadow:0 0 10px var(--glow-cyan),0 0 30px var(--glow-cyan)}
+.neon-tm{text-shadow:0 0 10px var(--glow-magenta),0 0 30px var(--glow-magenta)}
+.neon-tg{text-shadow:0 0 10px var(--glow-gold),0 0 30px var(--glow-gold)}
+.card{background:var(--bg-card);border:1px solid rgba(0,255,204,.18);border-radius:12px;padding:clamp(.75rem,1.4vw,1.2rem);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-magenta))}
+.card-gm::before{background:linear-gradient(90deg,var(--accent-gold),var(--accent-orange))}
+.card-ne::before{background:linear-gradient(90deg,var(--accent-neon),var(--accent-cyan))}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:var(--small-size);font-weight:500;border:1px solid currentColor}
+.flex-r{display:flex;align-items:flex-start;gap:var(--gap)}.flex-c{display:flex;flex-direction:column;gap:var(--gap)}
+.gap-s{gap:clamp(.35rem,.8vw,.7rem)}table{width:100%;border-collapse:collapse;font-size:var(--body-size)}
+th{text-align:left;padding:8px 10px;color:var(--accent-cyan);font-weight:500;border-bottom:1px solid rgba(0,255,204,.2);font-size:var(--small-size);text-transform:uppercase;letter-spacing:.05em}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+tr:hover td{background:rgba(0,255,204,.04)}
+.nav-dot{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:7px}
+.nav-dot span{width:8px;height:8px;border-radius:50%;background:rgba(0,255,204,.25);cursor:pointer;transition:all .3s}
+.nav-dot span.active{background:var(--accent-cyan);box-shadow:0 0 8px var(--glow-cyan)}
+.slide-num{position:absolute;bottom:14px;right:22px;font-size:var(--small-size);color:rgba(255,255,255,.2);font-family:var(--font-body);z-index:3}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-size:var(--small-size);font-weight:600;background:rgba(0,255,204,.1);color:var(--accent-cyan);border:1px solid rgba(0,255,204,.2)}
+.badge-gold{background:rgba(255,215,0,.1);color:var(--accent-gold);border-color:rgba(255,215,0,.25)}
+.quote-box{padding:16px 20px;background:rgba(0,255,204,.05);border-left:3px solid var(--accent-cyan);border-radius:0 10px 10px 0;font-style:italic;line-height:1.7}
+.timeline-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.timeline-dot{width:10px;height:10px;border-radius:50%;background:var(--accent-cyan);flex-shrink:0;margin-top:5px}
+.check-item{display:flex;gap:8px;padding:5px 0}
+.ck{color:var(--accent-cyan);flex-shrink:0;font-weight:700}
+@media(max-width:768px){:root{--slide-padding:1.3rem;--gap:.7rem}.flex-r{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="nav-dot" id="nav"></div>
+
+<!-- ========== P01 封面 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc" style="text-align:center">
+<div style="margin-bottom:1rem"><span class="badge badge-gold">🎬 结营仪式</span></div>
+<h1 class="neon-tg gold">21天<br/><span style="font-size:.65em;color:var(--text-secondary)">从0到1的蜕变</span></h1>
+<p style="margin-top:1.5rem;font-size:var(--h3-size);color:var(--text-secondary)">5月实操营 · 成果展示 → 颁奖激励 → 升级转化</p>
+<div style="margin-top:2rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+<span class="tag gold">5/30 周五</span><span class="tag cy">20:00-21:30</span><span class="tag mg">腾讯会议</span></div>
+<p style="margin-top:1.5rem;color:var(--text-secondary);font-size:var(--small-size)">6大环节 · ~90分钟 · 不是听课，是你来Show成果</p>
+</div><div class="slide-num">01 / 16</div></div>
+
+<!-- ========== P02 三场直播叙事弧线 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem"><h2 class="cy neon-t" style="margin:0">环节01 · 开场回顾</h2><span style="color:var(--text-secondary);font-size:var(--small-size)">10min</span></div>
+<p style="color:var(--text-secondary);margin-bottom:1.2rem">三场直播串主线 · 不依赖打卡数据 · 用内容回顾串联成长叙事线</p>
+<div class="flex-r" style="gap:1rem">
+<div class="card" style="flex:1;text-align:center"><div style="font-size:2rem;margin-bottom:6px">①</div><h3 class="cy" style="font-size:var(--h3-size)">地基搭建</h3><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">'AI不是替你干活，AI要先读懂你'</p><div style="margin-top:8px;padding:6px 10px;background:rgba(0,255,204,.06);border-radius:6px;font-size:var(--small-size)" class="cy">懂我 → 搭建第一间房</div></div>
+<div class="card card-ne" style="flex:1;text-align:center"><div style="font-size:2rem;margin-bottom:6px">②</div><h3 class="ne" style="font-size:var(--h3-size)">养龙虾</h3><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">'CLAUDE.md = 龙虾的喂养手册'</p><div style="margin-top:8px;padding:6px 10px;background:rgba(212,255,0,.06);border-radius:6px;font-size:var(--small-size)" class="ne">养活 → Wiki开始运转</div></div>
+<div class="card card-gm" style="flex:1;text-align:center"><div style="font-size:2rem;margin-bottom:6px">③</div><h3 class="or" style="font-size:var(--h3-size)">数字员工</h3><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">'Wiki × Skills × Workflow = 数字团队'</p><div style="margin-top:8px;padding:6px 10px;background:rgba(255,107,53,.06);border-radius:6px;font-size:var(--small-size)" class="or">替我工作 → 内容自动产出</div></div>
+</div>
+<div class="quote-box" style="margin-top:1.2rem">
+<p class="gold">"21天，从'AI是什么'到'AI怎么为我工作'。这不是三门课，这是一条完整的路。"</p>
+<p style="margin-top:8px;color:var(--text-secondary);font-style:normal;font-size:var(--small-size)">这些不是AI替你们做的。<span class="cy">是你们自己做的。</span>我只是给了你们一把铲子。</p>
+</div>
+</div><div class="slide-num">02 / 16</div></div>
+
+<!-- ========== P03 高光闪回 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="ne" style="margin-bottom:1rem">✨ 高光闪回时刻</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+<div class="card" style="text-align:center;padding:1.5rem 1rem"><div style="font-size:2.5rem">📸</div><p style="margin-top:8px;font-weight:600">第一次成功运行</p><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">龙虾第一次回复正确的瞬间</p></div>
+<div class="card" style="text-align:center;padding:1.5rem 1rem"><div style="font-size:2.5rem">✍️</div><p style="margin-top:8px;font-weight:600">第一篇产出发布</p><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">公众号/小红书/任何平台</p></div>
+<div class="card" style="text-align:center;padding:1.5rem 1rem"><div style="font-size:2.5rem">🤝</div><p style="margin-top:8px;font-weight:600">感人的互助对话</p><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">群里的搭子互动瞬间</p></div>
+<div class="card card-mg" style="text-align:center;padding:1.5rem 1rem"><div style="font-size:2.5rem">🦞</div><p style="margin-top:8px;font-weight:600">学员龙虾/Wiki展示</p><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">六间房搭建成果截图</p></div>
+</div>
+<div class="card card-ne" style="margin-top:1.2rem;display:flex;gap:1rem;align-items:center"><div style="flex:1"><p class="ne" style="font-weight:600;font-size:var(--small-size)">📌 操作清单</p><div class="check-item"><span class="ck">☐</span><span>3场直播金句截图（各1-2张）</span></div><div class="check-item"><span class="ck">☐</span><span>3-5张学员高光图片轮播</span></div></div><div style="flex:1"><div class="check-item"><span class="ck">☐</span><span>BGM背景音乐（轻快不抢戏）</span></div><div class="check-item"><span class="ck">☐</span><span>屏幕共享测试OK</span></div></div>
+</div>
+</div><div class="slide-num">03 / 16</div></div>
+
+<!-- ========== P04 学员展示框架 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem"><h2 class="mg neon-tm" style="margin:0">环节02 · 学员成果展示</h2><span style="color:var(--text-secondary);font-size:var(--small-size)">35min ⭐高光</span></div>
+<div class="flex-r" style="gap:1rem">
+<div class="card" style="flex:1.3"><p class="cy" style="font-weight:600;font-size:var(--small-size);margin-bottom:10px">👥 4-5位学员邀约策略</p><table style="font-size:var(--small-size)"><thead><tr><th>类型</th><th>展示内容</th></tr></thead><tbody>
+<tr><td class="cy">成长型</td><td>从不会到跑通全流程</td></tr>
+<tr><td class="cy">深度型</td><td>六间房最完整</td></tr>
+<tr><td class="cy">产出型</td><td>已有文章/Skill成品</td></tr>
+<tr><td class="cy">互助型</td><td>搭子互动多、帮助他人</td></tr>
+</tbody></table></div>
+<div class="card card-mg" style="flex:1"><p class="mg" style="font-weight:600;font-size:var(--small-size);margin-bottom:10px">📋 统一分享框架（提前发）</p><ol style="padding-left:1.2rem;font-size:var(--small-size);color:var(--text-secondary);line-height:1.8">
+<li>来的时候什么状态？（1-2句）</li>
+<li>21天最大的改变？（核心亮点）</li>
+<li>屏幕共享：CLAUDE.md + 六间房 + 第一篇Output</li>
+<li>一句话送给犹豫中的人</li>
+</ol></div>
+</div>
+<div class="card card-ne" style="margin-top:1rem"><p class="ne" style="font-weight:600;font-size:var(--small-size)">⚠️ 执行要点</p>
+<div style="display:flex;gap:1.5rem;margin-top:8px;font-size:var(--small-size);color:var(--text-secondary)">
+<span>✅ 提前彩排（屏幕共享+时长）</span>
+<span>✅ 每人严格5-6min</span>
+<span>✅ 制造前后反差</span>
+<span>✅ 录屏留存做销售案例</span>
+</div>
+</div>
+</div><div class="slide-num">04 / 16</div></div>
+
+<!-- ========== P05 点评模板 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="cy" style="margin-bottom:1rem">💬 蓉蓉子点评模板（每人1min）</h2>
+<div class="quote-box" style="max-width:650px">
+<p class="cy" style="font-style:normal;font-size:var(--body-size)">"谢谢XX的分享。我注意到一个细节——</p>
+<p style="margin-top:8px;color:var(--text-secondary);font-size:var(--body-size)">（提炼1个具体的观察点，证明你认真听了）</p>
+<p style="margin-top:12px"class="ne" style="font-style:normal;font-size:var(--body-size)">这恰恰说明了一个道理：</p>
+<p style="color:var(--text-secondary);font-size:var(--body-size)">（升华到方法论层面，金句收尾）</p>
+<p style="margin-top:16px;text-align:right" class="gold" style="font-style:normal">给XX鼓掌 👏</p>
+</div>
+<div class="card card-gm" style="margin-top:1.5rem;text-align:center;padding:1.3rem">
+<p class="gold" style="font-size:var(--h3-size)">点评核心：证明你认真听了 + 升华到方法论 + 金句收尾</p>
+</div>
+</div><div class="slide-num">05 / 16</div></div>
+
+<!-- ========== P06 最佳搭子奖 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem"><h2 class="gold neon-tg" style="margin:0">🥇 最佳搭子奖 TOP3</h2><span class="badge badge-gold">~7min</span></div>
+<p style="color:var(--text-secondary);margin-bottom:1rem;font-size:var(--small-size)">评的是 <span class="gold">"1对1双向陪伴的质量"</span> —— 谁最懂得和另一个人一起变好</p>
+<table><thead><tr><th>维度</th><th>权重</th><th>数据来源</th><th>计分方式</th></tr></thead><tbody>
+<tr><td class="gold">互评完成度</td><td class="gold" style="font-weight:700">40%</td><td>问卷星互评表</td><td>按时+有实质内容得满分，每缺一次扣5分</td></tr>
+<tr><td class="gold">搭子互助深度</td><td class="gold" style="font-weight:700">35%</td><td>互评打分+验证</td><td>搭子打分(0-35)+蓉蓉子抽查</td></tr>
+<tr><td class="gold">自身成长可见度</td><td class="gold" style="font-weight:700">25%</td><td>作业+结营展示</td><td>有明显进步、能展示成果</td></tr>
+</tbody></table>
+<div class="flex-r" style="gap:1rem;margin-top:1rem">
+<div class="card" style="flex:1;text-align:center"><p style="font-size:var(--h3-size)"class="gold">🥇 第1名</p><p style="font-size:var(--body-size);margin-top:6px">抵扣 <span class="gold"style="font-weight:700">¥2,000</span></p><p style="font-size:var(--small-size);color:var(--text-secondary)">+ 学费全退</p></div>
+<div class="card" style="flex:1;text-align:center"><p style="font-size:var(--h3-size)">🥈 第2名</p><p style="font-size:var(--body-size);margin-top:6px">抵扣 <span class="cy"style="font-weight:700">¥2,000</span></p><p style="font-size:var(--small-size);color:var(--text-secondary)">+ 学费全退</p></div>
+<div class="card" style="flex:1;text-align:center"><p style="font-size:var(--h3-size)">🥉 第3名</p><p style="font-size:var(--body-size);margin-top:6px">抵扣 <span class="cy"style="font-weight:700">¥2,000</span></p><p style="font-size:var(--small-size);color:var(--text-secondary)">+ 学费全退</p></div>
+</div>
+</div><div class="slide-num">06 / 16</div></div>
+
+<!-- ========== P07 互助之星奖 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem"><h2 class="mg neon-tm" style="margin:0">⭐ 互助之星奖 TOP5</h2><span class="badge" style="background:rgba(255,0,170,.1);color:var(--accent-magenta)">~8min</span></div>
+<p style="color:var(--text-secondary);margin-bottom:1rem;font-size:var(--small-size)">评的是 <span class="mg">"1对多的社群贡献度"</span> —— 广度1对多（区别于搭子的深度1对1）</p>
+<table><thead><tr><th>维度</th><th>权重</th><th>数据来源</th><th>计分方式</th></tr></thead><tbody>
+<tr><td class="mg">社群活跃质量</td><td class="mg" style="font-weight:700">40%</td><td>过群记录检索</td><td>有效发言数+主动分享次数</td></tr>
+<tr><td class="mg">主动帮助他人</td><td class="mg" style="font-weight:700">35%</td><td>关键词搜索</td><td>每帮1人得5分(上限35)</td></tr>
+<tr><td class="mg">正能量氛围贡献</td><td class="mg" style="font-weight:700">25%</td><td>提名票数</td><td>鼓励他人/活跃气氛次数</td></tr>
+</tbody></table>
+<div class="flex-r" style="gap:1rem;margin-top:1rem">
+<div class="card card-mg" style="flex:1;text-align:center"><p style="font-size:var(--h3-size)"class="mg">⭐ 第1名</p><p style="font-size:var(--body-size);margin-top:6px">抵扣 <span class="mg"style="font-weight:700">¥1,000</span></p><p style="font-size:var(--small-size);color:var(--text-secondary)">+ 学费全退 + <span class="or">30min 1v1诊断</span></p></div>
+<div class="card" style="flex:1;text-align:center"><p style="font-size:var(--h3-size)">⭐ 第2-5名</p><p style="font-size:var(--body-size);margin-top:6px">抵扣 <span class="cy"style="font-weight:700">¥1,000</span></p><p style="font-size:var(--small-size);color:var(--text-secondary)">+ 学费全退</p></div>
+</div>
+</div><div class="slide-num">07 / 16</div></div>
+
+<!-- ========== P08 差异化策略 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="ne" style="margin-bottom:1rem">🔄 群保留 vs 虾玩星球 · 差异化</h2>
+<p style="color:var(--text-secondary);margin-bottom:1rem;font-size:var(--small-size)">为什么群不解散但不影响转化？→ 差异化定位</p>
+<table><thead><tr><th>维度</th><th>实操营群（校友录）</th><th class="or">🦐 虾玩星球</th></tr></thead><tbody>
+<tr><td><span class="cy">定位</span></td><td>老同学偶尔聚聚</td><td class="or">活的持续成长圈子</td></tr>
+<tr><td><span class="cy">运营频率</span></td><td>一周≤1条链接</td><td class="or">每月4场活动</td></tr>
+<tr><td><span class="cy">核心价值</span></td><td>找到老同学、自由交流</td><td class="or">直播/工作坊/吐槽大会/诊断</td></tr>
+<tr><td><span class="cy">AI能力</span></td><td>无</td><td class="or">虾球助手24h在线</td></tr>
+<tr><td><span class="cy">价格</span></td><td>免费</td><td class="or">¥1,999/年</td></tr>
+</tbody></table>
+<div class="card card-ne" style="margin-top:1.2rem;text-align:center;padding:1.2rem">
+<p class="ne" style="font-size:var(--h3-size)">免费 = "能找到人"</p>
+<p class="or" style="font-size:var(--h3-size)">付费 = "有人带着走"</p>
+</div>
+</div><div class="slide-num">08 / 16</div></div>
+
+<!-- ========== P09 两条路选择 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem"><h2 class="cy neon-t" style="margin:0">环节05 · 升级路径指引</h2><span style="color:var(--text-secondary);font-size:var(--small-size)">20min ⭐转化关键</span></div>
+<p class="cy" style="margin-bottom:1.2rem">"21天结束了。但我知道在座的很多人——不是觉得终于结束了，而是觉得才刚刚开始。"</p>
+<div class="flex-r" style="gap:1.2rem">
+<div class="card" style="flex:1;text-align:center;padding:1.5rem 1.2rem"><div style="font-size:2.5rem">🦐</div><h3 class="or" style="font-size:var(--h2-size);margin:10px 0 8px">虾玩星球</h3><p style="font-size:var(--small-size);color:var(--text-secondary)">不是课程 · 不是训练营 · 是一个圈子</p><div style="margin-top:12px;text-align:left;font-size:var(--small-size)">
+<div class="check-item"><span class="ck or">✓</span><span>每月4场活动</span></div>
+<div class="check-item"><span class="ck or">✓</span><span>虾球助手24h在线</span></div>
+<div class="check-item"><span class="ck or">✓</span><span>每年1次1v1深度诊断</span></div>
+<div class="check-item"><span class="ck or">✓</span><span>适合想持续迭代但暂不需深度陪跑的你</span></div>
+</div></div>
+<div class="card card-mg" style="flex:1;text-align:center;padding:1.5rem 1.2rem"><div style="font-size:2.5rem">💎</div><h3 class="mg" style="font-size:var(--h2-size);margin:10px 0 8px">私教团</h3><p style="font-size:var(--small-size);color:var(--text-secondary)">深度陪跑 · 从0到1搭完整体系</p><div style="margin-top:12px;text-align:left;font-size:var(--small-size)">
+<div class="check-item"><span class="ck mg">✓</span><span>手把手带你产品化</span></div>
+<div class="check-item"><span class="ck mg">✓</span><span>有门槛：有产品/有内容/B产品</span></div>
+<div class="check-item"><span class="ck mg">✓</span><span>把"已有的"变得更值钱</span></div>
+<div class="check-item"><span class="ck mg">✓</span><span>适合已有基础想系统性升级的你</span></div>
+</div></div>
+</div>
+</div><div class="slide-num">09 / 16</div></div>
+
+<!-- ========== P10 权益透明化 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="ne" style="margin-bottom:1rem">💰 权益透明化 · 投屏展示</h2>
+<p style="color:var(--text-secondary);margin-bottom:1rem;font-size:var(--small-size)">"我把账算得清清楚楚，不留任何模糊空间。没有隐形消费，没有套路。"</p>
+<table><thead><tr><th>你的身份</th><th>私教原价</th><th>抵扣后实付约</th></tr></thead><tbody>
+<tr><td class="gold">🥇 最佳搭子</td><td>¥16,800</td><td class="gold" style="font-weight:700">~ ¥13,800</td></tr>
+<tr><td class="mg">⭐ 互助之星</td><td>¥16,800</td><td class="mg" style="font-weight:700">~ ¥14,800</td></tr>
+<tr><td class="cy">普通学员(有产品/内容)</td><td>¥16,800</td><td class="cy" style="font-weight:700">~ ¥15,500</td></tr>
+</tbody></table>
+<div class="flex-r" style="gap:1rem;margin-top:1rem">
+<div class="card" style="flex:1"><p class="cy" style="font-weight:600;font-size:var(--small-size)">每一档都包含：</p><div class="check-item"><span class="ck">✓</span><span>B产品费用(¥1,299)全额抵扣</span></div><div class="check-item"><span class="ck">✓</span><span>实操营学费 全额退还</span></div><div class="check-item"><span class="ck">✓</span><span>各自奖项的额外抵扣</span></div></div>
+<div class="card card-ne" style="flex:1;text-align:center;display:flex;flex-direction:column;justify-content:center"><p class="ne" style="font-size:var(--h3-size)">算得明明白白<br/>不留模糊空间</p></div>
+</div>
+</div><div class="slide-num">10 / 16</div></div>
+
+<!-- ========== P11 行动召唤 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="cy neon-t" style="margin-bottom:1rem">🚀 行动召唤 · 双通道</h2>
+<p style="color:var(--text-secondary);margin-bottom:1.2rem">"今天我不在现场卖任何东西。因为我相信——这21天的体验，比任何销售话术都有说服力。"</p>
+<div class="flex-r" style="gap:1.2rem">
+<div class="card" style="flex:1;text-align:center;padding:1.5rem 1.2rem"><div style="font-size:2rem;margin-bottom:8px">📝</div><h3 class="cy" style="font-size:var(--h3-size)">方式一：意向表</h3><p style="font-size:var(--small-size);color:var(--text-secondary);margin:8px 0 12px">低压通道 · 48小时内回信</p><div style="width:120px;height:120px;background:rgba(0,255,204,.08);border:2px dashed rgba(0,255,204,.3);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto"><span style="color:var(--text-secondary);font-size:var(--small-size)">二维码占位</span></div><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:8px">扫码填写意向表</p></div>
+<div class="card card-mg" style="flex:1;text-align:center;padding:1.5rem 1.2rem"><div style="font-size:2rem;margin-bottom:8px">💬</div><h3 class="mg" style="font-size:var(--h3-size)">方式二：加微信</h3><p style="font-size:var(--small-size);color:var(--text-secondary);margin:8px 0 12px">高压通道 · 语音/视频聊</p><div style="width:120px;height:120px;background:rgba(255,0,170,.08);border:2px dashed rgba(255,0,170,.3);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto"><span style="color:var(--text-secondary);font-size:var(--small-size)">二维码占位</span></div><p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:8px">加蓉蓉子微信1v1聊</p></div>
+</div>
+<div class="card card-gm" style="margin-top:1rem;text-align:center"><p class="gold" style="font-size:var(--body-size)">不管选哪条路还是先自己跑一阵 → 群留着做<b>校友录</b> 📖<br/>想要持续有人带着走 → <span class="or">🦐虾玩星球</span></p></div>
+</div><div class="slide-num">11 / 16</div></div>
+
+<!-- ========== P12 不散场宣言 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc" style="text-align:center">
+<h2 class="gold neon-tg" style="margin-bottom:1rem">不散场宣言</h2>
+<div class="quote-box" style="text-align:left;max-width:600px;margin:0 auto;display:inline-block">
+<p class="cy" style="font-style:normal;font-size:var(--body-size)">"21天前你们来到这里的时候，</p>
+<p style="color:var(--text-secondary);font-style:normal;font-size:var(--body-size)">可能带着焦虑——'AI会不会替代我'</p>
+<p style="color:var(--text-secondary);font-style:normal;font-size:var(--body-size)">可能带着期待——'我终于要搞定它了'</p>
+<p style="color:var(--text-secondary);font-style:normal;font-size:var(--body-size)">也可能带着怀疑——'又是一个割韭菜的'</p>
+<p class="ne" style="font-style:normal;font-size:var(--body-size);margin-top:14px">21天后的今天，我不知道你们每个人的答案是什么。</p>
+<p class="ne" style="font-style:normal;font-size:var(--body-size)">但我知道一件事——</p>
+<p class="gold" style="font-style:normal;font-size:var(--h3-size);margin-top:14px">你们已经不再是21天前的那个自己了。</p>
+<p style="color:var(--text-secondary);font-style:normal;font-size:var(--body-size);margin-top:10px">因为你已经亲手搭建了一套属于自己的系统。<br/>这套系统会跟着你长大，会越来越懂你。</p>
+</div>
+</div><div class="slide-num">12 / 16</div></div>
+
+<!-- ========== P13 收尾金句 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc" style="text-align:center">
+<div style="margin-bottom:1rem"><span class="badge badge-gold">🎬 环节06 · 收尾</span></div>
+<h1 class="neon-tg gold" style="font-size:var(--title-size);line-height:1.3">结营不是结束<br/><span style="font-size:.7em;color:var(--text-secondary)">是你开始自己跑的日子</span></h1>
+<div style="margin-top:2rem;display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap">
+<div class="card" style="min-width:160px;text-align:center;padding:1.2rem"><p style="font-size:1.6rem">📖</p><p class="cy" style="font-weight:600">校友录</p><p style="font-size:var(--small-size);color:var(--text-secondary)">老同学随时能找到彼此</p></div>
+<div class="card card-ne" style="min-width:160px;text-align:center;padding:1.2rem"><p style="font-size:1.6rem">🦐</p><p class="or" style="font-weight:600">虾玩星球</p><p style="font-size:var(--small-size);color:var(--text-secondary)">大门随时开着</p></div>
+<div class="card card-gm" style="min-width:160px;text-align:center;padding:1.2rem"><p style="font-size:1.6rim">💎</p><p class="mg" style="font-weight:600">私教团</p><p style="font-size:var(--small-size);color:var(--text-secondary)">留给准备好的人</p></div>
+</div>
+<p class="gold" style="margin-top:2rem;font-size:var(--h2-size)">21天快乐。谢谢每一位。🦞</p>
+<p style="margin-top:1rem;color:var(--text-secondary);font-size:var(--small-size)">Q&A · 彩蛋 · 合影留念</p>
+</div><div class="slide-num">13 / 16</div></div>
+
+<!-- ========== P14 转化预期 ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="ne" style="margin-bottom:1rem">📊 转化预期指标</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+<div class="card" style="text-align:center"><p style="font-size:2rem;color:var(--accent-cyan)">>70%</p><p style="font-weight:600;margin-top:6px">直播到场率</p><p style="font-size:var(--small-size);color:var(--text-secondary)">学员总数 × 70%</p></div>
+<div class="card" style="text-align:center"><p style="font-size:2rem;color:var(--accent-magenta)">30-40%</p><p style="font-weight:600;margin-top:6px">虾玩星球意向</p><p style="font-size:var(--small-size);color:var(--text-secondary)">场内表达兴趣占比</p></div>
+<div class="card" style="text-align:center"><p style="font-size:2rem;color:var(--accent-neon)">10-15%</p><p style="font-weight:600;margin-top:6px">私教团高意向</p><p style="font-size:var(--small-size);color:var(--text-secondary)">明确想聊私教的</p></div>
+<div class="card card-gm" style="text-align:center"><p style="font-size:2rem;color:var(--accent-gold)">>20%</p><p style="font-weight:600;margin-top:6px">48h内表单填写</p><p style="font-size:var(--small-size);color:var(--text-secondary)">实际填了意向表</p></div>
+</div>
+</div><div class="slide-num">14 / 16</div></div>
+
+<!-- ========== P15 会前Checklist ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc">
+<h2 class="cy" style="margin-bottom:1rem">📌 会前准备 Checklist</h2>
+<div class="flex-r" style="gap:1.2rem">
+<div class="card" style="flex:1"><p class="cy" style="font-weight:600;font-size:var(--small-size);margin-bottom:10px">📅 提前7天 (今明)</p><div class="timeline-item"><div class="timeline-dot cy"></div><span>发结营预告到社群</span></div>
+<p class="mg" style="font-weight:600;font-size:var(--small-size);margin:14px 0 10px">📅 提前3天 (5/27)</p>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-magenta)"></div><span>邀约4-5位展示学员</span></div>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-magenta)"></div><span>发出《搭子互评表》问卷星</span></div>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-magenta)"></div><span>准备金句截图+高光图片</span></div></div>
+<div class="card card-mg" style="flex:1"><p class="mg" style="font-weight:600;font-size:var(--small-size);margin-bottom:10px">📅 提前2天 (5/28)</p>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-magenta)"></div><span>发出《互助之星提名表》问卷星</span></div>
+<p class="or" style="font-weight:600;font-size:var(--small-size);margin:14px 0 10px">📅 提前1天 (5/29)</p>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-orange)"></div><span>学员彩排 + 设备测试</span></div>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-orange)"></div><span>定获奖名单 + 写颁奖词</span></div>
+<div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-orange)"></div><span>准备PPT/权益表/二维码</span></div></div>
+</div>
+</div><div class="slide-num">15 / 16</div></div>
+
+<!-- ========== P16 END ========== -->
+<div class="slide"><div class="grid-bg"></div><div class="scanlines"></div><div class="sc" style="text-align:center">
+<div style="margin-bottom:1.5rem"><span class="badge badge-gold">🎬 结营仪式 · 课件完</span></div>
+<h1 class="neon-tg gold">5月30日 晚8点</h1><p style="margin-top:1rem;font-size:var(--h3-size);color:var(--text-secondary)">我们不见不散 🦞</p>
+<div style="margin-top:2.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap">
+<span class="tag gold">6大环节</span><span class="tag cy">90分钟</span><span class="tag mg">7份礼物</span><span class="tag ne">2大奖项</span><span class="or">2条路</span>
+</div>
+<p style="margin-top:2rem;color:var(--text-secondary);font-size:var(--small-size)">课件版本 v1 · 2026-05-20 · 石榴🐾 编制</p>
+</div><div class="slide-num">16 / 16</div></div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+slides.forEach((_,i)=>{const d=document.createElement('span');d.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'});nav.appendChild(d)});
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{const i=[...slides].indexOf(e.target);nav.children[i].classList.toggle('active',e.isIntersecting)})},{threshold:.5});
+slides.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

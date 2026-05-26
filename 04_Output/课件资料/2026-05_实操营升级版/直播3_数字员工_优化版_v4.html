@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>直播3 · 数字员工 · 优化版 v4</title>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@200,300,400,500,700,900&display=swap"/>
+    <style>
+:root{
+--bg-primary:#0a0f1c;--bg-secondary:#111827;--bg-card:#1a1f2e;--text-primary:#ffffff;--text-secondary:#9ca3af;
+--accent:#00d4aa;--accent-glow:rgba(0,212,170,0.3);--accent-warm:#ff8c42;--accent-soft:rgba(255,140,66,0.15);
+--font-display:"Clash Display",sans-serif;--font-body:"Satoshi",sans-serif;
+--title-size:clamp(1.8rem,5vw,3.5rem);--h2-size:clamp(1.3rem,3vw,2rem);--h3-size:clamp(1rem,2vw,1.4rem);
+--body-size:clamp(0.7rem,1.4vw,1rem);--slide-padding:clamp(1rem,4vw,3rem);--content-gap:clamp(0.75rem,2vw,1.5rem);
+--element-gap:clamp(0.3rem,1vw,0.75rem);--ease-out-expo:cubic-bezier(0.16,1,0.3,1);--duration-normal:0.5s;
+--accent-cyan:#00d4aa;--accent-orange:#ff8c42;--accent-neon:#d4ff00;--accent-magenta:#ff00aa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);line-height:1.5}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative;padding:var(--slide-padding)}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden}
+h1{font-family:var(--font-display);font-size:var(--title-size);font-weight:600;line-height:1.1}
+h2{font-family:var(--font-display);font-size:var(--h2-size);font-weight:600;line-height:1.2;margin-bottom:var(--content-gap)}
+h3{font-family:var(--font-display);font-size:var(--h3-size);font-weight:500;line-height:1.3;margin-bottom:var(--element-gap)}
+p,li{font-size:var(--body-size);line-height:1.6}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity var(--duration-normal) var(--ease-out-expo),transform var(--duration-normal) var(--ease-out-expo)}
+.slide.visible .reveal{opacity:1;transform:translateY(0)}
+.reveal:nth-child(1){transition-delay:0.05s}.reveal:nth-child(2){transition-delay:0.1s}.reveal:nth-child(3){transition-delay:0.2s}.reveal:nth-child(4){transition-delay:0.3s}.reveal:nth-child(5){transition-delay:0.4s}.reveal:nth-child(6){transition-delay:0.5s}
+.cy{color:var(--accent-cyan)}.or{color:var(--accent-orange)}.ne{color:var(--accent-neon)}.mg{color:var(--accent-magenta)}
+.neon-t{text-shadow:0 0 20px rgba(212,255,0,.15)}
+.golden{color:#f5c542}
+.gradient-bg{background:linear-gradient(135deg,#0a0f1c 0%,#0f1a2e 50%,#111827 100%)}
+.accent-gradient{background:linear-gradient(135deg,#00d4aa 0%,#00b894 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card{background:var(--bg-card);border:1px solid rgba(0,212,170,0.15);border-radius:12px;padding:clamp(0.75rem,1.5vw,1.25rem);margin-bottom:var(--element-gap)}
+.card-cy{border-color:rgba(0,212,170,.3)}.card-or{border-color:rgba(255,140,66,.3)}.card-mg{border-color:rgba(255,0,170,.25)}
+.card-ne{border-color:rgba(212,255,0,.2)}
+.highlight-box{background:var(--accent-soft);border-left:4px solid var(--accent-warm);padding:clamp(0.5rem,1.2vw,1rem);border-radius:0 10px 10px 0;margin:var(--element-gap) 0}
+.route-card{background:rgba(255,107,53,.06);border:1px solid rgba(255,107,53,.2);border-radius:10px;padding:12px 16px;margin-top:10px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:var(--content-gap)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:var(--element-gap)}
+.flex-list{display:flex;flex-direction:column;gap:var(--element-gap)}
+.flex-list li{padding-left:1.2em;position:relative}
+.flex-list li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:var(--body-size)}
+th,td{padding:clamp(0.3rem,0.8vw,0.6rem);text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)}
+th{color:var(--accent);font-weight:600}
+tr:hover{background:rgba(0,212,170,0.04)}
+pre{background:var(--bg-secondary);border:1px solid rgba(0,212,170,0.15);border-radius:8px;padding:clamp(0.5rem,1vw,0.85rem);font-size:clamp(0.6rem,0.9vw,0.8rem);overflow-x:auto;white-space:pre-wrap;font-family:'SF Mono','Fira Code',monospace;line-height:1.5}
+.badge{display:inline-block;background:var(--accent);color:var(--bg-primary);padding:0.2em 0.6em;border-radius:15px;font-size:0.75em;font-weight:600}
+.badge-new{background:rgba(212,255,0,.15);color:var(--accent-neon)}
+.badge-warm{background:var(--accent-warm)}
+.tag{display:inline-block;background:rgba(0,212,170,.12);color:var(--accent-cyan);padding:2px 8px;border-radius:8px;font-size:10px;font-weight:500;border:1px solid rgba(0,212,170,.25)}
+.title-slide{justify-content:center;align-items:center;text-align:center;background:radial-gradient(ellipse at center,#1a2a4a 0%,#0a0f1c 70%)}
+.emoji-icon{font-size:clamp(2rem,5vw,3rem);margin-bottom:0.3em}
+.section-tag{display:inline-block;background:rgba(0,212,170,0.12);color:var(--accent);padding:0.4em 0.8em;border-radius:6px;font-size:0.7rem;font-weight:600;margin-bottom:var(--element-gap);letter-spacing:0.03em}
+.flow{display:flex;align-items:center;justify-content:center;gap:clamp(0.3rem,0.8vw,0.6rem);flex-wrap:wrap;margin:var(--content-gap) 0}
+.flow-step{background:var(--bg-card);border:1px solid var(--accent);border-radius:8px;padding:clamp(0.4rem,0.8vw,0.7rem) clamp(0.6rem,1.2vw,1rem);text-align:center;font-size:clamp(0.6rem,1vw,0.85rem);min-width:60px}
+.flow-step-sm{min-width:50px;font-size:clamp(0.55rem,0.8vw,0.75rem)}
+.flow-arrow{color:var(--accent);font-size:1.2em}
+.arch-box{border:2px solid var(--accent);border-radius:12px;padding:clamp(0.6rem,1.2vw,1rem);margin:var(--element-gap) 0;background:rgba(0,212,170,0.03)}
+.arch-layer{display:flex;align-items:center;gap:0.75rem;padding:clamp(0.3rem,0.6vw,0.5rem) 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.arch-layer:last-child{border-bottom:none}
+.arch-icon{font-size:1.2em}
+.arch-label{font-weight:600;color:var(--accent);min-width:60px;font-size:0.9em}
+.arch-desc{color:var(--text-secondary);font-size:0.8em}
+.text-accent{color:var(--accent)}.text-warm{color:var(--accent-warm)}.text-center{text-align:center}
+.text-secondary{color:var(--text-secondary)}
+.mb-1{margin-bottom:0.4em}.mb-2{margin-bottom:0.8em}.mt-1{margin-top:0.5em}.mt-2{margin-top:1em}
+.small{font-size:0.85em;color:var(--text-secondary)}
+.slide-num{position:absolute;bottom:12px;right:18px;font-size:0.65rem;color:rgba(255,255,255,.18);font-family:var(--font-display);letter-spacing:.05em}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:1000;transition:width 0.3s ease}
+.nav-dots{position:fixed;right:clamp(0.5rem,1.5vw,1.5rem);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:all 0.3s ease}
+.nav-dot.active{background:var(--accent);transform:scale(1.4)}
+.keyboard-hint{position:fixed;bottom:clamp(0.5rem,1.5vw,1.5rem);left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-secondary);opacity:0.5}
+.grid-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(rgba(0,212,170,.03) 1px,transparent 1px);background-size:30px 30px;z-index:0;pointer-events:none}
+.sc{position:relative;z-index:1}
+.scanlines{position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.008) 0px,rgba(255,255,255,.008) 1px,transparent 1px,transparent 3px);z-index:0;pointer-events:none}
+@media(max-height:700px){:root{--slide-padding:clamp(0.6rem,2.5vw,1.5rem);--content-gap:clamp(0.4rem,1.2vw,0.8rem)}}
+@media(max-height:600px){.nav-dots,.keyboard-hint{display:none}}
+@media(max-width:600px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.15s!important}html{scroll-behavior:auto}}
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+    <nav class="nav-dots"></nav>
+    <div class="keyboard-hint">← → 键翻页 · 空格下一页</div>
+
+    <!-- ===================== P01 封面 ===================== -->
+    <div class="slide title-slide gradient-bg" id="s1"><div class="slide-content"><div class="sc" style="text-align:center">
+    <div class="emoji-icon reveal">📺</div>
+    <h1 class="reveal">直播3 · 融入工作流</h1>
+    <h2 class="reveal accent-gradient">打造你的数字员工</h2>
+    <p class="reveal mt-2" style="color:var(--text-secondary);font-size:var(--h3-size)">从"AI帮我整理" → "AI替我生产并分发"</p>
+    <p class="reveal mb-2 small">5月实操营 · 5/24 周日 20:00</p>
+    </div></div><div class="slide-num">01 / 15</div></div>
+
+    <!-- ===================== P02 开场 ===================== -->
+    <div class="slide gradient-bg" id="s2"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P02 · 开场</span>
+    <h2 class="reveal">欢迎来到第3次直播</h2>
+    <div class="card reveal mb-2">
+        <p>过去两周，你已经搭好了 LLM Wiki，养活了你的小龙虾。</p>
+        <p class="mt-1"><span class="or"><strong>今天我们要做的，是让你的 AI 升级到<em>数字员工</em></strong></span>——不只是帮你整理资料，而是<em>真的替你生产内容、分发内容</em>。</p>
+    </div>
+    <div class="highlight-box reveal">
+        <p><strong>直播结束时：</strong>你在微信里发一条碎片，AI 自动给你出选题、出大纲、出初稿，你改完一键发到公众号和小红书。</p>
+    </div>
+    <p class="reveal mt-2 small">🎬 2-3位学员分享养虾高光时刻</p>
+    </div></div><div class="slide-num">02 / 15</div></div>
+
+    <!-- ===================== P03 AI助手 vs 数字员工 ===================== -->
+    <div class="slide gradient-bg" id="s3"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P03 · 核心概念</span>
+    <h2 class="reveal">AI 助手 vs 数字员工</h2>
+    <div class="card reveal mb-2">
+    <table>
+    <tr><th>维度</th><th>AI 助手</th><th>数字员工</th></tr>
+    <tr><td>触发方式</td><td>你问 → 它答</td><td>自己有工作清单</td></tr>
+    <tr><td>任务范围</td><td>单次对话</td><td>多步工作流</td></tr>
+    <tr><td>责任</td><td>输出一段文字</td><td>完成一项交付</td></tr>
+    <tr><td>类比</td><td>智能搜索</td><td>远程同事</td></tr>
+    <tr><td>你的角色</td><td>提问者</td><td>主管/审核</td></tr>
+    </table>
+    </div>
+    <div class="highlight-box reveal">
+    <p class="text-warm"><strong>AI 助手是反应式的——你不问它不动。数字员工是主动式的——它有自己的工作清单、SOP、KPI。</strong></p>
+    </div>
+    </div></div><div class="slide-num">03 / 15</div></div>
+
+    <!-- ===================== P04 三件套架构 ===================== -->
+    <div class="slide gradient-bg" id="s4"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P04 · 核心认知 ⭐</span>
+    <h2 class="reveal">数字员工 = Wiki + Skill + 工作流</h2>
+    <div class="arch-box reveal">
+        <div class="arch-layer"><span class="arch-icon">🧠</span><span class="arch-label">Wiki 大脑层</span><span class="arch-desc">六间房 + Schema + 风格采样 → 让员工知道"我是谁、我懂什么"</span></div>
+        <div class="arch-layer"><span class="arch-icon">✋</span><span class="arch-label">Skills 手脚层</span><span class="arch-desc">topic-generator / article-gen / xiaohongshu-gen → 让员工知道"我能干什么"</span></div>
+        <div class="arch-layer"><span class="arch-icon">🛤</span><span class="arch-label">工作流 流程层</span><span class="arch-desc">碎片 → 选题 → 大纲 → 初稿 → 分发 → 让员工知道"什么时候用什么手"</span></div>
+    </div>
+    <p class="cy reveal text-center"><strong>三件套缺一不可。大脑层你已经搭好了（直播①②），今天打通手脚+流程。</strong></p>
+    </div></div><div class="slide-num">04 / 15</div></div>
+
+    <!-- ===================== P05 一人公司智囊团 ===================== -->
+    <div class="slide gradient-bg" id="s5"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:.8rem"><h2 class="or" style="margin:0">一人公司智囊团 · 我的AI分身团队</h2><span class="badge badge-new">NEW!</span></div>
+    <p style="color:var(--text-secondary);margin-bottom:.8rem">我用AI搭建了5个数字分身，每个对应一个真实的人力缺口。</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:.8rem">
+    <div class="card card-cy" style="text-align:center;background:rgba(0,212,170,.04)"><span style="font-size:1.6rem">🐾</span><p style="font-weight:600;margin-top:4px;color:var(--accent-cyan)">石榴 · 首席AI搭档</p><p style="font-size:var(--small-size);color:var(--text-secondary)">全能主理 · 战略+执行</p><span class="tag" style="margin-top:4px">✅ 我的日常主力</span></div>
+    <div class="card" style="text-align:center;background:rgba(255,255,255,.02)"><span style="font-size:1.6rem">📝</span><p style="font-weight:600;margin-top:4px">小蜜 · 内容分身</p><p style="font-size:var(--small-size);color:var(--text-secondary)">选题/公众号/小红书</p><span class="tag" style="margin-top:4px;color:var(--text-secondary);border-color:rgba(255,255,255,.15)">✅ 今天全程教</span></div>
+    <div class="card" style="text-align:center;background:rgba(255,255,255,.02)"><span style="font-size:1.6rem">🎯</span><p style="font-weight:600;margin-top:4px">小策 · 产品分身</p><p style="font-size:var(--small-size);color:var(--text-secondary)">产品设计/迭代/复盘</p></div>
+    <div class="card" style="text-align:center;background:rgba(255,255,255,.02)"><span style="font-size:1.6rem">📂</span><p style="font-weight:600;margin-top:4px">小勤 · 执行分身</p><p style="font-size:var(--small-size);color:var(--text-secondary)">资料整理/入库/排期</p><span class="tag" style="margin-top:4px">前两期已学</span></div>
+    <div class="card" style="text-align:center;background:rgba(255,255,255,.02)"><span style="font-size:1.6rem">💰</span><p style="font-weight:600;margin-top:4px">钱老 · 商业分身</p><p style="font-size:var(--small-size);color:var(--text-secondary)">定价/转化/商业模式</p></div>
+    <div class="card card-mg" style="text-align:center;display:flex;flex-direction:column;justify-content:center"><p class="mg" style="font-size:var(--h3-size);font-weight:600">👤 你 (CEO)</p><p style="font-size:var(--small-size);color:var(--text-secondary)">做决策 · 把方向</p></div>
+    </div>
+    <p style="color:var(--text-secondary);font-size:var(--small-size);text-align:center">学会小蜜，你就能套着搭出石榴、小策、小勤、钱老——搭建逻辑完全一样，只是调用的知识库不同。</p>
+    </div></div><div class="slide-num">05 / 15</div></div>
+
+    <!-- ===================== P06 Skill vs 数字员工 ===================== -->
+    <div class="slide gradient-bg" id="s6"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P06 · 关键区别</span>
+    <h2 class="reveal">Skill ≠ 数字员工</h2>
+    <p style="color:var(--text-secondary);margin-bottom:.8rem" class="reveal">最多人搞混的概念：<span class="or">Skill 是零件，数字员工是会用零件的工人。</span></p>
+    <div class="card reveal mb-2">
+    <table>
+    <tr><th>对比维度</th><th>Skill（零件）</th><th>数字员工（工人）</th></tr>
+    <tr><td>是什么</td><td>一个 .md 说明书</td><td>一个能自主决策的角色</td></tr>
+    <tr><td>能干什么</td><td>完成一个具体任务</td><td>判断该调用哪个Skill、按什么顺序</td></tr>
+    <tr><td>举例</td><td><code>topic-generator</code> = 切菜刀</td><td>🐾 石榴 = 厨师，知道先切菜再炒菜</td></tr>
+    <tr><td>配置方式</td><td>写 SKILL.md + prompts/</td><td>写 CLAUDE.md + 调用多个Skill</td></tr>
+    </table>
+    </div>
+    <div class="highlight-box reveal mb-2"><p><strong>Skill 本质：</strong>你给 AI 一份说明书 = 一个 .md 文件。不到 30 行。会写文档你就会写 Skill。</p></div>
+    <p class="small reveal text-center">📦 配套文件：Skill创建指南 + 5类数字员工模板示意（学员模板文件夹内）</p>
+    </div></div><div class="slide-num">06 / 15</div></div>
+
+    <!-- ===================== P07 5步工作流总览 ===================== -->
+    <div class="slide gradient-bg" id="s7"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc" style="text-align:center">
+    <span class="section-tag reveal">P07 · 实操总览</span>
+    <h2 class="reveal">5步工作流 · 内容数字员工</h2>
+    <div class="flow reveal" style="font-size:clamp(0.7rem,1vw,0.9rem)">
+        <div class="flow-step flow-step-sm">碎片</div><span class="flow-arrow">→</span>
+        <div class="flow-step flow-step-sm">①<br/>出选题</div><span class="flow-arrow">→</span>
+        <div class="flow-step flow-step-sm">②<br/>出大纲</div><span class="flow-arrow">→</span>
+        <div class="flow-step flow-step-sm">③<br/>出初稿</div><span class="flow-arrow">→</span>
+        <div class="flow-step flow-step-sm">④<br/>你改</div><span class="flow-arrow">→</span>
+        <div class="flow-step flow-step-sm">⑤<br/>分发</div>
+    </div>
+    <p style="color:var(--text-secondary);margin:.5rem 0" class="small">好内容反哺 Wiki ↑</p>
+    <div class="highlight-box reveal" style="max-width:500px;margin:0 auto"><p class="small"><strong>关键原则：</strong>真实素材跑演示 · 不快进不剪辑 · AI写80%，你改20%——这20%就是"为什么是你"</p></div>
+    </div></div><div class="slide-num">07 / 15</div></div>
+
+    <!-- ===================== P08 演示 Step 1 ===================== -->
+    <div class="slide gradient-bg" id="s8"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P08 · 演示 Step 1</span>
+    <h2 class="reveal">① 微信发碎片 → 出选题</h2>
+    <div class="card reveal mb-2" style="border-color:var(--accent-cyan)">
+    <p class="mb-1"><strong>你发：</strong>"今天和学员聊，她说'知识库和我有什么关系'——这个问题我被问了至少20次。"</p>
+    </div>
+    <p class="small reveal mb-1">↓ AI 基于 Wiki 母题 + 本周素材 ↓</p>
+    <div class="card reveal" style="background:rgba(0,212,170,.03);font-size:var(--small-size)">
+    <p class="or" style="font-weight:600;margin-bottom:4px">📋 本周选题池</p>
+    <p style="margin:2px 0">1️⃣ <b>【M3】</b>"知识库和我有什么关系"——这个问题我被问了20次</p>
+    <p style="margin:2px 0">2️⃣ <b>【M1】</b>"客户不是拒绝了你，是拒绝了想改变的自己"</p>
+    <p style="margin:2px 0">3️⃣ <b>【M2】</b>从"卖方法论"到"卖能量"：高客单的真正价值</p>
+    <p style="margin:2px 0">4️⃣ <b>【M1×M3】</b>AI时代，我为什么选择听金刚经来对抗焦虑？</p>
+    <p style="margin:2px 0">5️⃣ <b>【M2】</b>实操营复盘：AI干了90%的活儿，但那10%才是关键</p>
+    </div>
+    <div class="highlight-box reveal mt-2"><p class="small"><strong>💬 </strong>AI 不是凭空想选题，它调用了本周素材 + M1故事母题 + 05房间的痛点库。这就是底座的力量。</p></div>
+    </div></div><div class="slide-num">08 / 15</div></div>
+
+    <!-- ===================== P09 演示 Step 2-3 ===================== -->
+    <div class="slide gradient-bg" id="s9"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P09 · 演示 Step 2-3</span>
+    <h2 class="reveal">②③ 选定主题 → 大纲 + 初稿</h2>
+    <p class="small reveal mb-1">选定 1️⃣ → GAP框架出大纲 → 调03风格生成初稿</p>
+    <div class="card reveal mb-2" style="font-size:var(--small-size)">
+    <p style="font-weight:600;margin-bottom:6px" class="cy">GAP 框架</p>
+    <p style="margin:2px 0"><b>Gap（问题）</b>：搭了知识库，但不知道对我有什么用</p>
+    <p style="margin:2px 0"><b>Analysis（拆解）</b>：误区——知识库=笔记仓库；真相——知识库是AI的说明书</p>
+    <p style="margin:2px 0"><b>Principle（原则）</b>：①AI是第一读者 ②结构化>数量多 ③用一次就值回</p>
+    <p style="margin:2px 0"><b>Action（行动）</b>：今天用5步法出一篇 → 发1个平台 → 感受30分钟从碎片到稿件</p>
+    </div>
+    <p class="small reveal">↓ 调03风格 + 01身份 + 02方法论 → 生成初稿（~1500字，语气仿蓉蓉子）↓</p>
+    <div class="highlight-box reveal mt-1"><p class="small"><strong>💬 </strong>你平时写文章要3小时。现在大纲+初稿一共15分钟。前提是你的底座搭好了。没底座，AI写出来就是"正确的废话"。</p></div>
+    </div></div><div class="slide-num">09 / 15</div></div>
+
+    <!-- ===================== P10 演示 Step 4-5 ===================== -->
+    <div class="slide gradient-bg" id="s10"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P10 · 演示 Step 4-5</span>
+    <h2 class="reveal">④ 你改20% → ⑤ 一键分发</h2>
+    <div class="card reveal mb-2">
+    <p style="font-weight:600;margin-bottom:6px" class="or">润色检查表（只改这4个地方）</p>
+    <table>
+    <tr><th>检查项</th><th>看什么</th><th>怎么改</th></tr>
+    <tr><td>☐ 语气像我吗</td><td>读出来听听</td><td>加1-2句你自己的口头禅</td></tr>
+    <tr><td>☐ 专业准确吗</td><td>有没有外行话</td><td>改成你的表达方式</td></tr>
+    <tr><td>☐ 用户视角吗</td><td>能不能戳中读者</td><td>加1个真实学员故事</td></tr>
+    <tr><td>☐ 价值观一致吗</td><td>有没有越线</td><td>删掉"正确的废话"</td></tr>
+    </table>
+    </div>
+    <div class="grid-2 reveal">
+    <div class="card card-cy" style="text-align:center"><span style="font-size:1.4rem">📱</span><p class="cy" style="font-weight:600">公众号草稿</p><p class="small">保留原文风格，完整正文 → 发到草稿箱</p></div>
+    <div class="card card-mg" style="text-align:center"><span style="font-size:1.4rem">📕</span><p class="mg" style="font-weight:600">小红书图文</p><p class="small">emoji密、节奏快、第一句钩子、带标签</p></div>
+    </div>
+    <p class="mt-1 small reveal text-center">不同输入走不同路：内容→生产流，灵感→待处理，咨询→更新痛点库。这就是路由。</p>
+    <div class="highlight-box reveal mt-1"><p class="small"><strong>💬 </strong>AI写80%，你改20%。这20%不能省，因为这20%才是"为什么是你"的部分。</p></div>
+    </div></div><div class="slide-num">10 / 15</div></div>
+
+    <!-- ===================== P11 结营预告 ===================== -->
+    <div class="slide gradient-bg" id="s11"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P11 · 结营预告</span>
+    <h2 class="reveal">结营仪式预告 · 5/30 周六 晚8点</h2>
+    <p class="mb-2 reveal" style="color:var(--text-secondary)">不是听课——是你来 Show 你的龙虾、你的 Wiki、你这21天发布的内容。</p>
+    <p style="font-weight:600;margin-bottom:8px" class="reveal">🎁 结营7份礼物</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" class="reveal">
+    <div class="card"><p><span class="badge">🎁1</span> <strong>完整Skills包</strong></p><p class="small">8个开箱即用</p></div>
+    <div class="card"><p><span class="badge">🎁2</span> <strong>5类数字员工模板</strong></p><p class="small">内容/产品/销售/知识库/教练 · YAML直接套</p></div>
+    <div class="card"><p><span class="badge">🎁3</span> <strong>CLAUDE.md范本</strong></p><p class="small">完整版+最小版 · 不同行业适配</p></div>
+    <div class="card"><p><span class="badge">🎁4</span> <strong>内容创作SOP卡片</strong></p><p class="small">可打印贴桌面的 checklist</p></div>
+    <div class="card"><p><span class="badge">🎁5</span> <strong>Skill创建指南</strong></p><p class="small">4种方法 · 从入门到精通</p></div>
+    <div class="card card-or"><p><span class="badge badge-new">🎁6</span> <strong>🦐 虾玩星球</strong></p><p class="small">¥1,999/年 · 学员再抵¥400 · 限前15位 · 结营后3天失效</p></div>
+    <div class="card card-ne"><p><span class="badge" style="background:var(--accent-neon);color:#000">🏆</span> <strong>搭子&互助之星</strong></p><p class="small">私教抵扣 + 学费全退</p></div>
+    </div>
+    </div></div><div class="slide-num">11 / 15</div></div>
+
+    <!-- ===================== P12 颁奖机制 ===================== -->
+    <div class="slide gradient-bg" id="s12"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P12 · 颁奖机制</span>
+    <h2 class="reveal">量化评选标准</h2>
+    <div class="grid-2 reveal">
+    <div class="card card-cy"><h3 class="cy">🏆 最佳搭子 TOP3</h3>
+    <table><tr><th>维度</th><th>权重</th></tr><tr><td>互评完成度</td><td>40%</td></tr><tr><td>搭子互助深度</td><td>35%</td></tr><tr><td>自身成长可见度</td><td>25%</td></tr></table>
+    <p class="mt-1 small">权益：私教抵扣¥2,000 + 学费全退</p></div>
+    <div class="card card-or"><h3 class="or">⭐ 互助之星 TOP5</h3>
+    <table><tr><th>维度</th><th>权重</th></tr><tr><td>社群活跃质量</td><td>40%</td></tr><tr><td>主动帮助他人</td><td>35%</td></tr><tr><td>正能量氛围贡献</td><td>25%</td></tr></table>
+    <p class="mt-1 small">权益：私教抵扣¥1,000 + 学费全退</p></div>
+    </div>
+    <p class="reveal mt-1 text-center"><span class="badge badge-new">5/27发问卷星</span> 记得填！直接影响评分哦～</p>
+    </div></div><div class="slide-num">12 / 15</div></div>
+
+    <!-- ===================== P13 终验作业+Q&A ===================== -->
+    <div class="slide gradient-bg" id="s13"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc">
+    <span class="section-tag reveal">P13 · 终验作业</span>
+    <h2 class="reveal">Phase 3 终验作业</h2>
+    <div class="card reveal mb-2">
+    <table>
+    <tr><td>Day 15（今天）</td><td>✅ 跟着跑通5步法（碎片→分发）</td></tr>
+    <tr><td>Day 16-17</td><td>✅ 用5步法独立完成1篇 + 搭子互审</td></tr>
+    <tr><td>Day 18</td><td>✅ 至少1篇内容发布到1个平台</td></tr>
+    <tr><td>Day 19</td><td>✅ 第2篇内容（深化练习）</td></tr>
+    <tr><td>Day 20</td><td>✅ Wiki体检(Lint) + 导出zip备份</td></tr>
+    <tr><td>Day 21（5/30）</td><td>✅ 结营Show你的龙虾+成果 🔥</td></tr>
+    </table>
+    </div>
+    <p class="reveal mb-1"><strong>合格标准：</strong>全链路至少跑通1次 + 1篇内容已发布 + 龙虾存活 + Wiki通过Lint</p>
+    <details class="reveal"><summary style="cursor:pointer;color:var(--text-secondary)">Top 3 Q&A</summary>
+    <p class="small mt-1"><b>Q: 没有公众号要不要发？</b> A: 不用强求，目标是跑通能力。<br/>
+    <b>Q: AI写的读者能看出来？</b> A: 看出来的是"全AI"，看不出"AI+你"。<br/>
+    <b>Q: 数字员工会不会越来越不像我？</b> A: 会。每周Lint体检，每月调CLAUDE.md。</p></details></div>
+    </div><div class="slide-num">13 / 15</div></div>
+
+    <!-- ===================== P14 结束页 ===================== -->
+    <div class="slide gradient-bg" id="s14"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc" style="text-align:center">
+    <div style="margin-bottom:.8rem"><span class="badge" style="background:rgba(212,255,0,.15);color:var(--accent-neon)">直播3 · 到此结束</span></div>
+    <h1 class="neon-t ne" style="margin-bottom:.6rem">你已经拥有了<br/>第一个数字员工 🧑‍💼</h1>
+    <p style="color:var(--text-secondary);font-size:var(--h3-size);max-width:520px;margin:0 auto 1.2rem">你学到的是一套可复用到任何场景的<br/><span class="ne">"数字员工搭建方法论"</span></p>
+    <p class="neon-t golden" style="font-size:var(--h2-size)">从1个员工 → 5人数字团队<br/>从一个人 → 一支队伍</p>
+    <p style="margin-top:1.2rem;color:var(--text-secondary);font-size:var(--body-size)">5/30 结营夜 · 见！<span style="font-size:1.3em">🦞</span></p>
+    </div></div><div class="slide-num">14 / 15</div></div>
+
+    <!-- ===================== P15 升级转化 ===================== -->
+    <div class="slide gradient-bg" id="s15"><div class="grid-bg"></div><div class="scanlines"></div><div class="slide-content"><div class="sc" style="text-align:center">
+    <div style="margin-bottom:.8rem"><span class="badge badge-new">想继续升级？</span></div>
+    <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+    <div class="card card-or" style="min-width:260px;text-align:left">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><p style="font-size:1.4rem;margin:0">🦐</p><p class="or" style="font-weight:700;font-size:var(--h3-size);margin:0">虾玩星球 · 年度社群</p></div>
+    <p style="font-size:var(--small-size);color:var(--text-secondary);margin-bottom:6px">AI 一人公司实战基地，<span class="or">不是听课，是老用户的圈子</span></p>
+    <div style="padding:8px 10px;background:rgba(255,107,53,.06);border-radius:6px;margin-bottom:6px">
+    <p style="font-size:var(--small-size);margin:0">📌 <b style="color:#fff">🎤 蓉蓉子摊牌局</b> · 每月1次 · 真实复盘+经验拆解</p>
+    <p style="font-size:var(--small-size);margin:4px 0 0">📌 <b style="color:#fff">🤖 AI分身工作坊</b> · 每月1次 · 搭数字员工实操</p>
+    <p style="font-size:var(--small-size);margin:4px 0 0">📌 <b style="color:#fff">😂 虾玩吐槽大会</b> · 吐槽AI翻车 + 现场排障</p>
+    <p style="font-size:var(--small-size);margin:4px 0 0">📌 <b style="color:#fff">🎯 1v1深度产品诊断</b> · 1次含在年费中</p>
+    <p style="font-size:var(--small-size);margin:4px 0 0">📌 <b style="color:#fff">🦐 虾球助手使用权</b> · 蓉蓉子的AI工具库共享</p>
+    </div>
+    <div style="margin-top:6px;padding:6px 12px;background:rgba(255,107,53,.1);border-radius:6px;font-size:var(--small-size)"><span class="or" style="font-weight:700;font-size:var(--body-size)">¥1,999/年</span></div>
+    <p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px">本期学员再抵 <span class="or" style="font-weight:600">¥400</span> · 限前15位种子客户<br/><span style="color:var(--accent-magenta)">结营后3天失效</span></p></div>
+    <div class="card card-mg" style="min-width:260px;text-align:left">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><p style="font-size:1.4rem;margin:0">💎</p><p class="mg" style="font-weight:700;font-size:var(--h3-size);margin:0">六间房·经验资产化私教</p></div>
+    <p style="font-size:var(--small-size);color:var(--text-secondary);margin-bottom:6px">5个月，把散装经验变成<span class="mg">可复用的数字资产系统</span></p>
+    <div style="padding:8px 10px;background:rgba(255,0,170,.06);border-radius:6px;margin-bottom:6px">
+    <p style="font-size:var(--small-size);margin:0">❶ <b style="color:#fff">知识库底座定制</b> · 六间房框架 · 可检索可复用</p>
+    <p style="font-size:var(--small-size);margin:4px 0 0">❷ <b style="color:#fff">一人公司数字分身员工</b> · 内容+产品+商业+交付</p>
+    </div>
+    <p style="font-size:var(--small-size);color:var(--text-secondary);margin:2px 0">⏱ 第1-2月底座搭建 → 第3月分身上岗 → 第4-5月免费迭代</p>
+    <p style="font-size:var(--small-size);color:var(--text-secondary);margin:2px 0">🎁 1v1战略咨询(每2周) · 微信无限答疑 · 虾球助手 · 结营行动地图</p>
+    <p style="font-size:var(--small-size);color:var(--text-secondary);margin-top:4px"><b class="or" style="font-size:1.1rem">¥16,800</b>（含¥1,000审核金）· 已有产品/内容基础 · 审核入学</p></div>
+    </div>
+    </div></div><div class="slide-num">15 / 15</div></div>
+
+<script>
+(function(){
+var slides=document.querySelectorAll('.slide');
+var nav=document.querySelector('.nav-dots');
+var bar=document.querySelector('.progress-bar');
+var total=slides.length;
+if(!slides.length)return;
+for(var i=0;i<total;i++){var d=document.createElement('div');d.className='nav-dot';d.setAttribute('data-index',i);d.addEventListener('click',function(e){var idx=parseInt(this.getAttribute('data-index'));slides[idx].scrollIntoView({behavior:'smooth'})});nav.appendChild(d)}
+function update(){var vh=window.innerHeight;var st=window.scrollY;var idx=Math.round(st/vh);if(idx<0)idx=0;if(idx>=total)idx=total-1;bar.style.width=((idx+1)/total*100)+'%';var dots=nav.querySelectorAll('.nav-dot');dots.forEach(function(d,i){d.classList.toggle('active',i===idx)});slides.forEach(function(s,i){s.classList.toggle('visible',i===idx||i===idx-1||i===idx+1)})}
+window.addEventListener('scroll',update,{passive:true});
+window.addEventListener('resize',update);
+document.addEventListener('keydown',function(e){var vh=window.innerHeight;var st=window.scrollY;var idx=Math.round(st/vh);if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault();if(idx<total-1)slides[idx+1].scrollIntoView({behavior:'smooth'})}else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();if(idx>0)slides[idx-1].scrollIntoView({behavior:'smooth'})}});
+update();
+})();
+</script>
+</body>
+</html>

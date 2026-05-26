@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>直播3 · 数字员工 · 优化版 v3.1</title>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@200,300,400,500,700,900&display=swap"/>
+    <style>
+:root{
+--bg-primary:#0a0f1c;--bg-secondary:#111827;--bg-card:#1a1f2e;--text-primary:#ffffff;--text-secondary:#9ca3af;
+--accent:#00d4aa;--accent-glow:rgba(0,212,170,0.3);--accent-warm:#ff8c42;--accent-soft:rgba(255,140,66,0.15);
+--font-display:"Clash Display",sans-serif;--font-body:"Satoshi",sans-serif;
+--title-size:clamp(1.8rem,5vw,3.5rem);--h2-size:clamp(1.3rem,3vw,2rem);--h3-size:clamp(1rem,2vw,1.4rem);
+--body-size:clamp(0.7rem,1.4vw,1rem);--slide-padding:clamp(1rem,4vw,3rem);--content-gap:clamp(0.75rem,2vw,1.5rem);
+--element-gap:clamp(0.3rem,1vw,0.75rem);--ease-out-expo:cubic-bezier(0.16,1,0.3,1);--duration-normal:0.5s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);line-height:1.5}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative;padding:var(--slide-padding)}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden}
+h1{font-family:var(--font-display);font-size:var(--title-size);font-weight:600;line-height:1.1}
+h2{font-family:var(--font-display);font-size:var(--h2-size);font-weight:600;line-height:1.2;margin-bottom:var(--content-gap)}
+h3{font-family:var(--font-display);font-size:var(--h3-size);font-weight:500;line-height:1.3;margin-bottom:var(--element-gap)}
+p,li{font-size:var(--body-size);line-height:1.6}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity var(--duration-normal) var(--ease-out-expo),transform var(--duration-normal) var(--ease-out-expo)}
+.slide.visible .reveal{opacity:1;transform:translateY(0)}
+.reveal:nth-child(1){transition-delay:0.05s}.reveal:nth-child(2){transition-delay:0.1s}.reveal:nth-child(3){transition-delay:0.2s}.reveal:nth-child(4){transition-delay:0.3s}.reveal:nth-child(5){transition-delay:0.4s}.reveal:nth-child(6){transition-delay:0.5s}
+.gradient-bg{background:linear-gradient(135deg,#0a0f1c 0%,#0f1a2e 50%,#111827 100%)}
+.accent-gradient{background:linear-gradient(135deg,#00d4aa 0%,#00b894 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card{background:var(--bg-card);border:1px solid rgba(0,212,170,0.15);border-radius:12px;padding:clamp(0.75rem,1.5vw,1.25rem);margin-bottom:var(--element-gap)}
+.card-glow{box-shadow:0 0 30px var(--accent-glow);border-color:var(--accent)}
+.highlight-box{background:var(--accent-soft);border-left:4px solid var(--accent-warm);padding:clamp(0.5rem,1.2vw,1rem);border-radius:0 10px 10px 0;margin:var(--element-gap) 0}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:var(--content-gap)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:var(--element-gap)}
+.flex-list{display:flex;flex-direction:column;gap:var(--element-gap)}
+.flex-list li{padding-left:1.2em;position:relative}
+.flex-list li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:var(--body-size)}
+th,td{padding:clamp(0.3rem,0.8vw,0.6rem);text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)}
+th{color:var(--accent);font-weight:600}
+tr:hover{background:rgba(0,212,170,0.04)}
+pre{background:var(--bg-secondary);border:1px solid rgba(0,212,170,0.15);border-radius:8px;padding:clamp(0.5rem,1vw,0.85rem);font-size:clamp(0.6rem,0.9vw,0.8rem);overflow-x:auto;white-space:pre-wrap;font-family:'SF Mono','Fira Code',monospace;line-height:1.5}
+.badge{display:inline-block;background:var(--accent);color:var(--bg-primary);padding:0.2em 0.6em;border-radius:15px;font-size:0.75em;font-weight:600}
+.badge-warm{background:var(--accent-warm)}
+.title-slide{justify-content:center;align-items:center;text-align:center;background:radial-gradient(ellipse at center,#1a2a4a 0%,#0a0f1c 70%)}
+.emoji-icon{font-size:clamp(2rem,5vw,3rem);margin-bottom:0.3em}
+.section-tag{display:inline-block;background:rgba(0,212,170,0.12);color:var(--accent);padding:0.4em 0.8em;border-radius:6px;font-size:0.7rem;font-weight:600;margin-bottom:var(--element-gap);letter-spacing:0.03em}
+.flow{display:flex;align-items:center;justify-content:center;gap:clamp(0.3rem,0.8vw,0.6rem);flex-wrap:wrap;margin:var(--content-gap) 0}
+.flow-step{background:var(--bg-card);border:1px solid var(--accent);border-radius:8px;padding:clamp(0.4rem,0.8vw,0.7rem) clamp(0.6rem,1.2vw,1rem);text-align:center;font-size:clamp(0.6rem,1vw,0.85rem)}
+.flow-arrow{color:var(--accent);font-size:1.2em}
+.arch-box{border:2px solid var(--accent);border-radius:12px;padding:clamp(0.6rem,1.2vw,1rem);margin:var(--element-gap) 0;background:rgba(0,212,170,0.03)}
+.arch-layer{display:flex;align-items:center;gap:0.75rem;padding:clamp(0.3rem,0.6vw,0.5rem) 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.arch-layer:last-child{border-bottom:none}
+.arch-icon{font-size:1.2em}
+.arch-label{font-weight:600;color:var(--accent);min-width:60px;font-size:0.9em}
+.arch-desc{color:var(--text-secondary);font-size:0.8em}
+.text-accent{color:var(--accent)}
+.text-warm{color:var(--accent-warm)}
+.text-center{text-align:center}
+.mb-1{margin-bottom:0.4em}.mb-2{margin-bottom:0.8em}.mt-2{margin-top:1em}
+.small{font-size:0.85em;color:var(--text-secondary)}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:1000;transition:width 0.3s ease}
+.nav-dots{position:fixed;right:clamp(0.5rem,1.5vw,1.5rem);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:all 0.3s ease}
+.nav-dot.active{background:var(--accent);transform:scale(1.4)}
+.keyboard-hint{position:fixed;bottom:clamp(0.5rem,1.5vw,1.5rem);left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-secondary);opacity:0.5}
+@media(max-height:700px){:root{--slide-padding:clamp(0.6rem,2.5vw,1.5rem);--content-gap:clamp(0.4rem,1.2vw,0.8rem)}}
+@media(max-height:600px){.nav-dots,.keyboard-hint{display:none}}
+@media(max-width:600px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.15s!important}html{scroll-behavior:auto}}
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+    <nav class="nav-dots"></nav>
+    <div class="keyboard-hint">← → 键翻页 · 空格下一页</div>
+
+    <!-- P01: 封面 -->
+    <section class="slide title-slide gradient-bg">
+        <div class="slide-content">
+            <div class="emoji-icon reveal">📺</div>
+            <h1 class="reveal">直播3 · 融入工作流</h1>
+            <h2 class="reveal accent-gradient">打造你的数字员工</h2>
+            <p class="reveal mt-2" style="color:var(--text-secondary);font-size:var(--h3-size)">从"AI帮我整理" → "AI替我生产并分发"</p>
+            <p class="reveal mb-2 small">5月实操营 · 5/24 周日 20:00</p>
+        </div>
+    </section>
+
+    <!-- P02: 开场 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P02 · 开场</span>
+            <h2 class="reveal">欢迎来到第3次直播</h2>
+            <div class="card reveal mb-2">
+                <p>过去两周，你已经搭好了 LLM Wiki，养活了你的小龙虾。</p>
+                <p class="mt-2 text-accent"><strong>今天我们要做的，是让你的 AI 升级到<em>数字员工</em>——不只是帮你整理资料，而是<em>真的替你生产内容、分发内容</em>。</strong></p>
+            </div>
+            <div class="highlight-box reveal">
+                <p><strong>直播结束时：</strong>你在微信里发一句"我刚跟一个学员聊到 X"，30 分钟后你的小红书草稿和公众号初稿就在那里等你了。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P03: AI助手 vs 数字员工 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P03 · 核心概念</span>
+            <h2 class="reveal">AI 助手 vs 数字员工</h2>
+            <div class="card reveal mb-2">
+                <table>
+                    <tr><th>维度</th><th>AI 助手</th><th>数字员工</th></tr>
+                    <tr><td>触发方式</td><td>你问 → 它答</td><td>自己有工作清单</td></tr>
+                    <tr><td>任务范围</td><td>单次对话</td><td>多步工作流</td></tr>
+                    <tr><td>责任</td><td>输出一段文字</td><td>完成一项交付</td></tr>
+                    <tr><td>类比</td><td>智能搜索</td><td>远程同事</td></tr>
+                    <tr><td>你的角色</td><td>提问者</td><td>主管/审核</td></tr>
+                </table>
+            </div>
+            <div class="highlight-box reveal">
+                <p class="text-warm"><strong>金句：</strong>AI 助手是<em>反应式</em>的——你不问它它不动。数字员工是<em>主动式</em>的——它有自己的工作清单、SOP、KPI。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P04: 三件套架构 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P04 · 核心认知</span>
+            <h2 class="reveal">数字员工的「三件套」</h2>
+            <div class="arch-box reveal">
+                <div class="arch-layer">
+                    <span class="arch-icon">🧠</span>
+                    <span class="arch-label">Wiki</span>
+                    <span class="arch-desc">六间房 + Schema + 风格采样 → 让员工知道"我是谁、我懂什么"</span>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-icon">✋</span>
+                    <span class="arch-label">Skills</span>
+                    <span class="arch-desc">topic-generator / article-draft / xiaohongshu-ops → 让员工知道"我能干什么"</span>
+                </div>
+                <div class="arch-layer">
+                    <span class="arch-icon">🛤</span>
+                    <span class="arch-label">工作流</span>
+                    <span class="arch-desc">选题 → 大纲 → 初稿 → 润色 → 分发 → 让员工知道"什么时候用什么手"</span>
+                </div>
+            </div>
+            <p class="text-accent reveal text-center"><strong>三件套缺一不可。</strong></p>
+        </div>
+    </section>
+
+    <!-- P05: 内容数字员工拆解 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P05 · 核心实操 ⭐</span>
+            <h2 class="reveal">内容数字员工的三层积木</h2>
+            <div class="grid-3 reveal">
+                <div class="card">
+                    <h3 class="text-accent mb-1">🧠 知识层</h3>
+                    <ul class="flex-list small">
+                        <li>01号房 - 身份/故事</li>
+                        <li>02号房 - 方法论</li>
+                        <li>03号房 - 风格/金句</li>
+                        <li>05号房 - 用户痛点</li>
+                        <li>06号房 - 决策框架</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-accent mb-1">✋ 技能层</h3>
+                    <ul class="flex-list small">
+                        <li>topic-generator</li>
+                        <li>article-gen</li>
+                        <li>xiaohongshu-gen</li>
+                        <li>content-gen</li>
+                        <li>wechat-publisher</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="text-accent mb-1">🛤 工作流层</h3>
+                    <p class="small">碎片 → 选题 → 选定 → GAP大纲 → 初稿 → 四维润色 → 双平台适配 → Wiki反哺</p>
+                </div>
+            </div>
+            <div class="highlight-box reveal mt-2">
+                <p class="small"><strong>学员Skills包 = 内容数字员工零件包</strong>：topic-generator + article-gen + xiaohongshu-gen + content-gen</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P05-2: 工作示例 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P05 · 工作示例</span>
+            <h2 class="reveal">内容数字员工工作流程</h2>
+            <div class="flow reveal">
+                <div class="flow-step">发碎片</div><span class="flow-arrow">→</span><div class="flow-step">入库识别</div><span class="flow-arrow">→</span><div class="flow-step">选题生成</div><span class="flow-arrow">→</span><div class="flow-step">GAP大纲</div><span class="flow-arrow">→</span><div class="flow-step">初稿</div><span class="flow-arrow">→</span><div class="flow-step">双平台</div>
+            </div>
+            <div class="card reveal card-glow mb-2">
+                <p class="mb-1"><strong>场景：</strong>"今天和学员聊，她问'知识库和我有什么关系'——这个问题我被问了至少20次。"</p>
+                <p class="small text-secondary mt-1">→ AI 自动识别意图 → 入库05用户痛点 → 生成选题 → 调用GAP框架出大纲 → 调03风格+01故事生成初稿 → 双平台适配 → Wiki反哺</p>
+            </div>
+            <p class="text-accent reveal text-center"><strong>30分钟后，草稿箱里有公众号草稿 + 小红书图文</strong></p>
+        </div>
+    </section>
+
+    <!-- P05-3: Skill vs 数字员工 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P05 · 核心区别</span>
+            <h2 class="reveal">Skill vs 数字员工</h2>
+            <div class="card reveal mb-2">
+                <table>
+                    <tr><th>维度</th><th>Skill（技能）</th><th>数字员工</th></tr>
+                    <tr><td>定义</td><td>单点任务模板</td><td>完整工作单元（感知→决策→执行）</td></tr>
+                    <tr><td>组成</td><td>1个 prompt</td><td>Wiki + Skill + 工作流</td></tr>
+                    <tr><td>触发</td><td>手动调用</td><td>自动/半自动</td></tr>
+                    <tr><td>能力</td><td>单一一件事</td><td>连续做多件事</td></tr>
+                    <tr><td>依赖</td><td>独立存在</td><td>依赖知识库</td></tr>
+                </table>
+            </div>
+            <div class="card reveal mb-2" style="background:var(--accent-soft);border-color:var(--accent-warm)">
+                <p class="mb-1"><strong>类比：</strong></p>
+                <p class="text-warm">Skill = 一把锤子<br>数字员工 = 一个木匠（知道什么时候用锤、钉什么、怎么组合）</p>
+            </div>
+            <p class="small reveal text-center"><em>前期用 Skill 练手感，等你发现"这个流程我老是在重复"，就升级成数字员工让它自动跑。</em></p>
+        </div>
+    </section>
+
+    <!-- P05-4: 六间房映射 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P05 · 映射关系</span>
+            <h2 class="reveal">内容数字员工 × 六间房</h2>
+            <div class="card reveal mb-2">
+                <table>
+                    <tr><th>数字员工</th><th>主要调用</th><th>次要调用</th></tr>
+                    <tr><td><strong>🅐 内容数字员工</strong> <span class="badge">今天重点</span></td><td>03号房（风格/金句）</td><td>01号房（身份）、02号房（方法论）</td></tr>
+                    <tr><td><strong>🅑 产品顾问</strong></td><td>04号房（产品/定价）</td><td>02号房（能力）、05号房（用户）</td></tr>
+                    <tr><td><strong>🅒 销售教练</strong></td><td>04号房 + 05号房</td><td>01号房（故事）</td></tr>
+                    <tr><td><strong>🅓 知识库管理员</strong></td><td>02号房（知识）</td><td>所有房间</td></tr>
+                    <tr><td><strong>🅔 个人教练</strong></td><td>06号房（决策框架）</td><td>01号房（身份）</td></tr>
+                </table>
+            </div>
+            <p class="text-accent reveal text-center"><strong>学会了内容数字员工，其他场景你能套着做。</strong></p>
+        </div>
+    </section>
+
+    <!-- P06: 5类数字员工 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P06 · 可选深入</span>
+            <h2 class="reveal">5 类常见数字员工</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>🅐 内容数字员工</strong> <span class="badge">今天重点</span></p>
+                    <p class="small">选题→大纲→初稿→分发 · 3号房为主</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>🅑 产品顾问</strong></p>
+                    <p class="small">设计产品/定价 · 4号房为主</p>
+                </div>
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>🅒 销售教练</strong></p>
+                    <p class="small">销售话术/答疑 · 4+5号房</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>🅓 知识库管理员</strong></p>
+                    <p class="small">读取/分类/提炼/索引 · 全部房间</p>
+                </div>
+                <div class="card" style="grid-column:span 2">
+                    <p class="text-accent mb-1"><strong>🅔 个人教练</strong></p>
+                    <p class="small">倾听/探索/给建议/确认行动 · 6号房为主</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P07: 一人公司智囊团 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P07 · 新增</span>
+            <h2 class="reveal">一人公司智囊团</h2>
+            <p class="small text-secondary reveal mb-2">我用AI搭建了5个数字分身，每个对应一个真实的人力缺口</p>
+            <div class="grid-3 reveal">
+                <div class="card card-glow">
+                    <p class="emoji-icon">🐾</p>
+                    <p class="text-accent"><strong>石榴</strong></p>
+                    <p class="small">首席AI搭档</p>
+                    <p class="small text-secondary">全能主理 · 战略+执行</p>
+                </div>
+                <div class="card">
+                    <p class="emoji-icon">📝</p>
+                    <p class="text-accent"><strong>小蜜</strong></p>
+                    <p class="small">内容分身</p>
+                    <p class="small text-secondary">选题/公众号</p>
+                </div>
+                <div class="card">
+                    <p class="emoji-icon">🎯</p>
+                    <p class="text-warm"><strong>小策</strong></p>
+                    <p class="small">产品分身</p>
+                    <p class="small text-secondary">产品设计/迭代</p>
+                </div>
+                <div class="card">
+                    <p class="emoji-icon">📂</p>
+                    <p class="text-accent"><strong>小勤</strong></p>
+                    <p class="small">执行分身</p>
+                    <p class="small text-secondary">资料整理/入库</p>
+                </div>
+                <div class="card">
+                    <p class="emoji-icon">💰</p>
+                    <p class="text-warm"><strong>钱老</strong></p>
+                    <p class="small">商业分身</p>
+                    <p class="small text-secondary">定价/转化</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P08: Skill创建 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P08 · 加餐</span>
+            <h2 class="reveal">Skill 创建加餐</h2>
+            <p class="text-accent reveal mb-2"><strong>Skill 听起来高大上，本质就是——你给 AI 一份说明书。</strong></p>
+            <div class="card reveal mb-2">
+                <p class="mb-1"><strong>最简 Skill 结构：</strong></p>
+                <pre>my-skill/
+├── SKILL.md        ← 触发词 + 说明
+└── prompts/
+    └── main.md     ← 核心提示词</pre>
+            </div>
+            <div class="highlight-box reveal">
+                <p class="text-warm"><strong>金句：</strong>Skill 不是写代码，是写说明书。<br><strong>一个 Skill 不到 30 行。</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P09: 全链路8步法 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P09 · 实操篇</span>
+            <h2 class="reveal">全链路 8 步法</h2>
+            <div class="flow reveal">
+                <div class="flow-step">❶发碎片</div><span class="flow-arrow">→</span><div class="flow-step">❷入库</div><span class="flow-arrow">→</span><div class="flow-step">❸选题</div><span class="flow-arrow">→</span><div class="flow-step">❹大纲</div><span class="flow-arrow">→</span><div class="flow-step">❺初稿</div><span class="flow-arrow">→</span><div class="flow-step">❻润色</div><span class="flow-arrow">→</span><div class="flow-step">❼分发</div><span class="flow-arrow">→</span><div class="flow-step">❽反哺</div>
+            </div>
+            <div class="grid-2 reveal mt-2">
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>关键原则：</strong></p>
+                    <ul class="flex-list small">
+                        <li><strong>真实素材：</strong>用蓉蓉子当下真实的碎片跑演示</li>
+                        <li><strong>不快进不剪辑：</strong>完整跑一遍，让学员看到真实耗时</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>黄金比例：</strong></p>
+                    <p class="small">AI写80%，你改20%<br>这20%就是"为什么是你"的部分</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P10: 现场演示-选题 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P10 · 现场演示</span>
+            <h2 class="reveal">❶❷ 碎片 → 选题</h2>
+            <div class="card reveal mb-2">
+                <p class="mb-1"><strong>操作：</strong>微信发给龙虾 → 等自动入库 → 发指令生成选题池</p>
+                <pre>📋 本周选题池（基于 Wiki + 你最近的素材）
+1️⃣ 【M1·成长日记】"30岁还不知道自己擅长什么"——我也曾是
+2️⃣ 【M2·小而美产品】从1v1咨询里看到的3个用户痛点
+3️⃣ 【M3·AI智囊团】我的小龙虾今天帮我做了什么
+4️⃣ 【M1×M3】AI不能替你想清楚定位，但能让你少走3年弯路
+5️⃣ 【M2】为什么我从不让学员先做SWOT</pre>
+            </div>
+            <div class="highlight-box reveal">
+                <p class="text-warm small">"AI 不是凭空想选题，它调用了我们昨天的咨询素材 + M1故事母题 + 05房间的痛点库。<br><strong>这就是底座的力量。</strong>"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P11: GAP框架 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P11 · 现场演示</span>
+            <h2 class="reveal">❸❹ 选定主题 → GAP大纲</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>Gap（问题）</strong></p>
+                    <p class="small">痛点描述</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>Analysis（拆解）</strong></p>
+                    <p class="small">误区分析</p>
+                </div>
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>Principle（原则）</strong></p>
+                    <p class="small">方法论</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>Action（行动）</strong></p>
+                    <p class="small">具体步骤</p>
+                </div>
+            </div>
+            <p class="small text-secondary reveal mt-2"><em>调用 06号房 的GAP框架 → 输出结构化骨架</em></p>
+        </div>
+    </section>
+
+    <!-- P12: 初稿生成 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P12 · 现场演示</span>
+            <h2 class="reveal">❺ 初稿生成</h2>
+            <div class="card reveal mb-2">
+                <p class="mb-1"><strong>调用：</strong></p>
+                <ul class="flex-list">
+                    <li>GAP大纲 → 确定结构</li>
+                    <li>03号房 风格采样 → 确保语气像蓉蓉子</li>
+                    <li>01号房 身份信息 → 加入故事和经历</li>
+                    <li>02号房 方法论 → 输出专业内容</li>
+                </ul>
+            </div>
+            <div class="highlight-box reveal">
+                <p class="text-warm small">"这一段写出来，你的写作时间从<strong>3小时压缩到30分钟</strong>——但前提是你的底座搭好了。<br>没底座，AI写出来的就是'正确的废话'。"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P13: 四维润色 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P13 · 现场演示</span>
+            <h2 class="reveal">❻ 四维润色检查表</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="mb-1"><strong>☐ 语气像我吗？</strong></p>
+                    <p class="small text-secondary">→ 对照 03_我说过什么，读出来看看</p>
+                </div>
+                <div class="card">
+                    <p class="mb-1"><strong>☐ 专业准确吗？</strong></p>
+                    <p class="small text-secondary">→ 对照 02_我会什么，有没有外行话</p>
+                </div>
+                <div class="card">
+                    <p class="mb-1"><strong>☐ 用户视角吗？</strong></p>
+                    <p class="small text-secondary">→ 对照 05_我面对谁，能不能戳中读者</p>
+                </div>
+                <div class="card">
+                    <p class="mb-1"><strong>☐ 价值观一致吗？</strong></p>
+                    <p class="small text-secondary">→ 对照 06_我怎么想，有没有越线</p>
+                </div>
+            </div>
+            <div class="highlight-box reveal mt-2">
+                <p class="text-warm small"><strong>金句：</strong>AI 写 80%，你改 20%。这 20% 不能省，因为这 20% 才是'为什么是你'的部分。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- P14: 双平台分发 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P14 · 现场演示</span>
+            <h2 class="reveal">❼❽ 双平台分发 + Wiki反哺</h2>
+            <div class="grid-2 reveal mb-2">
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>小红书版</strong></p>
+                    <p class="small">emoji密、节奏快、第一句钩子、带标签</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>公众号版</strong></p>
+                    <p class="small">保留原文风格、emoji摘要前缀、正文完整</p>
+                </div>
+            </div>
+            <div class="card reveal">
+                <p class="mb-1"><strong>Wiki反哺：</strong></p>
+                <ul class="flex-list small">
+                    <li>新案例入库 → 02_Wiki/案例库/</li>
+                    <li>风格采样更新 → 03_我说过什么/</li>
+                    <li>M1母题增加代表作</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- P15: 路由节点 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P15 · 进阶</span>
+            <h2 class="reveal">数字员工路由节点</h2>
+            <p class="text-secondary reveal mb-2 small">不同的输入应该走不同的处理路径——这就是路由</p>
+            <div class="flow reveal">
+                <div class="flow-step">微信输入</div><span class="flow-arrow">→</span><div class="flow-step card-glow">🔀 路由判断</div><span class="flow-arrow">→</span>
+            </div>
+            <div class="grid-3 reveal">
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>📝 内容型</strong></p>
+                    <p class="small">→ 选题/大纲/初稿/分发</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>💡 灵感型</strong></p>
+                    <p class="small">→ 存入Inbox/打标签</p>
+                </div>
+                <div class="card">
+                    <p class="text-accent mb-1"><strong>❓ 咨询型</strong></p>
+                    <p class="small">→ 记录痛点/更新05房</p>
+                </div>
+            </div>
+            <p class="text-warm reveal text-center mt-2 small"><em>路由让你的数字员工从"一条流水线"变成"一个能判断的大脑"</em></p>
+        </div>
+    </section>
+
+    <!-- P16: 结营预告 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P16 · 结营预告</span>
+            <h2 class="reveal">5/30 结营仪式</h2>
+            <p class="text-secondary reveal mb-2 small">这场结营<strong>不是听课</strong>——是你来 Show 你的成果</p>
+            <div class="grid-3 reveal">
+                <div class="card"><p class="emoji-icon">🦞</p><p class="small">你的龙虾长什么样</p></div>
+                <div class="card"><p class="emoji-icon">📚</p><p class="small">你的 Wiki 长成什么样</p></div>
+                <div class="card"><p class="emoji-icon">📝</p><p class="small">这21天发布了什么</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P17: 7份礼物 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P17 · 礼物清单</span>
+            <h2 class="reveal">7 份结营礼物 🎁</h2>
+            <div class="grid-2 reveal">
+                <div class="card"><p class="text-accent"><strong>🎁1</strong> 完整Skills包（8个）</p></div>
+                <div class="card"><p class="text-warm"><strong>🎁2</strong> 5类数字员工模板</p></div>
+                <div class="card"><p class="text-accent"><strong>🎁3</strong> CLAUDE.md范本</p></div>
+                <div class="card"><p class="text-warm"><strong>🎁4</strong> 四层内容创作SOP卡片</p></div>
+                <div class="card"><p class="text-accent"><strong>🎁5</strong> Skill创建指南</p></div>
+                <div class="card"><p class="text-warm"><strong>🎁6</strong> 🦐 虾玩星球抵扣券</p></div>
+                <div class="card" style="grid-column:span 2"><p class="text-accent"><strong>🎁7</strong> 最佳搭子 & 互助之星大奖（私教抵扣 + 学费全退）</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P18: 虾玩星球 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P18 · 升级引导</span>
+            <h2 class="reveal">🦐 虾玩星球 · 年度会员</h2>
+            <p class="text-secondary reveal mb-2 small">蓉蓉子的 AI 一人公司实战社群 · 不是听课，是一起养虾</p>
+            <div class="grid-2 reveal">
+                <div class="card card-glow">
+                    <p class="mb-1"><strong>📌 月2次主题活动</strong></p><p class="small">选题共创 / 打磨SOP / 互审内容</p>
+                    <p class="mt-2 mb-1"><strong>📌 虾玩吐槽大会</strong></p><p class="small">吐槽AI翻车 + 现场排障</p>
+                    <p class="mt-2 mb-1"><strong>📌 ¥1,299 1v1 深度咨询</strong></p><p class="small">1次含在年费中</p>
+                </div>
+                <div class="card">
+                    <p class="text-warm mb-1"><strong>价格：</strong></p>
+                    <p class="small">原价¥2,999 → 早鸟¥1,999 → 本期学员再抵¥400</p>
+                    <p class="small text-secondary mt-2">限前20位种子客户 · 结营后3天失效</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P19: 私教陪跑 -->
+    <section class="slide gradient-bg">
+        <div class="slide-content">
+            <span class="section-tag reveal">P19 · 升级引导</span>
+            <h2 class="reveal">💎 私教陪跑</h2>
+            <p class="text-secondary reveal mb-2 small">12周深度陪跑 · 从0到1搭完专属系统</p>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="mb-1"><strong>📅 12周完整路径</strong></p>
+                    <p class="small">搭专属知识库 + 训练3大数字员工</p>
+                    <p class="mt-2 mb-1"><strong>📅 每2周1次深度会议（共6次）</strong></p>
+                    <p class="small">60-90分钟/次，腾讯会议</p>
+                    <p class="mt-2 mb-1"><strong>📅 每周2个小任务（30分钟/个）</strong></p>
+                    <p class="small">持续行动，不断线</p>
+                </div>
+                <div class="card card-glow">
+                    <p class="text-accent mb-1"><strong>🤖 你将拥有：</strong></p>
+                    <ul class="flex-list small">
+                        <li>专属知识库底座（Obsidian）</li>
+                        <li>3大数字员工（根据场景选择）</li>
+                        <li>经验结构化SOP</li>
+                        <li>2个月迭代期（每月异步答疑）</li>
+                    </ul>
+                    <p class="small text-secondary mt-2">需审核 · 名额有限</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- P20: 结束页 -->
+    <section class="slide title-slide gradient-bg">
+        <div class="slide-content">
+            <div class="emoji-icon reveal">🦞</div>
+            <h2 class="reveal">你已经拥有了第一个数字员工</h2>
+            <p class="reveal mt-2" style="color:var(--text-secondary);font-size:var(--h3-size)">从1个员工到5人数字团队，从一个人到一支队伍。<br>这条路，我们一起走。</p>
+            <p class="reveal mt-2 text-accent"><strong>5/30晚8点，结营见！</strong></p>
+        </div>
+    </section>
+
+    <script>
+class SlidePresentation{constructor(){this.slides=document.querySelectorAll(".slide");this.navDots=document.querySelector(".nav-dots");this.progressBar=document.querySelector(".progress-bar");this.currentSlide=0;this.init()}init(){this.createNavDots();this.setupIntersectionObserver();this.setupKeyboardNav();this.setupTouchNav();this.updateProgress()}createNavDots(){this.navDots.innerHTML="";this.slides.forEach((_,i)=>{const dot=document.createElement("div");dot.className="nav-dot"+(i===0?" active":"");dot.addEventListener("click",()=>this.goToSlide(i));this.navDots.appendChild(dot)})}setupIntersectionObserver(){const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");const idx=[...this.slides].indexOf(entry.target);this.currentSlide=idx;this.updateNavDots();this.updateProgress()}})},{});this.slides.forEach(slide=>obs.observe(slide))}setupKeyboardNav(){document.addEventListener("keydown",e=>{if(e.key==="ArrowDown"||e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();this.nextSlide()}else if(e.key==="ArrowUp"||e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();this.prevSlide()}})}setupTouchNav(){let startY=0;document.addEventListener("touchstart",e=>startY=e.touches[0].clientY);document.addEventListener("touchend",e=>{const diff=startY-e.changedTouches[0].clientY;if(Math.abs(diff)>50){diff>0?this.nextSlide():this.prevSlide()}})}goToSlide(idx){this.slides[idx].scrollIntoView({behavior:"smooth"})}nextSlide(){if(this.currentSlide<this.slides.length-1)this.goToSlide(this.currentSlide+1)}prevSlide(){if(this.currentSlide>0)this.goToSlide(this.currentSlide-1)}updateNavDots(){document.querySelectorAll(".nav-dot").forEach((dot,i)=>{dot.classList.toggle("active",i===this.currentSlide)})}updateProgress(){const pct=((this.currentSlide+1)/this.slides.length)*100;this.progressBar.style.width=pct+"%"}}new SlidePresentation();
+    </script>
+</body>
+</html>

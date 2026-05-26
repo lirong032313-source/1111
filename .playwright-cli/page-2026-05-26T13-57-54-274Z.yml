@@ -1,0 +1,141 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - link "飞书云文档" [ref=e10] [cursor=pointer]:
+              - /url: https://www.feishu.cn
+              - img [ref=e13]
+              - generic [ref=e17]: 飞书云文档
+            - img [ref=e21] [cursor=pointer]
+          - generic [ref=e24]:
+            - generic [ref=e26]:
+              - paragraph [ref=e28]:
+                - generic [ref=e29]: 🦐 蓉蓉子的虾玩星球 · 年度会员设计
+              - paragraph [ref=e32]: 最新修改时间为05月26日
+            - generic [ref=e36]:
+              - button "登录/注册" [ref=e38] [cursor=pointer]
+              - button [ref=e39] [cursor=pointer]:
+                - img [ref=e41]
+        - generic [ref=e46]:
+          - list [ref=e54] [cursor=pointer]:
+            - listitem
+            - listitem [ref=e55]:
+              - link "🦐 蓉蓉子的虾玩星球 · 年度会员设计" [ref=e56]:
+                - /url: "#MgCZdmsLyo7guExuBt1cBgQXn1d"
+                - img [ref=e58]
+                - text: 🦐 蓉蓉子的虾玩星球 · 年度会员设计
+            - listitem [ref=e60]:
+              - link "不是课程，不是训练营，是老用户的圈子" [ref=e61]:
+                - /url: "#Ewf4d9isuoYq6gxDddlct8FwnXg"
+                - img [ref=e63]
+                - text: 不是课程，不是训练营，是老用户的圈子
+            - listitem [ref=e65]:
+              - link "为什么会有虾玩星球？" [ref=e66]:
+                - /url: "#XxTQdzqT8oezfhxCgDyc1O4unOc"
+                - img [ref=e68]
+                - text: 为什么会有虾玩星球？
+            - listitem [ref=e70]:
+              - link "虾玩星球不是什么" [ref=e71]:
+                - /url: "#QKHTdOVuFoNJY4xyvFocutD6nJe"
+                - img [ref=e73]
+                - text: 虾玩星球不是什么
+            - listitem [ref=e75]:
+              - link "虾玩星球是什么" [ref=e76]:
+                - /url: "#TnU8dyr0ooyuqrxk6ebcajn7n2g"
+                - img [ref=e78]
+                - text: 虾玩星球是什么
+            - listitem [ref=e80]:
+              - link "虾玩星球 · 每月节奏" [ref=e81]:
+                - /url: "#MlHidU4WjokH33xesyjcBnEpnLh"
+                - img [ref=e83]
+                - text: 虾玩星球 · 每月节奏
+            - listitem [ref=e85]:
+              - link "价格" [ref=e86]:
+                - /url: "#Nvi4dArIlo7ZwPxRGfqccVfensC"
+                - img [ref=e88]
+                - text: 价格
+            - listitem [ref=e90]:
+              - link "谁适合加入" [ref=e91]:
+                - /url: "#T5kIdxJ9soI25LxiyYbca1c1nub"
+                - img [ref=e93]
+                - text: 谁适合加入
+            - listitem [ref=e95]:
+              - link "谁不适合" [ref=e96]:
+                - /url: "#Gex5d9gkaoWTLPxipvKcpi46nac"
+                - img [ref=e98]
+                - text: 谁不适合
+            - listitem [ref=e100]:
+              - link "加入后的路径" [ref=e101]:
+                - /url: "#UMT7daH9KodLJOxOmZSc9gaWnoh"
+                - img [ref=e103]
+                - text: 加入后的路径
+            - listitem [ref=e105]:
+              - link "常见问题" [ref=e106]:
+                - /url: "#XbwOdX5lEoRnfqx7Wn2cjJwYndb"
+                - img [ref=e108]
+                - text: 常见问题
+            - listitem [ref=e110]:
+              - link "加入方式" [ref=e111]:
+                - /url: "#Q2lKdsTqto9O5CxTl8rciCEWnwd"
+                - img [ref=e113]
+                - text: 加入方式
+            - listitem
+          - generic [ref=e115]:
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - heading "🦐 蓉蓉子的虾玩星球 · 年度会员设计" [level=1] [ref=e127]:
+                  - generic [ref=e129]: 🦐 蓉蓉子的虾玩星球 · 年度会员设计
+                - generic [ref=e134]: 今天修改
+              - generic [ref=e137]:
+                - generic [ref=e143]: 不是课程，不是训练营，是老用户的圈子
+                - generic [ref=e155]: 为什么会有虾玩星球？
+                - generic [ref=e160]: 我做实操营和私教这段时间，发现一个现象：
+                - generic [ref=e165]: 学员最需要的东西，不是更多课，而是一个能持续迭代、有人兜底、遇到问题随时能问的圈子。
+                - generic [ref=e170]: 实操营结束，你带着一个知识库走了。然后呢？一个月后AI工具更新了，你的分身卡住了，你的产品定价拿不准了——你找谁？
+                - generic [ref=e175]: 找我再报一期实操营？没必要。找朋友问？人家不一定懂。
+                - generic [ref=e180]: 所以虾玩星球来了——给老用户一个长期待的地方，每个月陪你迭代AI分身，遇到问题随时有人接住。
+                - generic [ref=e192]: 虾玩星球不是什么
+                - generic [ref=e197]: ❌ 不是课程——没有录播课、没有作业、没有打卡
+                - generic [ref=e202]: ❌ 不是训练营——没有固定开营结营、没有淘汰机制
+                - generic [ref=e207]: ❌ 不是知识付费——不是买了放着吃灰的东西
+                - generic [ref=e213]: 虾玩星球是什么
+                - generic [ref=e218]: ✅ 是一个圈子——实操营和私教的老用户、以及想深度应用AI的群体
+                - generic [ref=e223]: ✅ 是一个陪跑——每个月两场活动，带你持续迭代
+                - generic [ref=e228]: ✅ 是一个外挂——蓉蓉子AI分身24小时在线，你问就能答
+                - generic [ref=e240]: 虾玩星球 · 每月节奏
+            - generic [ref=e262]:
+              - generic [ref=e263]: 评论（0）
+              - img [ref=e267] [cursor=pointer]
+            - button [ref=e272] [cursor=pointer]:
+              - img [ref=e274]
+      - generic:
+        - generic:
+          - generic:
+            - menu:
+              - generic:
+                - generic:
+                  - menuitem "帮助中心":
+                    - generic:
+                      - generic:
+                        - img
+                    - generic: 帮助中心
+                - generic:
+                  - menuitem "效率指南":
+                    - generic:
+                      - generic:
+                        - img
+                    - generic: 效率指南
+          - img [ref=e280] [cursor=pointer]
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - textbox
+            - generic: 加载中...
+  - textbox [active] [ref=e283]
+  - textbox [ref=e286]
+  - iframe [ref=e287]:
+    

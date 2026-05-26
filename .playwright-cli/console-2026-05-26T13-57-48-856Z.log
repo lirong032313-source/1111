@@ -1,0 +1,43 @@
+[    2081ms] [WARNING] A parser-blocking, cross site (i.e. different eTLD+1) script, https://lf-package-cn.feishucdn.com/obj/feishu-static/ccm-vmok/web/lang/docxSpa/zh-CN.da0d58bd84eb73fe.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details. @ https://my.feishu.cn/docx/MgCZdmsLyo7guExuBt1cBgQXn1d:0
+[    2081ms] [WARNING] A parser-blocking, cross site (i.e. different eTLD+1) script, https://lf-package-cn.feishucdn.com/obj/feishu-static/ccm-vmok/web/lang/docxSpa/zh-CN.da0d58bd84eb73fe.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details. @ https://my.feishu.cn/docx/MgCZdmsLyo7guExuBt1cBgQXn1d:0
+[    2081ms] [WARNING] A parser-blocking, cross site (i.e. different eTLD+1) script, https://lf-package-cn.feishucdn.com/obj/feishu-static/eesz/bear/docx/module/ee/docs/docx/1.0.17.3855/lang/zh-CN.js, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message. See https://www.chromestatus.com/feature/5718547946799104 for more details. @ https://my.feishu.cn/docx/MgCZdmsLyo7guExuBt1cBgQXn1d:0
+[    3314ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-security.feishu.cn/lark/scs/compliance/ping:0
+[    3540ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://my.feishu.cn/facade/search/pull_search_settings?search_setting_type=1:0
+[    4147ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4149ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://project.feishu.cn/goapi/v1/user/assets/login_assets:0
+[    4237ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4331ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4456ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4571ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4599ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4651ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4653ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4655ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-lark-api.feishu.cn/accounts/web/user?app_id=12&_t=1779803873317:0
+[    4849ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4851ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4852ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4902ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4905ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    4968ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    5480ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8048ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8110ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8123ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8175ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8189ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8233ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8255ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[    8316ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[   23665ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[   23732ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[   23790ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[   23848ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://internal-api-lark-api.feishu.cn/im/gateway/:0
+[   33186ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-security.feishu.cn/lark/scs/compliance/ping:0
+[   43591ms] [ERROR] The script resource is behind a redirect, which is disallowed. @ :0
+[   43602ms] [ERROR] The script resource is behind a redirect, which is disallowed. @ :0
+[   43603ms] [ERROR] The script resource is behind a redirect, which is disallowed. @ :0
+[   43667ms] [ERROR] The script resource is behind a redirect, which is disallowed. @ :0
+[   63224ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-security.feishu.cn/lark/scs/compliance/ping:0
+[   93190ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-security.feishu.cn/lark/scs/compliance/ping:0
+[  123190ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-security.feishu.cn/lark/scs/compliance/ping:0
+[  153183ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://internal-api-security.feishu.cn/lark/scs/compliance/ping:0

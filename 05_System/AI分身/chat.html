@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>蓉蓉子 AI 分身</title>
+<style>
+:root {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --text: #2c2c2a;
+  --text-secondary: #5f5e5a;
+  --text-hint: #888780;
+  --border: #d3d1c7;
+  --purple: #534AB7;
+  --purple-light: #EEEDFE;
+  --purple-dark: #3C3489;
+  --teal: #0F6E56;
+  --teal-light: #E1F5EE;
+  --coral: #D85A30;
+  --coral-light: #FAECE7;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.header {
+  padding: 16px 20px;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: var(--purple-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.header-info h1 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.header-info span {
+  font-size: 12px;
+  color: var(--text-hint);
+}
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-behavior: smooth;
+}
+
+.message {
+  display: flex;
+  gap: 10px;
+  max-width: 88%;
+}
+
+.message.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.message.avatar {
+  align-self: flex-start;
+}
+
+.avatar-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: var(--purple-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.bubble {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.65;
+  word-break: break-word;
+}
+
+.message.user .bubble {
+  background: var(--purple);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.message.avatar .bubble {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.bubble p { margin-bottom: 8px; }
+.bubble p:last-child { margin-bottom: 0; }
+
+.welcome-card {
+  background: var(--purple-light);
+  border: 1px solid #CECBF6;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 8px;
+}
+
+.welcome-card h2 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--purple-dark);
+  margin-bottom: 8px;
+}
+
+.welcome-card p {
+  font-size: 13px;
+  color: var(--purple-dark);
+  opacity: 0.85;
+  line-height: 1.7;
+}
+
+.welcome-card .tag-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.welcome-card .tag {
+  padding: 4px 12px;
+  background: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--purple);
+  cursor: pointer;
+  border: 0.5px solid #CECBF6;
+  transition: all 0.2s;
+}
+
+.welcome-card .tag:hover {
+  background: var(--purple);
+  color: #fff;
+}
+
+.product-card {
+  background: var(--teal-light);
+  border: 0.5px solid #9FE1CB;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 8px;
+}
+
+.product-card .pc-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+
+.product-card .pc-price {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+
+.product-card .pc-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 10px;
+  align-self: flex-start;
+  align-items: center;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--text-hint);
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+.input-area {
+  padding: 12px 20px 20px;
+  border-top: 0.5px solid var(--border);
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  font-size: 14px;
+  outline: none;
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+}
+
+.input-area input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(83, 74, 183, 0.1);
+}
+
+.input-area input::placeholder {
+  color: var(--text-hint);
+}
+
+.input-area button {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  border: none;
+  background: var(--purple);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-area button:hover {
+  background: var(--purple-dark);
+}
+
+.input-area button:disabled {
+  background: var(--border);
+  cursor: not-allowed;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-hint);
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="avatar-img">🌿</div>
+    <div class="header-info">
+      <h1>蓉蓉子</h1>
+      <span>AI 分身 · 在线</span>
+    </div>
+  </div>
+
+  <div class="chat-area" id="chatArea">
+    <div class="welcome-card">
+      <h2>👋 嗨，我是蓉蓉子</h2>
+      <p>一个在轨道里寻找旷野的 90 后。</p>
+      <p>白天在杭州做解决方案专家，晚上搞我的小而美事业。</p>
+      <p>关于 AI 知识库、个人品牌、副业启动，或者只是想吐吐槽——都可以跟我说 😊</p>
+      <div class="tag-row">
+        <span class="tag" onclick="sendPreset('我想搭建个人知识库，从哪里开始？')">搭建知识库</span>
+        <span class="tag" onclick="sendPreset('我做了IP但产品卖不动怎么办？')">产品卖不动</span>
+        <span class="tag" onclick="sendPreset('主业太忙，怎么开启副业？')">主业+副业</span>
+        <span class="tag" onclick="sendPreset('AI时代个人品牌怎么做？')">个人品牌</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="跟蓉蓉子聊聊你的想法..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button id="sendBtn" onclick="sendMessage()">→</button>
+  </div>
+</div>
+
+<script>
+const KNOWLEDGE = {
+  rooms: {
+    room1: {
+      description: "我是蓉蓉子。山西县城出生，高考失利，大学折腾。来杭州10年从运营做到总监，买房立足。在职业巅峰期陷入倦怠，大理疗愈后找到答案。现在一边上班一边做个人品牌，帮助30-35岁的IP同伴构建数字资产。",
+      keywords: ["你是谁", "蓉蓉子", "故事", "经历", "背景", "价值观", "使命"]
+    },
+    room2: {
+      description: "我的三大方法论：1)六间房知识库框架——把个人知识分六个房间让AI调用；2)小而美产品体系——免费引流→低价入门→正价核心→高端深度→长期圈层；3)私教智囊团——用多智能体分工像开公司一样配教练团队。",
+      keywords: ["方法论", "六间房", "小而美", "能力", "私教智囊团", "知识库", "产品", "方法"]
+    },
+    room3: {
+      description: "我的表达风格：温暖有能量，用真实故事讲方法论。像朋友聊天而不是上课。核心金句——「在轨道中寻找旷野」「把确定性长在自己身上」「真实比完美重要」。",
+      keywords: ["金句", "风格", "写作", "表达", "内容", "说话"]
+    },
+    room4: {
+      description: "我的产品体系：IP六间房模板¥199(入门)、1v1知识库重构建¥1299/90min(核心)、经验资产化私教¥16800/3个月(主流)、AI分身全案¥49800/6个月(旗舰)、虾玩星球年度会员¥1999(圈层)。",
+      keywords: ["产品", "价格", "定价", "咨询", "私教", "会员", "模板", "服务"]
+    },
+    room5: {
+      description: "我的用户分为三类：A类知识型IP(35-40岁咨询师/教练，卡在不敢提价、产品说不清)；B类职场早鸟(30-35岁互联网人，AI工具会用但用不好)；C类专业工作者(35-45岁律师/医生/工程师，专业深厚但不会表达)。",
+      keywords: ["用户", "客户", "学员", "画像", "痛点", "谁适合"]
+    },
+    room6: {
+      description: "我的决策原则：第一看是否伤害人(绝不做)；第二看是否符合价值观(快乐/真实/自由)；第三看是否有成长价值；第四看时间和ROI。不贩卖焦虑、不做虚假承诺、不接价值观不合的客户。",
+      keywords: ["思考", "决策", "原则", "判断", "选择", "纠结", "怎么想"]
+    }
+  },
+
+  products: {
+    "六间房模板": { name: "IP六间房知识库模板", price: "¥199", desc: "低门槛体验，一个周末理清你的知识结构" },
+    "1v1咨询": { name: "1v1 AI知识库重构建咨询", price: "¥1299/90分钟", desc: "核心单品，画出你的数字大脑全景图" },
+    "私教": { name: "经验资产化私教(标准版)", price: "¥16800/3个月", desc: "从0到1搭建你的AI分身+内容生产线" },
+    "旗舰版": { name: "AI分身全案旗舰版", price: "¥49800/6个月", desc: "重度定制，完整构建数字资产体系" },
+    "会员": { name: "虾玩星球年度会员", price: "¥1999/年", desc: "每月4场活动+年度1v1诊断，长期陪伴" }
+  },
+
+  goldenQuotes: [
+    { text: "在轨道中寻找旷野", theme: "成长" },
+    { text: "把确定性长在自己身上，这是真正的自由", theme: "成长" },
+    { text: "AI是放大器，不是生成器——你的「料」决定了输出的质量", theme: "AI" },
+    { text: "智能体的上限 = 你底座的厚度", theme: "AI" },
+    { text: "你的定价，就是你对自己价值的一次公开投票", theme: "产品" },
+    { text: "小而美不是退而求其次，而是一种温柔的反叛", theme: "产品" },
+    { text: "允许自己先做出「垃圾」，然后在行动中逐渐迭代", theme: "行动" },
+    { text: "出来混，重要的是出来", theme: "行动" },
+    { text: "人设是幻象，真实才是根", theme: "品牌" },
+    { text: "流量是潮水，自我才是岸", theme: "品牌" }
+  ],
+
+  replies: {
+    "搭建知识库": "太好啦，你已经在想这件事了，比很多人领先一步 👏\n\n我用的是自己原创的「六间房」框架——把知识分成六个房间：我是谁、我会什么、我说过什么、我卖什么、我面对谁、我怎么想。\n\n大部分人卡住的原因，不是因为不会搭，而是「想把所有东西都塞进去」。其实不是的。✅ 你先从第一间房开始——「我是谁」：把你的故事、定位、价值观写清楚。这间房是所有房间的地基。\n\n如果你想要一个模板快速起手，我的IP六间房知识库模板（¥199）可以直接用。",
+
+    "产品卖不动": "来，我们先做个诊断 🔍\n\n产品卖不动通常不是产品不好，而是三件事没对齐：\n1️⃣ 用户感知——他们不知道你的产品到底解决什么\n2️⃣ 产品定价——价格跟价值不匹配\n3️⃣ 交付闭环——买了之后体验感不够\n\n「真正好的产品，不一定很重，但一定很准。」\n\n如果你想要深度的 90 分钟 1v1（¥1299），我可以帮你画出产品全景图。",
+
+    "主业+副业": "听到你说这个，我特别理解。我自己也走过这段路——成为最年轻总监时，所有看起来都挺好，但心里有个声音告诉我「不该只是这样」。\n\n后来我发现，问题不是「辞不辞职」，而是「有没有在轨道里找到自己的旷野」。我选择了主副业并行——不裸辞，但开始给自己开辟第二曲线。\n\n👉 你可以试试：这周花 30 分钟，写下你除了主业之外，什么事情让你有能量？不一定是赚钱的事。从那里开始。",
+
+    "个人品牌": "在AI时代做个人品牌，关键不是学更多工具，而是先搭好自己的「底座」。\n\n我总结了三步：\n1️⃣ 定位——你是谁，你能帮谁解决什么问题\n2️⃣ 内容——你的故事、观点、方法论怎么持续产出\n3️⃣ 产品——把「会做事」变成「能交付、能定价、能复用」\n\n「人设是幻象，真实才是根。」真正的个人品牌，不是你创造了什么幻象，而是你终于敢做自己。",
+
+    "迷茫": "「我感觉自己被『挺好』的状态困住了」——这句话我自己说过无数次。\n\n后来在大理，躺在松针大地上，我突然想明白：原来我已足够好，叶子和金子同样珍贵。\n\n👉 不需要立刻把所有问题都解决。先承认「我累了」，允许自己软弱和害怕。成年人的世界，有时候最大的善意，是允许自己不在状态。\n\n想具体聊聊吗？你在迷茫什么？",
+
+    "定价": "「你的定价，就是你对自己价值的一次公开投票。」\n\n关于定价，我的经验是三个原则：\n1️⃣ 不要用「我觉得值多少钱」——用「市场愿意付多少」来校准\n2️⃣ 先做几个低价案例验证需求，再做正式定价\n3️⃣ 提价不要一次跳太多——我的1v1咨询从¥999提到¥1299，是逐步来的\n\n你的产品具体是什么？我帮你参谋一下定价逻辑。"
+  },
+
+  generalReplies: [
+    "这件事让我想起自己走过的路。其实关键不是做更多，而是先做减法——把最核心的东西理清楚。「真正好的产品，不一定很重，但一定很准。」",
+    "你说的这个感受，我经历过类似的。有一句话我经常对自己说：「允许脆弱，是一种勇敢。」",
+    "我自己的体会是，先做出一个「垃圾版本」出来。「1万次准备，都不如1次粗糙的开始。」",
+    "这个问题很好。如果用我的「六间房」框架来看，这属于你「会什么」和「怎么想」之间的交叉地带……",
+    "「停止收集工具，开始搭建你的内容工厂。」我觉得你现在需要的不是更多方法，而是先从手头的经验开始结构化。"
+  ]
+};
+
+function findBestReply(query) {
+  const q = query.toLowerCase();
+
+  for (const [key, room] of Object.entries(KNOWLEDGE.rooms)) {
+    for (const kw of room.keywords) {
+      if (q.includes(kw.toLowerCase())) {
+        return { type: "knowledge", content: room.description, room: key };
+      }
+    }
+  }
+
+  for (const [key, reply] of Object.entries(KNOWLEDGE.replies)) {
+    if (q.includes(key.toLowerCase())) {
+      return { type: "reply", content: reply, key: key };
+    }
+  }
+
+  for (const [key, product] of Object.entries(KNOWLEDGE.products)) {
+    if (q.includes(key.toLowerCase())) {
+      return { type: "product", content: product, key: key };
+    }
+  }
+
+  if (q.includes("价格") || q.includes("多少钱") || q.includes("收费")) {
+    return { type: "pricing" };
+  }
+
+  if (q.includes("案例") || q.includes("学员") || q.includes("故事") || q.includes("成功")) {
+    return { type: "cases" };
+  }
+
+  const randomQuote = KNOWLEDGE.goldenQuotes[Math.floor(Math.random() * KNOWLEDGE.goldenQuotes.length)];
+  const randomReply = KNOWLEDGE.generalReplies[Math.floor(Math.random() * KNOWLEDGE.generalReplies.length)];
+  return { type: "general", content: randomReply, quote: randomQuote };
+}
+
+function formatReply(result, query) {
+  if (result.type === "reply") return result.content;
+
+  if (result.type === "product") {
+    return `关于${result.key}，给你介绍一下 👇\n\n📦 ${result.content.name}\n💰 ${result.content.price}\n📝 ${result.content.desc}\n\n想了解更多细节吗？`;
+  }
+
+  if (result.type === "knowledge") {
+    return result.content;
+  }
+
+  if (result.type === "pricing") {
+    return "我的产品是这样定价的 👇\n\n🌱 入门：IP六间房知识库模板 ¥199\n💡 核心：1v1知识库重构建 ¥1299/90分钟\n🚀 主流：经验资产化私教 ¥16800/3个月\n👑 旗舰：AI分身全案 ¥49800/6个月\n🌐 圈层：虾玩星球会员 ¥1999/年\n\n「你的定价，就是你对自己价值的一次公开投票。」想了解哪个层级？";
+  }
+
+  if (result.type === "cases") {
+    return "分享几个真实案例给你 🌟\n\n• 梦婷：邮件营销教练，用六间房搭知识库2.0，让AI承接60-70%的B端交付\n• 温帅：商业诊断×AI提效×教练技术三维一体\n• 颖心：全职疗愈师，整合多种技术「做减法」\n• 魏师：转型期用诊断代替盲目尝试\n\n你看，每个人卡住的点都不一样，但解法都是——先把经验结构化。";
+  }
+
+  return result.content;
+}
+
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const query = input.value.trim();
+  if (!query) return;
+
+  addMessage(query, 'user');
+  input.value = '';
+  document.getElementById('sendBtn').disabled = true;
+
+  showTyping();
+
+  setTimeout(() => {
+    hideTyping();
+    const result = findBestReply(query);
+    const replyText = formatReply(result, query);
+
+    if (result.type === "pricing" || result.type === "product") {
+      addProductMessage(replyText, result.content);
+    } else {
+      addMessage(replyText, 'avatar');
+    }
+
+    document.getElementById('sendBtn').disabled = false;
+    scrollToBottom();
+  }, 800 + Math.random() * 600);
+}
+
+function sendPreset(text) {
+  document.getElementById('userInput').value = text;
+  sendMessage();
+}
+
+function addMessage(text, sender) {
+  const chatArea = document.getElementById('chatArea');
+  const el = document.createElement('div');
+  el.className = `message ${sender} fade-in`;
+
+  let html = '';
+  if (sender === 'avatar') {
+    html = '<div class="avatar-msg-avatar">🌿</div>';
+  }
+  html += `<div class="bubble">${text.replace(/\n/g, '<br>')}</div>`;
+  el.innerHTML = html;
+
+  chatArea.appendChild(el);
+  scrollToBottom();
+}
+
+function addProductMessage(text, product) {
+  const chatArea = document.getElementById('chatArea');
+  const el = document.createElement('div');
+  el.className = 'message avatar fade-in';
+
+  let html = '<div class="avatar-msg-avatar">🌿</div>';
+  html += `<div class="bubble">${text.replace(/\n/g, '<br>')}</div>`;
+  el.innerHTML = html;
+  chatArea.appendChild(el);
+  scrollToBottom();
+}
+
+function showTyping() {
+  const chatArea = document.getElementById('chatArea');
+  const el = document.createElement('div');
+  el.className = 'typing-indicator fade-in';
+  el.id = 'typingIndicator';
+  el.innerHTML = '<div class="avatar-msg-avatar">🌿</div><div class="typing-dots"><span></span><span></span><span></span></div>';
+  chatArea.appendChild(el);
+  scrollToBottom();
+}
+
+function hideTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+function scrollToBottom() {
+  const chatArea = document.getElementById('chatArea');
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+</script>
+</body>
+</html>

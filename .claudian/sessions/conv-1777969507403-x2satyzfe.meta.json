@@ -4,8 +4,8 @@
   "title": "# 蓉蓉子 100 字自我介绍\n\n---\n\n我来自山西小镇，10 年职场升级打怪，从运营一路做...",
   "titleGenerationStatus": "success",
   "createdAt": 1777969507428,
-  "updatedAt": 1779160284373,
-  "lastResponseAt": 1779160284373,
+  "updatedAt": 1779803132737,
+  "lastResponseAt": 1779803132737,
   "sessionId": "3bcf756c-bb66-4e72-b705-40fc2b7de87f",
   "providerState": {
     "providerSessionId": "3bcf756c-bb66-4e72-b705-40fc2b7de87f",
@@ -171,12 +171,12 @@
   },
   "usage": {
     "model": "opus",
-    "inputTokens": 107385,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 105821,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 213206,
-    "percentage": 100,
+    "contextTokens": 0,
+    "percentage": 0,
     "contextWindowIsAuthoritative": true
   }
 }
